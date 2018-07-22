@@ -1,0 +1,172 @@
+const db = require('../../configs/dbConfig.js');
+const Usuario = db.usuario;
+const Perfil = db.perfil;
+const Endereco = db.endereco;
+const PermissaoPerfil = db.permissaoperfil;
+const CategoriaPerfil = db.categoriaperfil;
+ 
+exports.cadastrar_usuario = (req, res) => {
+
+	usuarioB = req.body;
+	res.setHeader('Content-Type', 'application/json');
+	
+	if(validaUsuario(usuarioB) == false){		
+    	res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));	
+	}else{
+		Usuario.create(new UsuarioObj(usuarioB)).then(function (usuario) {		
+			Endereco.create(new EnderecoObj(usuarioB)).then(function (endereco){			
+			
+				usuarioB.id = usuario.id;
+				usuarioB.perfil.endereco.id = endereco.id;
+				
+				Perfil.create(new PerfilObj(usuarioB)).then(function (perfil){
+	
+					usuarioB.perfil.id = perfil.id;	
+	
+					db.sequelize.Promise.map(usuarioB.perfil.permissoes, function(permissao){
+						 PermissaoPerfil.create(new PermissaoObj(usuarioB, permissao));		
+					}).then(function(npermissoes){
+						 db.sequelize.Promise.map(usuarioB.perfil.categorias, function(categoria){
+							CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));		
+						}).then(function(categorias){
+							res.send(JSON.stringify({ success: true, message: 'Cadastrou' }));							
+						});
+					});						
+				});				
+			});		
+		});	
+	}
+};
+ 
+exports.obter_todos_usuarios = (req, res) => {
+	Usuario.findAll({include: [{all: true, nested: true}]}).then(usuarios => {
+	  res.send(usuarios);
+	});
+};
+ 
+exports.obter_usuario_por_id = (req, res) => {	
+	Usuario.findById(req.params.usuarioId, {include: [{all: true, nested: true}]}).then(usuario => {
+		res.send(usuario);
+	})
+};
+ 
+exports.atualizar_usuario = (req, res) => {
+	const id = req.params.usuarioId;
+	Usuario.update( { 
+		email: req.body.email,
+		senha: req.body.senha
+	}, 
+	{ 
+		where: {id: req.params.usuarioId} 
+	}).then(() => {
+		res.json({ success: true, message: 'O Usuário foi alterado.' });
+	});
+};
+ 
+exports.deletar_usuario = (req, res) => {
+	const id = req.params.usuarioId;
+	Usuario.destroy({
+	  where: { id: id }
+	}).then(() => {
+		res.json({ success: true, message: 'O Usuário foi deletado.' });
+	});
+};
+
+function UsuarioObj(usuario){
+	this.email = usuario.email,
+	this.senha = usuario.senha
+}
+
+function EnderecoObj(usuario){
+	this.cep = 	usuario.perfil.endereco.cep,
+	this.numero = 	usuario.perfil.endereco.numero,
+	this.logradouro = usuario.perfil.endereco.logradouro,
+	this.complemento = usuario.perfil.endereco.complemento,      
+	this.bairro = usuario.perfil.endereco.bairro,      
+	this.cidade = usuario.perfil.endereco.cidade,
+	this.uf = usuario.perfil.endereco.uf,
+	this.pais = usuario.perfil.endereco.pais,
+	this.latitude = usuario.perfil.endereco.latitude,      
+	this.longitude = usuario.perfil.endereco.longitude
+}
+
+function PerfilObj(usuario){
+	this.nome = usuario.perfil.nome,
+	this.sobrenome = usuario.perfil.sobrenome,
+	this.datanascimento = usuario.perfil.datanascimento,
+	this.cpf = usuario.perfil.cpf,
+	this.sexo =usuario.perfil.sexo,
+	this.celular = usuario.perfil.celular,
+	this.urlimg = usuario.perfil.urlimg,
+	this.ativo = usuario.perfil.ativo,
+	this.usuarioId = usuario.id,
+	this.tipoperfilId = usuario.perfil.tipoperfil.id,
+	this.enderecoId = usuario.perfil.endereco.id
+}
+
+function PermissaoObj(usuario,permissao){
+	this.perfilId =  usuario.perfil.id,
+	this.permissaoId = permissao.id
+}
+
+function CategoriaObj(usuario, categoria){
+	this.perfilId =  usuario.perfil.id,
+	this.categoriaId = categoria.id
+}
+
+function validaUsuario(usuario){
+
+	if(usuario == null)
+		return false;
+	if(usuario.email == null || usuario.email.trim() == '')
+		return false;		
+	if(usuario.senha == null || usuario.senha.trim() == '')
+		return false;	
+	
+	if(usuario.perfil == null)
+		return false;
+	if(usuario.perfil.nome == null || usuario.perfil.nome.trim() == '')
+		return false;
+	if(usuario.perfil.sobrenome == null || usuario.perfil.sobrenome.trim() == '')
+		return false;
+	/*if(usuario.perfil.datanascimento == null || usuario.perfil.datanascimento.trim() == '')
+		return false;*/
+	if(usuario.perfil.cpf == null || usuario.perfil.cpf.trim() == '')
+		return false;
+	if(usuario.perfil.sexo == null || usuario.perfil.sexo.trim() == '')
+		return false;
+	if(usuario.perfil.celular == null || usuario.perfil.celular.trim() == '')
+		return false;
+	
+	if(usuario.perfil.endereco == null)
+		return false;
+	if(usuario.perfil.endereco.cep == null || usuario.perfil.endereco.cep.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.numero == null || usuario.perfil.endereco.numero.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.logradouro == null || usuario.perfil.endereco.logradouro.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.bairro == null || usuario.perfil.endereco.bairro.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.cidade == null || usuario.perfil.endereco.cidade.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.uf == null || usuario.perfil.endereco.uf.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.pais == null || usuario.perfil.endereco.pais.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.latitude == null || usuario.perfil.endereco.latitude.trim() == '')
+		return false;
+	if(usuario.perfil.endereco.longitude == null || usuario.perfil.endereco.longitude.trim() == '')
+		return false;
+
+	if(usuario.perfil.tipoperfil == null || usuario.perfil.tipoperfil.id == null || usuario.perfil.tipoperfil.id == 0)
+		return false;
+	if(usuario.perfil.permissoes == null || usuario.perfil.permissoes.length <= 0)
+		return false;
+	if(usuario.perfil.tipoperfil.descricao == 'Profissional'){
+		if(usuario.perfil.categorias == null || usuario.perfil.categorias.length <= 0)
+			return false;
+	}
+
+	return true;
+}

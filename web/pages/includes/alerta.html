@@ -1,0 +1,14 @@
+<div style="position: absolute; bottom:0; right:0; margin-right: 40px;" ng-controller="AlertaCtrl">
+    <div class="{{alertSuccess.classe}}" role="alert" ng-if="alertSuccess.visivel">
+        <button type="button" class="close" aria-label="Close" ng-click="fecharAlerta(alertSuccess)"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertSuccess.titulo}}</strong> {{alertSuccess.texto}}
+    </div>
+    <div class="{{alertError.classe}}" role="alert" ng-if="alertError.visivel">
+        <button type="button" class="close" aria-label="Close" ng-click="fecharAlerta(alertError)"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertError.titulo}}</strong> {{alertError.texto}}
+    </div>
+    <div class="{{alertWarning.classe}}" role="alert" ng-if="alertWarning.visivel">
+        <button type="button" class="close" aria-label="Close" ng-click="fecharAlerta(alertWarning)"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertWarning.titulo}}</strong> {{alertWarning.texto}}
+    </div>
+</div> 

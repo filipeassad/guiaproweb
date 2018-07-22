@@ -1,0 +1,106 @@
+app.controller('CadastroUsuarioCtrl', [
+    '$scope',
+    'httpService', 
+    '$rootScope',  
+    function(
+        $scope, 
+        httpService,
+        $rootScope){
+
+    $scope.usuario = {
+        perfil:{
+            categorias: [], 
+            permissoes: []
+        }
+    };
+
+    $scope.categorias = [];
+    $scope.permissoes = [];
+    $scope.usuarios = [];
+    $scope.tiposperfil = [];  
+    $scope.podeAlterar = false;
+
+    var url = "http://localhost:3000/api/usuario";
+    var url_tiposperfil = "http://localhost:3000/api/tipoperfil";
+    var url_tiposcategoria = "http://localhost:3000/api/categoria";
+    var url_permissao = "http://localhost:3000/api/permissao";
+
+    httpService.gethttp(url_tiposperfil, {})
+        .then(function mySuccess(response) { 
+            if(response.data != null)   
+                $scope.tiposperfil = response.data; 
+    });
+
+    httpService.gethttp(url_tiposcategoria, {})
+        .then(function mySuccess(response) { 
+            if(response.data != null)   
+                $scope.categorias = response.data; 
+    });
+
+    httpService.gethttp(url_permissao, {})
+        .then(function mySuccess(response) { 
+            if(response.data != null)   
+                $scope.permissoes = response.data; 
+    });    
+
+    $scope.cadastrar = function(){
+        httpService.posthttp(url, $scope.usuario)
+            .then(function mySuccess(response) {               
+                $scope.usuario = {};
+                retornoMensagem(response.data);
+        }, function myError(response) {
+            alert("Erro do servidor."); 
+        });
+    }    
+
+    $scope.alterar = function(){
+        httpService.puthttp(url + "/" + $scope.usuario.id, $scope.usuario)
+            .then(function mySuccess(response) {               
+                $scope.podeAlterar = false;
+                $scope.usuario = {};                
+                retornoMensagem(response.data);
+        }, function myError(response) {
+            alert("Erro do servidor."); 
+        });
+    }
+
+    $scope.selecionaCategoria = function(categoria){
+        if(categoria.selecionado == null || categoria.selecionado == false){
+            categoria.selecionado = true;
+            var categoriaC = angular.copy(categoria);
+            $scope.usuario.perfil.categorias.push(categoriaC);
+        }else{
+            categoria.selecionado = false;
+            var index = 0;
+            for(indexCategoria in $scope.usuario.perfil.categorias){
+                if(categoria.id == $scope.usuario.perfil.categorias[indexCategoria].id)
+                    index = indexCategoria;
+            }
+            $scope.usuario.perfil.categorias.splice(index,1);
+        }
+    }
+
+    $scope.selecionaPermissao = function(permissao){
+        if(permissao.selecionado == null || permissao.selecionado == false){
+            permissao.selecionado = true;
+            var permissaoC = angular.copy(permissao);
+            $scope.usuario.perfil.permissoes.push(permissaoC);
+        }else{
+            permissao.selecionado = false;
+            var index = 0;
+            for(indexPermissao in $scope.usuario.perfil.permissoes){
+                if(permissao.id == $scope.usuario.perfil.permissoes[indexPermissao].id)
+                    index = indexPermissao;
+            }
+            $scope.usuario.perfil.permissoes.splice(index,1);
+        }
+    }
+
+    function retornoMensagem(retorno){
+        if(retorno.success)
+            $rootScope.alertaSucesso(retorno.message);
+        else
+            $rootScope.alertaErro(retorno.message);
+    }
+
+}]);

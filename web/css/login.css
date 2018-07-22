@@ -1,0 +1,13 @@
+.lado-cinza {	
+    background: dimgrey; 
+    height: 500px; 
+    border-radius: 5px 0px 0px 5px; 
+    border: 0px solid transparent;
+}
+
+.lado-branco{
+    background: white;
+    height: 500px; 
+    border-radius: 0px 5px 5px 0px; 
+    border: 0px solid transparent;
+}
