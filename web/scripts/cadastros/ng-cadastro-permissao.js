@@ -45,6 +45,4 @@ app.controller('CadastroPermissaoCtrl', [
         });
     }
 
-   
-
 }]);
