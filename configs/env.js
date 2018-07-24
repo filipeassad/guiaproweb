@@ -1,4 +1,4 @@
-const env = {
+/*const env = {
     database: 'guiaprodb',
     username: 'postgres',
     password: 'postgres',
@@ -10,12 +10,12 @@ const env = {
         acquire: 30000,
         idle: 10000
     }
-  };
+};*/
 
-/*const env = {
+const env = {
     database: 'bancoguia',
     dialect: 'sqlite',
     storage: './bancoCriado.sqlite'  
-};*/
+};
 
 module.exports = env;

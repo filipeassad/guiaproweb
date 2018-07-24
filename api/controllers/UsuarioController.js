@@ -6,7 +6,6 @@ const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
  
 exports.cadastrar_usuario = (req, res) => {
-
 	usuarioB = req.body;
 	res.setHeader('Content-Type', 'application/json');
 	
@@ -29,7 +28,7 @@ exports.cadastrar_usuario = (req, res) => {
 						 db.sequelize.Promise.map(usuarioB.perfil.categorias, function(categoria){
 							CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));		
 						}).then(function(categorias){
-							res.send(JSON.stringify({ success: true, message: 'Cadastrou' }));							
+							res.send(JSON.stringify({ success: true, message: 'O usuário foi cadastrado com sucesso.' }));							
 						});
 					});						
 				});				
@@ -38,6 +37,67 @@ exports.cadastrar_usuario = (req, res) => {
 	}
 };
  
+exports.atualizar_usuario = (req, res) => {
+	usuarioB = req.body;
+	res.setHeader('Content-Type', 'application/json');
+	
+	if(validaUsuario(usuarioB) == false){		
+    	res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));	
+	}else{
+		Usuario.update(new UsuarioObj(usuarioB), { where: { id: usuarioB.id } }).then(function (usuario) {		
+			Endereco.update(new EnderecoObj(usuarioB), { where: { id: usuarioB.perfil.endereco.id } }).then(function (endereco){	
+				Perfil.update(new PerfilObj(usuarioB), { where: { id: usuarioB.perfil.id } }).then(function (perfil){
+					PermissaoPerfil.destroy({
+						where: { perfilId: usuarioB.perfil.id }
+					}).then(() => {
+						CategoriaPerfil.destroy({
+							where: { perfilId: usuarioB.perfil.id }
+						}).then(() => {
+							db.sequelize.Promise.map(usuarioB.perfil.permissoes, function(permissao){						 
+								PermissaoPerfil.create(new PermissaoObj(usuarioB, permissao));		
+							}).then(function(npermissoes){
+									db.sequelize.Promise.map(usuarioB.perfil.categorias, function(categoria){
+									CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));		
+								}).then(function(categorias){
+									res.send(JSON.stringify({ success: true, message: 'O usuário foi alterado com sucesso.' }));							
+								});
+							});		
+						});
+					});		
+				});				
+			});		
+		});	
+	}	
+};
+
+exports.deletar_usuario = (req, res) => {
+	const id = req.params.usuarioId;
+	
+	Usuario.findById(req.params.usuarioId, {include: [{all: true, nested: true}]}).then(usuario => {
+		Endereco.destroy({
+			where: { id: usuario.perfil.endereco.id }
+		}).then(() => {
+			Perfil.destroy({
+				where: { id: usuario.perfil.id }
+			}).then(() => {
+				PermissaoPerfil.destroy({
+					where: { perfilId: usuario.perfil.id }
+				}).then(() => {
+					CategoriaPerfil.destroy({
+						where: { perfilId: usuario.perfil.id }
+					}).then(() => {
+						Usuario.destroy({
+							where: { id: id }
+						}).then(() => {
+							res.send(JSON.stringify({ success: true, message: 'O usuário foi deletado com sucesso.' }));
+						});
+					});
+				});		
+			});
+		});
+	});	
+};
+
 exports.obter_todos_usuarios = (req, res) => {
 	Usuario.findAll({include: [{all: true, nested: true}]}).then(usuarios => {
 	  res.send(usuarios);
@@ -47,28 +107,6 @@ exports.obter_todos_usuarios = (req, res) => {
 exports.obter_usuario_por_id = (req, res) => {	
 	Usuario.findById(req.params.usuarioId, {include: [{all: true, nested: true}]}).then(usuario => {
 		res.send(usuario);
-	})
-};
- 
-exports.atualizar_usuario = (req, res) => {
-	const id = req.params.usuarioId;
-	Usuario.update( { 
-		email: req.body.email,
-		senha: req.body.senha
-	}, 
-	{ 
-		where: {id: req.params.usuarioId} 
-	}).then(() => {
-		res.json({ success: true, message: 'O Usuário foi alterado.' });
-	});
-};
- 
-exports.deletar_usuario = (req, res) => {
-	const id = req.params.usuarioId;
-	Usuario.destroy({
-	  where: { id: id }
-	}).then(() => {
-		res.json({ success: true, message: 'O Usuário foi deletado.' });
 	});
 };
 

@@ -2,7 +2,7 @@ const env = require('./env.js');
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize(env.database, env.username, env.password, {
+/*const sequelize = new Sequelize(env.database, env.username, env.password, {
   host: env.host,
   dialect: env.dialect,
   operatorsAliases: false,
@@ -13,12 +13,12 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
     acquire: env.pool.acquire,
     idle: env.pool.idle
   }
-}); 
+}); */
 
-/*const sequelize = new Sequelize(env.database, null, null, {
+const sequelize = new Sequelize(env.database, null, null, {
   dialect: env.dialect,
   storage: env.storage
-});*/
+});
 
 const db = {};
 
@@ -51,12 +51,10 @@ db.empresa.belongsTo(db.endereco);
 
 db.permissaoperfil.belongsTo(db.permissao);
 db.permissaoperfil.belongsTo(db.perfil);
-
-db.perfil.hasMany(db.permissaoperfil, {as: 'permissoes'});
-
 db.categoriaperfil.belongsTo(db.categoria, {as:'categoria'});
 db.categoriaperfil.belongsTo(db.perfil);
 
+db.perfil.hasMany(db.permissaoperfil, {as: 'permissoes'});
 db.perfil.hasMany(db.categoriaperfil, {as: 'categorias'});
 
 db.empresaperfil.belongsTo(db.empresa);
