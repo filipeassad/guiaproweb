@@ -2,14 +2,37 @@ const db = require('../../configs/dbConfig.js');
 const TipoPerfil = db.tipoperfil;
  
 exports.cadastrar_tipoperfil = (req, res) => {
-	TipoPerfil.create({  
-	  descricao: req.body.descricao,
-		sigla: req.body.sigla 
-	}).then(tipoperfil => {		
-		res.send(tipoperfil);
-	});
+	var tipoperfilB = req.body;
+
+	if(validaTipoPerfil(tipoperfilB) == false){
+		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
+	}else{
+		TipoPerfil.create(new TipoPerfilObj(tipoperfilB)).then(tipoperfil => {		
+			res.send(JSON.stringify({ success: true, message: 'O tipo perfil foi cadastrado com sucesso.' }));	
+		});
+	}
+};
+
+exports.atualizar_tipoperfil = (req, res) => {
+	const tipoperfilId = req.params.tipoperfilId;
+	var tipoperfilB = req.body;
+
+	if(validaTipoPerfil(tipoperfilB) == false){
+		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
+	}else{
+		TipoPerfil.update( new TipoPerfilObj(tipoperfilB), { where: { id: tipoperfilId } }).then(() => {
+			res.send(JSON.stringify({ success: true, message: 'O tipo perfil foi alterado com sucesso.' }));
+		});
+	}	
 };
  
+exports.deletar_tipoperfil = (req, res) => {
+	const tipoperfilId = req.params.tipoperfilId;
+	TipoPerfil.destroy( { where: { id: tipoperfilId } }).then(() => {
+	  res.send(JSON.stringify({ success: true, message: 'O tipo perfil foi deletado com sucesso.' }));
+	});
+};
+
 exports.obter_todos_tipoperfils = (req, res) => {
 	TipoPerfil.findAll({include: [{all: true, nested: true}]}).then(tipoperfils => {
 	  res.send(tipoperfils);
@@ -21,25 +44,18 @@ exports.obter_tipoperfil_por_id = (req, res) => {
 		res.send(tipoperfil);
 	})
 };
- 
-exports.atualizar_tipoperfil = (req, res) => {
-	const id = req.params.tipoperfilId;
-	TipoPerfil.update( { 
-		descricao: req.body.descricao,
-		sigla: req.body.sigla 
-	}, 
-	{ 
-		where: { id: req.params.tipoperfilId } 
-	}).then(() => {
-		res.json({ success: true, message: 'O Tipo Perfil foi alterado.' });
-	});
-};
- 
-exports.deletar_tipoperfil = (req, res) => {
-	const id = req.params.tipoperfilId;
-	TipoPerfil.destroy({
-	  where: { id: id }
-	}).then(() => {
-	  res.json({ success: true, message: 'O Tipo Perfil foi deletado.' });
-	});
-};
+
+function TipoPerfilObj(tipoperfil){
+	this.descricao = tipoperfil.descricao;
+	this.sigla = tipoperfil.sigla;
+}
+
+function validaTipoPerfil(tipoperfil){
+	if(tipoperfil == null)
+		return false;
+	if(tipoperfil.descricao == null || tipoperfil.descricao.trim() == "")
+		return false;
+	if(tipoperfil.sigla == null || tipoperfil.sigla.trim() == "")
+		return false;
+	return true;
+}

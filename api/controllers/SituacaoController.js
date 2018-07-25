@@ -2,13 +2,38 @@ const db = require('../../configs/dbConfig.js');
 const Situacao = db.situacao;
  
 exports.cadastrar_situacao = (req, res) => {
-	Situacao.create({  
-		descricao: req.body.descricao
-	}).then(situacao => {		
-		res.send(situacao);
-	});
+	var situacaoB = req.body;
+
+	if(validaSituacao(situacaoB) == false){
+		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));	
+	}else{
+		Situacao.create(new SituacaoObj(situacaoB)).then(situacao => {		
+			res.send(JSON.stringify({ success: true, message: 'A situação foi cadastrada com sucesso.' }));
+		});
+	}	
+};
+
+exports.atualizar_situacao = (req, res) => {
+	const situacaoId = req.params.situacaoId;
+	var situacaoB = req.body;
+
+	if(validaSituacao(situacaoB) == false){
+		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));	
+	}else{
+		Situacao.update( new SituacaoObj(situacaoB), { where: { id: situacaoId } }).then(() => {
+			res.send(JSON.stringify({ success: true, message: 'A situação foi alterada com sucesso.' }));
+		});
+	}
 };
  
+exports.deletar_situacao = (req, res) => {
+	const situacaoId = req.params.situacaoId;
+	
+	Situacao.destroy({ where: { id: situacaoId } }).then(() => {
+	  res.send(JSON.stringify({ success: true, message: 'A situação foi deletada com sucesso.' }));
+	});
+};
+
 exports.obter_todos_situacaos = (req, res) => {
 	Situacao.findAll({include: [{all: true, nested: true}]}).then(situacaos => {
 	  res.send(situacaos);
@@ -20,24 +45,15 @@ exports.obter_situacao_por_id = (req, res) => {
 		res.send(situacao);
 	})
 };
- 
-exports.atualizar_situacao = (req, res) => {
-	const id = req.params.situacaoId;
-	Situacao.update( { 
-		descricao: req.body.descricao
-	}, 
-	{ 
-		where: {id: req.params.situacaoId} 
-	}).then(() => {
-		res.json({ success: true, message: 'A Situação foi alterada.' });
-	});
-};
- 
-exports.deletar_situacao = (req, res) => {
-	const id = req.params.situacaoId;
-	Situacao.destroy({
-	  where: { id: id }
-	}).then(() => {
-	  res.json({ success: true, message: 'A Situação foi deletada.' });
-	});
-};
+
+function SituacaoObj(situacao){
+	this.descricao = situacao.descricao;
+}
+
+function validaSituacao(situacao){
+	if(situacao == null)
+		return false;
+	if(situacao.descricao == null || situacao.descricao.trim() == "")
+		return false;
+	return true;
+}
