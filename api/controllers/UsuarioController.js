@@ -71,9 +71,9 @@ exports.atualizar_usuario = (req, res) => {
 };
 
 exports.deletar_usuario = (req, res) => {
-	const id = req.params.usuarioId;
+	const usuarioId = req.params.usuarioId;
 	
-	Usuario.findById(req.params.usuarioId, {include: [{all: true, nested: true}]}).then(usuario => {
+	Usuario.findById( usuarioId, {include: [{all: true, nested: true}]}).then(usuario => {
 		Endereco.destroy({
 			where: { id: usuario.perfil.endereco.id }
 		}).then(() => {
@@ -111,45 +111,45 @@ exports.obter_usuario_por_id = (req, res) => {
 };
 
 function UsuarioObj(usuario){
-	this.email = usuario.email,
-	this.senha = usuario.senha
+	this.email = usuario.email;
+	this.senha = usuario.senha;
 }
 
 function EnderecoObj(usuario){
-	this.cep = 	usuario.perfil.endereco.cep,
-	this.numero = 	usuario.perfil.endereco.numero,
-	this.logradouro = usuario.perfil.endereco.logradouro,
-	this.complemento = usuario.perfil.endereco.complemento,      
-	this.bairro = usuario.perfil.endereco.bairro,      
-	this.cidade = usuario.perfil.endereco.cidade,
-	this.uf = usuario.perfil.endereco.uf,
-	this.pais = usuario.perfil.endereco.pais,
-	this.latitude = usuario.perfil.endereco.latitude,      
-	this.longitude = usuario.perfil.endereco.longitude
+	this.cep = 	usuario.perfil.endereco.cep;
+	this.numero = 	usuario.perfil.endereco.numero;
+	this.logradouro = usuario.perfil.endereco.logradouro;
+	this.complemento = usuario.perfil.endereco.complemento;      
+	this.bairro = usuario.perfil.endereco.bairro;      
+	this.cidade = usuario.perfil.endereco.cidade;
+	this.uf = usuario.perfil.endereco.uf;
+	this.pais = usuario.perfil.endereco.pais;
+	this.latitude = usuario.perfil.endereco.latitude;      
+	this.longitude = usuario.perfil.endereco.longitude;
 }
 
 function PerfilObj(usuario){
-	this.nome = usuario.perfil.nome,
-	this.sobrenome = usuario.perfil.sobrenome,
-	this.datanascimento = usuario.perfil.datanascimento,
-	this.cpf = usuario.perfil.cpf,
-	this.sexo =usuario.perfil.sexo,
-	this.celular = usuario.perfil.celular,
-	this.urlimg = usuario.perfil.urlimg,
-	this.ativo = usuario.perfil.ativo,
-	this.usuarioId = usuario.id,
-	this.tipoperfilId = usuario.perfil.tipoperfil.id,
-	this.enderecoId = usuario.perfil.endereco.id
+	this.nome = usuario.perfil.nome;
+	this.sobrenome = usuario.perfil.sobrenome;
+	this.datanascimento = usuario.perfil.datanascimento;
+	this.cpf = usuario.perfil.cpf;
+	this.sexo =usuario.perfil.sexo;
+	this.celular = usuario.perfil.celular;
+	this.urlimg = usuario.perfil.urlimg;
+	this.ativo = usuario.perfil.ativo;
+	this.usuarioId = usuario.id;
+	this.tipoperfilId = usuario.perfil.tipoperfil.id;
+	this.enderecoId = usuario.perfil.endereco.id;
 }
 
 function PermissaoObj(usuario,permissao){
-	this.perfilId =  usuario.perfil.id,
-	this.permissaoId = permissao.id
+	this.perfilId =  usuario.perfil.id;
+	this.permissaoId = permissao.id;
 }
 
 function CategoriaObj(usuario, categoria){
-	this.perfilId =  usuario.perfil.id,
-	this.categoriaId = categoria.id
+	this.perfilId =  usuario.perfil.id;
+	this.categoriaId = categoria.id;
 }
 
 function validaUsuario(usuario){
