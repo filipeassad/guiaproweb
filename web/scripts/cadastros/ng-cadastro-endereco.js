@@ -9,9 +9,14 @@ app.controller('CadastroEnderecoCtrl', function($window, $scope, httpService){
         $scope.endereco.urlimg = "";
         httpService.posthttp(url, $scope.endereco)
             .then(function mySuccess(response) {
-                $scope.endereco = {};
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.endereco = {};
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);                
         }, function myError(response) {
-            alert("Erro do servidor."); 
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
 
     }
@@ -19,10 +24,14 @@ app.controller('CadastroEnderecoCtrl', function($window, $scope, httpService){
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.endereco.id, $scope.endereco)
             .then(function mySuccess(response) {
-                $scope.podeAlterar = false;
+            if(response.data.success == true){
+                $rootScope.alertaSucesso(response.data.message);
                 $scope.endereco = {};
+            }
+            else
+                $rootScope.alertaAtencao(response.data.message);  
         }, function myError(response) {
-            alert("Erro do servidor."); 
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
 

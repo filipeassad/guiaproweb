@@ -23,7 +23,7 @@ app.controller('CadastroCategoriaCtrl',[
                 else
                     $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
-            $rootScope.alertaErro("A Categoria não foi cadastrada!");
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
 
@@ -38,7 +38,7 @@ app.controller('CadastroCategoriaCtrl',[
                 else
                     $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
-            $rootScope.alertaErro("A Categoria não foi alterada!");
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
 

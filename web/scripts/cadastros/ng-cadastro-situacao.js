@@ -16,32 +16,29 @@ app.controller('CadastroSituacaoCtrl', [
        
         httpService.posthttp(url, $scope.situacao)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.situacoes = response.data; 
-                });
-                $scope.situacao = {};
-                $rootScope.alertaSucesso("A Situação foi cadastrada com sucesso!");
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.situacao = {};                 
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
-            $rootScope.alertaErro("A Situação não foi cadastrada!"); 
+            $rootScope.alertaErro("Problemas com o servidor."); 
         });
 
     }    
 
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.situacao.id, $scope.situacao)
-            .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.situacoes = response.data; 
-                });
-                $scope.podeAlterar = false;
-                $scope.situacao = {};
-                $rootScope.alertaSucesso("A Situação foi alterada com sucesso!");
+            .then(function mySuccess(response) {                
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.situacao = {};                 
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
-            $rootScope.alertaErro("A Situação não foi alterada!"); 
+            $rootScope.alertaErro("Problemas com o servidor."); 
         });
     }
 }]);

@@ -16,15 +16,14 @@ app.controller('CadastroPermissaoCtrl', [
        
         httpService.posthttp(url, $scope.permissao)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.permissoes = response.data; 
-                });
-                $scope.permissao = {};               
-                $rootScope.alertaSucesso("A Permissão foi cadastrada com sucesso!");
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.permissao = {};                  
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);                   
         }, function myError(response) {
-            $rootScope.alertaErro("A Permissão não foi cadastrada!");
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
 
     }    
@@ -32,16 +31,14 @@ app.controller('CadastroPermissaoCtrl', [
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.permissao.id, $scope.permissao)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.permissoes = response.data; 
-                });
-                $scope.podeAlterar = false;
-                $scope.permissao = {};
-                $rootScope.alertaSucesso("A Permissão foi alterada com sucesso!");
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.permissao = {};                  
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);  
         }, function myError(response) {
-            $rootScope.alertaErro("A Permissão não foi alterado!");
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
 
