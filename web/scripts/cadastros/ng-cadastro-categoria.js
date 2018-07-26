@@ -15,14 +15,13 @@ app.controller('CadastroCategoriaCtrl',[
     $scope.cadastrar = function(){
         $scope.categoria.urlimg = "";
         httpService.posthttp(url, $scope.categoria)
-            .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.categorias = response.data; 
-                });
-                $scope.categoria = {};
-                $rootScope.alertaSucesso("A Categoria foi cadastrada com sucesso!");
+            .then(function mySuccess(response) {                
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.categoria = {};
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
             $rootScope.alertaErro("A Categoria não foi cadastrada!");
         });
@@ -31,14 +30,13 @@ app.controller('CadastroCategoriaCtrl',[
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.categoria.id, $scope.categoria)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.categorias = response.data; 
-                });
-                $scope.podeAlterar = false;
                 $scope.categoria = {};
-                $rootScope.alertaSucesso("A Categoria foi alterada com sucesso!");
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.categoria = {};
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
             $rootScope.alertaErro("A Categoria não foi alterada!");
         });
