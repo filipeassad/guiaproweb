@@ -111,27 +111,7 @@
                                         <label>Longitude</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.longitude">
                                     </div>
-                                </form>
-                                <h3 style="text-align: left; margin-top: 50px;">Categorias</h3>
-                                <hr>
-                                <form> 
-                                    <div class="form-group">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;">Ações</th>
-                                                    <th style="width: 90%;">Descrição</th>                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="categoriaAux in categorias" ng-click="selecionaCategoria(categoriaAux)">
-                                                    <td style="text-align: center;"><input type="checkbox" disabled ng-model="categoriaAux.selecionado"></td>
-                                                    <td>{{categoriaAux.descricao}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>                                                           
-                                </form>                
+                                </form>                                                
                                 <h3 style="text-align: left; margin-top: 50px;">Permissões</h3>
                                 <hr>
                                 <form> 
@@ -154,6 +134,48 @@
                                         </table>
                                     </div>                                                           
                                 </form>   
+                                <h3 style="text-align: left; margin-top: 50px;" ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">Categorias</h3>
+                                <hr ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">
+                                <form ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'"> 
+                                    <div class="form-group">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center;">Ações</th>
+                                                    <th style="width: 90%;">Descrição</th>                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="categoriaAux in categorias" ng-click="selecionaCategoria(categoriaAux)">
+                                                    <td style="text-align: center;"><input type="checkbox" disabled ng-model="categoriaAux.selecionado"></td>
+                                                    <td>{{categoriaAux.descricao}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                                           
+                                </form>
+                                <h3 style="text-align: left; margin-top: 50px;" ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">Empresas</h3>
+                                <hr ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">
+                                <form ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'"> 
+                                    <div class="form-group">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center;">Ações</th>
+                                                    <th style="width: 70%;">Nome</th>
+                                                    <th style="text-align: center">CNPJ</th>                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="empresaAux in empresas" ng-click="selecionaEmpresa(empresaAux)">
+                                                    <td style="text-align: center;"><input type="checkbox" disabled ng-model="empresaAux.selecionado"></td>
+                                                    <td>{{empresaAux.descricao}}</td>
+                                                    <td>{{empresaAux.descricao}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                                           
+                                </form>
                                 <button class="btn btn-laranja" ng-if="!podeAlterar" ng-click="cadastrar()" style="margin-bottom: 50px;">Cadastrar</button>
                                 <button class="btn btn-laranja" ng-if="podeAlterar" ng-click="alterar()" style="margin-bottom: 50px;">Alterar</button>
                             </div>      

@@ -9,21 +9,27 @@ app.controller('CadastroUsuarioCtrl', [
 
     $scope.usuario = {
         perfil:{
+            tipoperfil: {
+                descricao: ""
+            },
             categorias: [], 
-            permissoes: []
+            permissoes: [],
+            empresas: []
         }
     };
 
     $scope.categorias = [];
     $scope.permissoes = [];
-    $scope.usuarios = [];
-    $scope.tiposperfil = [];  
+    $scope.tiposperfil = [];
+    $scope.empresas = [];  
     $scope.podeAlterar = false;
+    $scope.mostrarCategorias = $scope.usuario.perfil.tipoperfil.descricao == "Profissional";  
 
     var url = "http://localhost:3000/api/usuario";
     var url_tiposperfil = "http://localhost:3000/api/tipoperfil";
     var url_tiposcategoria = "http://localhost:3000/api/categoria";
     var url_permissao = "http://localhost:3000/api/permissao";
+    var url_empresa = "http://localhost:3000/api/empresa";
 
     httpService.gethttp(url_tiposperfil, {})
         .then(function mySuccess(response) { 
@@ -41,7 +47,13 @@ app.controller('CadastroUsuarioCtrl', [
         .then(function mySuccess(response) { 
             if(response.data != null)   
                 $scope.permissoes = response.data; 
-    });    
+    });  
+    
+    httpService.gethttp(url_empresa, {})
+        .then(function mySuccess(response) { 
+            if(response.data != null)   
+                $scope.empresas = response.data; 
+    }); 
 
     $scope.cadastrar = function(){
         httpService.posthttp(url, $scope.usuario)

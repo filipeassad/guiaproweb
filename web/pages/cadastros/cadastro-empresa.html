@@ -1,41 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
 <head>
     <meta charset="utf-8" />
-    <title>Minha Pagina</title>
+    <title>Adm-Empresa</title> <!-- Colocar o Titulo-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fa-icons/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/basico.css"></head>
+
+<body ng-app="GuiaApp" ng-controller="CadastroEmpresaCtrl" style="height: 100%;">   
+
+    <div ng-include="'page/includes/nav-bar-adm.html'"></div>
+    <div ng-include="'page/includes/alerta.html'" class="snack-container-basico"></div>
+
+    <div class="container-fluid" style="height: 92.1%;">
+        <div class="row" style="height: 100%;">
+            <div class="col-sm-2 sem-padding" style="background:#292929; height: 100%;">
+                <div ng-include="'page/includes/side-bar-adm.html'" ></div>
+            </div>    
+            <div class="col-sm-10" style="height: 100%; overflow-y: scroll;"> 
+                <div class="panel panel-default" style="margin-top: 10px; padding: 10px;">
+                    <h1 style="text-align: center;">Cadastro de Tipo Atendimento</h1>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 style="text-align: left">Dados do Tipo Atendimento</h3>
+                                <hr>
+                                <form>
+                                    <div class="form-group">
+                                        <label>Nome</label>
+                                        <input type="text" class="form-control" ng-model="empresa.nome">
+                                    </div> 
+                                    <div class="form-group">
+                                        <label>Cnpj</label>
+                                        <input type="text" class="form-control" ng-model="empresa.cnpj">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        <input type="text" class="form-control" ng-model="empresa.email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefone</label>
+                                        <input type="text" class="form-control" ng-model="empresa.telefone">
+                                    </div>                                       
+                                </form>
+                                <h3 style="text-align: left; margin-top: 50px;">Endereço</h3>
+                                <hr>
+                                <form>
+                                    <div class="form-group">
+                                        <label>Cep</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.cep"> 
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Número</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.numero">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Logradouro</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.logradouro">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Complemento</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.complemento">
+                                    </div> 
+                                    <div class="form-group">
+                                        <label>Bairro</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.bairro">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cidade</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.cidade">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Uf</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.uf">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>País</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.pais">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Latitude</label>
+                                        <input type="text" class="form-control"ng-model="empresa.endereco.latitude">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Longitude</label>
+                                        <input type="text" class="form-control" ng-model="empresa.endereco.longitude">
+                                    </div>
+                                </form>                          
+                                <button class="btn btn-laranja" ng-if="!podeAlterar" ng-click="cadastrar()" style="margin-bottom: 50px;">Cadastrar</button>
+                                <button class="btn btn-laranja" ng-if="podeAlterar" ng-click="alterar()" style="margin-bottom: 50px;">Alterar</button>
+                            </div>      
+                        </div>
+                    </div>   
+                </div>                                      
+            </div>
+        </div>    
+    </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/basico.css">
-</head>
-<body>    
-    <h1 style="text-align: center;">Cadastro de Tipo Atendimento</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 style="text-align: left">Dados do Tipo Atendimento</h3>
-                <hr>
-                <form>
-                    <div class="form-group">
-                        <label>Nome</label>
-                        <input type="text" class="form-control">
-                    </div> 
-                    <div class="form-group">
-                        <label>Cnpj</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Telefone</label>
-                        <input type="text" class="form-control">
-                    </div>                                       
-                </form>                        
-                <button class="btn btn-success" style="margin-bottom: 50px;">Cadastrar</button>
-            </div>      
-        </div>
-    </div>    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/ng-app.js"></script>
+    <script src="scripts/services/http-service.js"></script>
+    <script src="scripts/includes/ng-includes-ctrl.js"></script>
+    <script src="scripts/cadastros/ng-cadastro-empresa.js"></script>
+
 </body>
-</html>
+</html> 
+        
