@@ -5,7 +5,7 @@ exports.cadastrar_categoria = (req, res) => {
 	var categoriaB = req.body;
 	if(validaCategoria(categoriaB)){
 		Categoria.create(new CategoriaObj(categoriaB)).then(categoria => {		
-			res.send(JSON.stringify({ success: false, message: 'A categoria foi cadastrada com sucesso.' }));
+			res.send(JSON.stringify({ success: true, message: 'A categoria foi cadastrada com sucesso.' }));
 		});
 	}else{
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
@@ -18,7 +18,7 @@ exports.atualizar_categoria = (req, res) => {
 	var categoriaB = req.body;
 	if(validaCategoria(categoriaB)){
 		Categoria.update(new CategoriaObj(categoriaB), { where: { id: categoriaId } }).then(categoria => {		
-			res.send(JSON.stringify({ success: false, message: 'A categoria foi alterada com sucesso.' }));
+			res.send(JSON.stringify({ success: true, message: 'A categoria foi alterada com sucesso.' }));
 		});
 	}else{
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
@@ -60,8 +60,8 @@ function validaCategoria(categoria){
 		return false;		
 	if(categoria.sigla == null || categoria.sigla.trim() == '')
 		return false;
-	if(categoria.urlimg == null || categoria.urlimg.trim() == '')
-		return false;
+	/*if(categoria.urlimg == null || categoria.urlimg.trim() == '')
+		return false;*/
 
 	return true;
 }

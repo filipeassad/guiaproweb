@@ -49,7 +49,7 @@ app.controller('CadastroUsuarioCtrl', [
                 $scope.usuario = {};
                 retornoMensagem(response.data);
         }, function myError(response) {
-            alert("Erro do servidor."); 
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }    
 
@@ -60,7 +60,7 @@ app.controller('CadastroUsuarioCtrl', [
                 $scope.usuario = {};                
                 retornoMensagem(response.data);
         }, function myError(response) {
-            alert("Erro do servidor."); 
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
 

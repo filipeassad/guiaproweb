@@ -11,29 +11,28 @@ function($scope, httpService){
     $scope.cadastrar = function(){   
         httpService.posthttp(url, $scope.tipoperfil)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.tiposperfil = response.data; 
-                });
-                $scope.tipoperfil = {};
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.tipoperfil = {};
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message); 
         }, function myError(response) {
-            alert("Erro do servidor."); 
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     } 
 
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.tipoperfil.id, $scope.tipoperfil)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.tiposperfil = response.data; 
-                });
-                $scope.podeAlterar = false;
-                $scope.tipoperfil = {};
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.tipoperfil = {};
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message); 
         }, function myError(response) {
-            alert("Erro do servidor."); 
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
 

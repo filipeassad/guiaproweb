@@ -43,8 +43,8 @@ exports.obter_permissao_por_id = (req, res) => {
 };
 
 function PermissaoObj(permissao){
-	this.descricao = req.body.descricao;
-	this.sigla = req.body.sigla;
+	this.descricao = permissao.descricao;
+	this.sigla = permissao.sigla;
 }
 
 function validaPermissao(permissao){	

@@ -16,15 +16,14 @@ app.controller('CadastroTipoAtendimentoCtrl',[
        
         httpService.posthttp(url, $scope.tipoAtendimento)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.tiposAtendimento = response.data; 
-                });
-                $scope.tipoAtendimento = {};
-                $rootScope.alertaSucesso("O Tipo de Atendimento foi cadastrado com sucesso!");
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    $scope.tipoAtendimento = {};               
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
-            $rootScope.alertaErro("O Tipo de Atendimento não foi cadastrado!");
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
 
     }
@@ -32,16 +31,14 @@ app.controller('CadastroTipoAtendimentoCtrl',[
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.tipoAtendimento.id, $scope.tipoAtendimento)
             .then(function mySuccess(response) {
-                httpService.gethttp(url, {})
-                .then(function mySuccess(response) { 
-                    if(response.data != null)   
-                        $scope.tiposAtendimento = response.data; 
-                });
-                $scope.podeAlterar = false;
-                $scope.tipoAtendimento = {};
-                $rootScope.alertaSucesso("O Tipo de Atendimento foi alterado com sucesso!");
+            if(response.data.success == true){
+                $rootScope.alertaSucesso(response.data.message);
+                $scope.tipoAtendimento = {};               
+            }
+            else
+                $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {
-            $rootScope.alertaErro("O Tipo de Atendimento não foi alterado!");
+            $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
 }]);
