@@ -70,6 +70,10 @@ module.exports = function(app) {
         .get(function(req, res){
             res.sendFile(path_web + '/pages/cadastros/cadastro-endereco.html');  
         });
+    app.route('/busca-empresa')
+        .get(function(req, res){
+            res.sendFile(path_web + '/pages/buscas/busca-empresa.html');  
+        });
     app.route('/cadastro-empresa')
         .get(function(req, res){
             res.sendFile(path_web + '/pages/cadastros/cadastro-empresa.html');  

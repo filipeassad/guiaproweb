@@ -13,6 +13,7 @@ app.controller('SideBarCtrl', [
         $scope.itensMenu.push(new ItemMenu(4,'Tipo Atendimento','/busca-tipoatendimento','item-menu-nav','fa fa-exchange'));
         $scope.itensMenu.push(new ItemMenu(5,'Situação','/busca-situacao','item-menu-nav','fa fa-handshake-o'));
         $scope.itensMenu.push(new ItemMenu(6,'Usuário','/busca-usuario','item-menu-nav','fa fa-user-o'));
+        $scope.itensMenu.push(new ItemMenu(6,'Empresa','/busca-empresa','item-menu-nav','fa fa-building'));
 
         function ItemMenu(id, label, url, classe, icone){
             this.id = id;
