@@ -1,7 +1,11 @@
 app.controller('CadastroTipoPerfilCtrl', [
     '$scope',
-    'httpService', 
-function($scope, httpService){
+    'httpService',
+    '$rootScope', 
+function(
+    $scope, 
+    httpService, 
+    $rootScope){
 
     $scope.tipoperfil = {};
     $scope.tiposperfil = [];    

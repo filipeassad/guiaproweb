@@ -14,7 +14,6 @@ app.controller('CadastroCategoriaCtrl',[
 
     $scope.cadastrar = function(){
         $scope.categoria.urlimg = "";
-        console.log($scope.categoria);
         httpService.posthttp(url, $scope.categoria)
             .then(function mySuccess(response) {                
                 if(response.data.success == true){

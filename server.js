@@ -2,8 +2,10 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 const db = require('./configs/dbConfig.js');
 db.sequelize.sync({force: false}).then(() => {
@@ -22,6 +24,7 @@ require('./api/routes/TipoAtendimentoRoutes.js')(app);
 require('./api/routes/TipoPerfilRoutes.js')(app);
 require('./api/routes/UsuarioRoutes.js')(app);
 require('./web/routes/PageRoutes.js')(app);
+require('./configs/autenticacaoRoutes.js')(app);
 
 var server = app.listen(port, function(){
     var host = server.address().address;

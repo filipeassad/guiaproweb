@@ -4,52 +4,57 @@
     <meta charset="utf-8" />
     <title>Minha Pagina</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/basico.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
-<body style="background:#0f3470; height: 100%;">
+<body ng-app="GuiaApp" ng-controller="LoginCtrl" style="background:#0f3470; height: 100%;">
     <div style="width: 100%; height: 100%; position: fixed; z-index: -2;">
         <img src="imagens/fundo-login.jpeg" alt="">
     </div>
     <div style="width: 100%; height: 100%; position: fixed; z-index: -1; background: rgba(15, 52, 112, 0.5)"></div>
     <div class="container" style="height: 100%;">
         <div class="row" style="height: 100%;">
-                <div class="col-md-8 col-centered" style="height: 100%;">
-                    <div class="row row-centro" style="height: 100%;">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4 lado-cinza">
-                                    <div class="row row-topo">                                
-                                        <div class="col-md-12" style="text-align: center;">
-                                            <img alt="GuiaPro" src="imagens/iconeguia-grande.png" style="margin-top: 30px;">
-                                            <h3 style="color: white; margin-top: 40px;">GuiaPro</h3>
-                                            <p style="color: white; margin-top: 40px; text-indent: 50px; text-align: justify; ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa qui vero tenetur odio et omnis, corporis tempora minus eos nulla cumque quia perspiciatis sapiente delectus natus exercitationem, quam cum maxime.</p>
-                                        </div> 
-                                    </div>                                   
-                                </div>
-                                <div class="col-md-8 lado-branco">
-                                    <div class="row row-topo">
-                                        <div class="col-md-12">
-                                            <h3 style="color: dimgrey; text-align: left; margin-top: 30px;">Login/<span style="color: thistle;">Senha</span></h3>
-                                            <form style="margin-top: 100px;">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" class="form-control">
-                                                </div>                                                                   
-                                                <button class="btn btn-success">Logar</button>            
-                                            </form>
-                                        </div>                                
-                                    </div>
+            <div class="col-md-8 col-centered" style="height: 100%;">
+                <div class="row row-centro" style="height: 100%;">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4 lado-cinza">
+                                <div class="row row-topo">                                
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <img alt="GuiaPro" src="imagens/iconeguia-grande.png" style="margin-top: 30px;">
+                                        <h3 style="color: white; margin-top: 40px;">GuiaPro</h3>
+                                        <p style="color: white; margin-top: 40px; text-indent: 50px; text-align: justify; ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa qui vero tenetur odio et omnis, corporis tempora minus eos nulla cumque quia perspiciatis sapiente delectus natus exercitationem, quam cum maxime.</p>
+                                    </div> 
+                                </div>                                   
+                            </div>
+                            <div class="col-md-8 lado-branco">
+                                <div class="row row-topo">
+                                    <div class="col-md-12">
+                                        <h3 style="color: dimgrey; text-align: left; margin-top: 30px;">Login/<span style="color: thistle;">Senha</span></h3>
+                                        <form style="margin-top: 100px;">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-sm" ng-model="usuario.email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" ng-model="usuario.senha">
+                                            </div>                                                                   
+                                            <button class="btn btn-success" ng-click="logar()">Logar</button>            
+                                        </form>
+                                    </div>                                
                                 </div>
                             </div>
-                        </div>                
-                    </div>
+                        </div>
+                    </div>                
                 </div>
             </div>
+        </div>
     </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/ng-app.js"></script>
+    <script src="scripts/services/http-service.js"></script>
+    <script src="scripts/ng-login.js"></script>
 </body>
 </html>

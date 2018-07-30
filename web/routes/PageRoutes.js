@@ -10,9 +10,9 @@ module.exports = function(app) {
     app.use('/scripts',express.static(path_web + '/scripts'));
     app.use('/page',express.static(path_web + '/pages'));
 
-    app.route('/')
+    app.route('')
         .get(function(req, res){
-            res.render(path_web + '/pages/index.html');
+            res.sendFile(path_web + '/pages/index.html');
         });
     app.route('/login')
         .get(function(req, res){

@@ -1,8 +1,7 @@
 const irongolem = require('./irongolem.js');
-const db = require('./config.js');
+const db = require('./dbConfig.js');
 const Usuario = db.usuario;
 var jwt = require('jsonwebtoken');
-var atob = require('atob');
 
 exports.login = (req, res) => {
     const usuario = req.body.email;
@@ -12,11 +11,11 @@ exports.login = (req, res) => {
             email: usuario,
             senha: senha
         }
-      }).then(usuario => {
-            if(usuario){
+      }).then(resposta => {          
+            if(resposta.length != 0){
 
                 var payload = {                    
-					id: usuario[0].id	
+					id: resposta[0].id	
                 }
 				var token = jwt.sign(payload, irongolem);
 
