@@ -32,22 +32,47 @@ exports.login = (req, res) => {
 };
 
 exports.validaToken = function (req, res, next){
+
     var token = req.headers['x-access-token'];
     
-    if (token) {
-        jwt.verify(token, irongolem, function(err, decoded) {			
-            if (err) {
-                return res.json({ success: false, message: 'Token invalido.' });		
-            } else {
-                console.log(decoded);
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        return res.status(403).send({ 
-            success: false, 
-            message: 'Sem autenticação.'
-        });            
+    if(token == null){
+        var cookies = req.cookies;
+        if(cookies == null || cookies.token == null){
+            return res.status(403).send({ 
+                success: false, 
+                message: 'Sem autenticação.'
+            }); 
+        }else
+            token = cookies.token;
     }
+
+    jwt.verify(token, irongolem, function(err, decoded) {			
+        if (err) {
+            return res.json({ success: false, message: 'Token invalido.' });		
+        } else {
+            console.log(decoded);
+            req.decoded = decoded;
+            next();
+        }
+    });
+
+};
+
+exports.validaTokenPagina = function(req, res, next){
+    var token = "";
+    var cookies = req.cookies;
+    if(cookies == null || cookies.token == null){
+        return res.redirect('http://localhost:3000/login');
+    }else        
+        token = cookies.token;
+
+    jwt.verify(token, irongolem, function(err, decoded) {			
+        if (err) {
+            return res.json({ success: false, message: 'Token invalido.' });		
+        } else {
+            console.log(decoded);
+            req.decoded = decoded;
+            next();
+        }
+    });
 };

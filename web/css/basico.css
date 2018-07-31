@@ -109,3 +109,16 @@ nav {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+
+.menu-topo{
+    cursor: none;
+}
+.menu-topo li{
+    cursor: pointer;
+    color: white;
+}
+
+.menu-topo li:hover{
+    color: rgba(233, 7, 112, 0.94);
+}
