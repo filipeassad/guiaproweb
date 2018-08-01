@@ -1,14 +1,15 @@
 'use strict';
 module.exports = function(app) {
 
-  var atendimento = require('../controllers/AtendimentoController');
+    var atendimento = require('../controllers/AtendimentoController');
+    var autenticacao = require('../../configs/autenticacao.js');
+    var permissao = require('../../configs/permissao.js');
+    app.route('/api/atendimento')
+        .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.obter_todos_atendimentos)
+        .post(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.cadastrar_atendimento);
 
-  app.route('/api/atendimento')
-    .get(atendimento.obter_todos_atendimentos)
-    .post(atendimento.cadastrar_atendimento);
-
-  app.route('/api/atendimento/:atendimentoId')
-    .get(atendimento.obter_atendimento_por_id)
-    .put(atendimento.atualizar_atendimento)
-    .delete(atendimento.deletar_atendimento);
+    app.route('/api/atendimento/:atendimentoId')
+        .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.obter_atendimento_por_id)
+        .put(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.atualizar_atendimento)
+        .delete(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.deletar_atendimento);
 };

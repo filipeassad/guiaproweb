@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/basico.css">
 </head>
-<body>
+<body ng-app="GuiaApp" ng-controller="IndexCtrl">
 
     <div class="container-fluid">
         <div class="row" style="height: 60px; background: black;">
@@ -21,8 +21,9 @@
                             <li>Sobre nós</li>
                             <li>Serviços</li>
                             <li>Contato</li>
-                            <li>Logar</li>
-                            <li>Administrativo</li>
+                            <li ng-click="logar()" ng-if="usuarioEstaLogado() == false">Logar</li>
+                            <li ng-click="sair()" ng-if="usuarioEstaLogado()">Sair</li>
+                            <li ng-click="administrativo()" ng-if="perfilEhAdministrador()">Administrativo</li>
                         </ul>
                     </div>
                 </div>
@@ -103,6 +104,10 @@
     </div>
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/ng-app.js"></script>
+    <script src="scripts/services/http-service.js"></script>
+    <script src="scripts/ng-index.js"></script>  
 </body>
 </html>

@@ -1,7 +1,7 @@
 const irongolem = require('./irongolem.js');
 const db = require('./dbConfig.js');
-const Usuario = db.usuario;
 var jwt = require('jsonwebtoken');
+const Usuario = db.usuario;
 
 exports.login = (req, res) => {
     const usuario = req.body.email;
@@ -50,7 +50,6 @@ exports.validaToken = function (req, res, next){
         if (err) {
             return res.json({ success: false, message: 'Token invalido.' });		
         } else {
-            console.log(decoded);
             req.decoded = decoded;
             next();
         }
@@ -62,15 +61,14 @@ exports.validaTokenPagina = function(req, res, next){
     var token = "";
     var cookies = req.cookies;
     if(cookies == null || cookies.token == null){
-        return res.redirect('http://localhost:3000/login');
+        return res.redirect('http://localhost:3000/erro-permissao');
     }else        
         token = cookies.token;
 
     jwt.verify(token, irongolem, function(err, decoded) {			
         if (err) {
             return res.json({ success: false, message: 'Token invalido.' });		
-        } else {
-            console.log(decoded);
+        } else {            
             req.decoded = decoded;
             next();
         }

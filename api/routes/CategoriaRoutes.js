@@ -1,14 +1,16 @@
 'use strict';
 module.exports = function(app) {
 
-  var categoria = require('../controllers/CategoriaController');
+    var categoria = require('../controllers/CategoriaController');    
+    var autenticacao = require('../../configs/autenticacao.js');
+    var permissao = require('../../configs/permissao.js');
 
-  app.route('/api/categoria')
-    .get(categoria.obter_todos_categorias)
-    .post(categoria.cadastrar_categoria);
+    app.route('/api/categoria')
+        .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.obter_todos_categorias)
+        .post(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.cadastrar_categoria);
 
-  app.route('/api/categoria/:categoriaId')
-    .get(categoria.obter_categoria_por_id)
-    .put(categoria.atualizar_categoria)
-    .delete(categoria.deletar_categoria);
+    app.route('/api/categoria/:categoriaId')
+        .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.obter_categoria_por_id)
+        .put(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.atualizar_categoria)
+        .delete(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.deletar_categoria);
 };

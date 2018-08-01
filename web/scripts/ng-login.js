@@ -15,8 +15,8 @@ app.controller('LoginCtrl',[
             httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {                
                 if(response.data.success == true){
-                    //$scope.usuario.email = response.data.token;
-                    document.cookie = "token="+response.data.token;     
+                    document.cookie = "token="+response.data.token; 
+                     window.location.href = "http://localhost:3000";    
                 }
                 else
                     alert("Usuário ou senha incorretos.");

@@ -3,6 +3,7 @@ const Perfil = db.perfil;
 const Endereco = db.endereco;
 const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
+const TipoPerfil = db.tipoperfil;
 
 exports.cadastrar_perfil = (req, res) => {
 	perfilB = req.body;
@@ -96,6 +97,13 @@ exports.obter_perfil_por_id = (req, res) => {
 	})
 };
 
+exports.obter_perfil_pelo_usuario = (req, res) =>{
+    Perfil.findAll({ include: [{ all: true, nested: true }]},
+                    { where: { usuarioId: req.decoded.id}}).then(perfil => {        
+		res.send(new PerfilEnviar(perfil[0]));
+	});
+}
+
 function PerfilObj(perfil) {
 	this.nome = perfil.nome;
 	this.sobrenome = perfil.sobrenome;
@@ -131,6 +139,13 @@ function PermissaoObj(perfil, permissao) {
 function CategoriaObj(perfil, categoria) {
 	this.perfilId = perfil.id;
 	this.categoriaId = categoria.id;
+}
+
+function PerfilEnviar(perfil){
+    this.nome = perfil.nome;
+    this.nome_completo = perfil.nome + " " + perfil.sobrenome; 
+    this.tipoperfil = perfil.tipoperfil;
+    this.permissoesPerfil = perfil.permissoes;
 }
 
 function validaPerfil(perfil) {
