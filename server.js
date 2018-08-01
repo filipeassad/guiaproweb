@@ -8,7 +8,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const db = require('./configs/dbConfig.js');
-db.sequelize.sync({force: false}).then(() => {
+var dados_basicos = require('./configs/dados-basicos.js');
+var deletar = true;
+db.sequelize.sync({force: deletar}).then(() => {
+  if(deletar)
+    dados_basicos.gerarDados();
   console.log('Sincronizando o banco sem deletar as tableas já existentes.');
 });
 

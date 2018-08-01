@@ -1,71 +1,91 @@
 const db = require('./dbConfig.js');
 const Usuario = db.usuario;
 
-exports.permissaoDesenvolvedor = (req, res) => {
+exports.permissaoDesenvolvedor = (req, res, next) => {
     Usuario.findById(req.decoded.id, { include: [{ all: true, nested: true }] }).then(usuario => {
-		usuario.perfil.permissoes.forEach(perfilpermissao => {
-            if(perfilpermissao.permissao.descricao == "Ação Desenvolvedor"){
-                req.usuario = usuario;
-                next();
-            }
-        });
-        return res.redirect('http://localhost:3000/erro-permissao');
+        var permissoes = usuario.perfil.permissoes; 
+        var temPermissao = false;
+        for(i = 0; i < permissoes.length; i++){
+            if(permissoes[i].permissao.descricao == "Ação Desenvolvedor")
+                temPermissao = true;            
+        }
+        if(temPermissao){
+            req.usuario = usuario;
+            next();
+        }else
+            return res.redirect('http://localhost:3000/erro-permissao');
 	}); 
 };
 
-exports.permissaoAdministrador = (req, res) => {
+exports.permissaoAdministrador = (req, res, next) => {
     Usuario.findById(req.decoded.id, { include: [{ all: true, nested: true }] }).then(usuario => {
-		usuario.perfil.permissoes.forEach(perfilpermissao => {
-            if(perfilpermissao.permissao.descricao == "Ação Administrador" 
-            || perfilpermissao.permissao.descricao == "Ação Desenvolvedor"){
-                req.usuario = usuario;
-                next();
-            }
-        });
-        return res.redirect('http://localhost:3000/erro-permissao');
+        var permissoes = usuario.perfil.permissoes; 
+        var temPermissao = false;
+        for(i = 0; i < permissoes.length; i++){
+            if(permissoes[i].permissao.descricao == "Ação Desenvolvedor"
+                || permissoes[i].permissao.descricao == "Ação Administrador")
+                temPermissao = true;            
+        }
+        if(temPermissao){
+            req.usuario = usuario;
+            next();
+        }else
+            return res.redirect('http://localhost:3000/erro-permissao');
 	}); 
 };
 
-exports.permissaoModerador = (req, res) => {
+exports.permissaoModerador = (req, res, next) => {
     Usuario.findById(req.decoded.id, { include: [{ all: true, nested: true }] }).then(usuario => {
-		usuario.perfil.permissoes.forEach(perfilpermissao => {
-            if(perfilpermissao.permissao.descricao == "Ação Administrador" 
-            || perfilpermissao.permissao.descricao == "Ação Desenvolvedor"
-            || perfilpermissao.permissao.descricao == "Ação Moderador"){
-                req.usuario = usuario;
-                next();
-            }
-        });
-        return res.redirect('http://localhost:3000/erro-permissao');
+        var permissoes = usuario.perfil.permissoes; 
+        var temPermissao = false;
+        for(i = 0; i < permissoes.length; i++){
+            if(permissoes[i].permissao.descricao == "Ação Desenvolvedor"
+            || permissoes[i].permissao.descricao == "Ação Administrador"
+            || permissoes[i].permissao.descricao == "Ação Moderador")
+                temPermissao = true;            
+        }
+        if(temPermissao){
+            req.usuario = usuario;
+            next();
+        }else
+            return res.redirect('http://localhost:3000/erro-permissao');
 	}); 
 };
 
-exports.permissaoProfissional = (req, res) => {
+exports.permissaoProfissional = (req, res, next) => {
     Usuario.findById(req.decoded.id, { include: [{ all: true, nested: true }] }).then(usuario => {
-		usuario.perfil.permissoes.forEach(perfilpermissao => {
-            if(perfilpermissao.permissao.descricao == "Ação Administrador" 
-            || perfilpermissao.permissao.descricao == "Ação Desenvolvedor"
-            || perfilpermissao.permissao.descricao == "Ação Moderador"
-            || perfilpermissao.permissao.descricao == "Ação Profissional"){
-                req.usuario = usuario;
-                next();
-            }
-        });
-        return res.redirect('http://localhost:3000/erro-permissao');
+        var permissoes = usuario.perfil.permissoes; 
+        var temPermissao = false;
+        for(i = 0; i < permissoes.length; i++){
+            if(permissoes[i].permissao.descricao == "Ação Desenvolvedor"
+            || permissoes[i].permissao.descricao == "Ação Administrador"
+            || permissoes[i].permissao.descricao == "Ação Moderador"
+            || permissoes[i].permissao.descricao == "Ação Profissional")
+                temPermissao = true;            
+        }
+        if(temPermissao){
+            req.usuario = usuario;
+            next();
+        }else
+            return res.redirect('http://localhost:3000/erro-permissao');
 	}); 
 };
 
-exports.permissaoCliente = (req, res) => {
+exports.permissaoCliente = (req, res, next) => {
     Usuario.findById(req.decoded.id, { include: [{ all: true, nested: true }] }).then(usuario => {
-		usuario.perfil.permissoes.forEach(perfilpermissao => {
-            if(perfilpermissao.permissao.descricao == "Ação Administrador" 
-            || perfilpermissao.permissao.descricao == "Ação Desenvolvedor"
-            || perfilpermissao.permissao.descricao == "Ação Moderador"
-            || perfilpermissao.permissao.descricao == "Ação Cliente"){
-                req.usuario = usuario;
-                next();
-            }
-        });
-        return res.redirect('http://localhost:3000/erro-permissao');
+        var permissoes = usuario.perfil.permissoes; 
+        var temPermissao = false;
+        for(i = 0; i < permissoes.length; i++){
+            if(permissoes[i].permissao.descricao == "Ação Desenvolvedor"
+            || permissoes[i].permissao.descricao == "Ação Administrador"
+            || permissoes[i].permissao.descricao == "Ação Moderador"
+            || permissoes[i].permissao.descricao == "Ação Cliente")
+                temPermissao = true;            
+        }
+        if(temPermissao){
+            req.usuario = usuario;
+            next();
+        }else
+            return res.redirect('http://localhost:3000/erro-permissao');
 	}); 
 };
