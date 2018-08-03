@@ -45,7 +45,7 @@ exports.obter_todos_atendimentos = (req, res) => {
 exports.obter_atendimento_por_id = (req, res) => {	
 	Atendimento.findById(req.params.atendimentoId, {include: [{all: true, nested: true}]}).then(atendimento => {
 		res.send(atendimento);
-	})
+	});
 };
 
 function AtendimentoObj(atendimento){

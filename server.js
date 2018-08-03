@@ -2,7 +2,9 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+var serverSocket = require('http').createServer(app).listen(4555);  
+var socketIO = require('socket.io').listen(serverSocket);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -29,6 +31,7 @@ require('./api/routes/TipoPerfilRoutes.js')(app);
 require('./api/routes/UsuarioRoutes.js')(app);
 require('./web/routes/PageRoutes.js')(app);
 require('./configs/autenticacaoRoutes.js')(app);
+require('./socket/routes/NotificacaoRoutes.js')(app, socketIO);
 
 var server = app.listen(port, function(){
     var host = server.address().address;
