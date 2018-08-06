@@ -50,13 +50,17 @@ app.controller('IndexCtrl',[
             if(perfilNaoTemPermissoes){
                 return false;
             }
+            
+            var permissoesPerfil = $scope.perfilLogado.permissoesPerfil;
 
-            $scope.perfilLogado.permissoesPerfil.forEach(perfilPermissao => {
-                if(perfilPermissao.permissao.descricao == "Ação Administrador") 
-                    return true;               
-            });
-
+            for(i = 0; i < permissoesPerfil.length; i++){
+                if(permissoesPerfil[i].permissao.descricao == "Ação Administrador" || 
+                    permissoesPerfil[i].permissao.descricao == "Ação Desenvolvedor" ||
+                    permissoesPerfil[i].permissao.descricao == "Ação Moderador" )
+                    return true; 
+            }           
             return false;
+          
         }
 
 }]);

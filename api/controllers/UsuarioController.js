@@ -4,6 +4,7 @@ const Perfil = db.perfil;
 const Endereco = db.endereco;
 const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
+const EmpresaPerfil = db.empresaperfil;
 
 exports.cadastrar_usuario = (req, res) => {
 	usuarioB = req.body;
@@ -28,7 +29,11 @@ exports.cadastrar_usuario = (req, res) => {
 						db.sequelize.Promise.map(usuarioB.perfil.categorias, function (categoria) {
 							CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));
 						}).then(function (categorias) {
-							res.send(JSON.stringify({ success: true, message: 'O usuário foi cadastrado com sucesso.' }));
+							db.sequelize.Promise.map(usuarioB.perfil.empresas, (empresa) => {
+								EmpresaPerfil.create(new EmpresaPerfil(usuarioB, empresa));
+							}).then(() => {
+								res.send(JSON.stringify({ success: true, message: 'O usuário foi cadastrado com sucesso.' }));
+							});							
 						});
 					});
 				});
@@ -53,15 +58,23 @@ exports.atualizar_usuario = (req, res) => {
 						CategoriaPerfil.destroy({
 							where: { perfilId: usuarioB.perfil.id }
 						}).then(() => {
-							db.sequelize.Promise.map(usuarioB.perfil.permissoes, function (permissao) {
-								PermissaoPerfil.create(new PermissaoObj(usuarioB, permissao));
-							}).then(function (npermissoes) {
-								db.sequelize.Promise.map(usuarioB.perfil.categorias, function (categoria) {
-									CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));
-								}).then(function (categorias) {
-									res.send(JSON.stringify({ success: true, message: 'O usuário foi alterado com sucesso.' }));
+							EmpresaPerfil.destroy({
+								where: {perfilId: usuarioB.perfil.id }
+							}).then(() =>{
+								db.sequelize.Promise.map(usuarioB.perfil.permissoes, function (permissao) {
+									PermissaoPerfil.create(new PermissaoObj(usuarioB, permissao));
+								}).then(function (npermissoes) {
+									db.sequelize.Promise.map(usuarioB.perfil.categorias, function (categoria) {
+										CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));
+									}).then(function (categorias) {
+										db.sequelize.Promise.map(usuarioB.perfil.empresas, (empresa) => {
+											EmpresaPerfil.create(new EmpresaPerfil(usuarioB, empresa));
+										}).then(() => {
+											res.send(JSON.stringify({ success: true, message: 'O usuário foi alterado com sucesso.' }));
+										});											
+									});
 								});
-							});
+							});							
 						});
 					});
 				});
@@ -86,10 +99,14 @@ exports.deletar_usuario = (req, res) => {
 					CategoriaPerfil.destroy({
 						where: { perfilId: usuario.perfil.id }
 					}).then(() => {
-						Usuario.destroy({
-							where: { id: id }
-						}).then(() => {
-							res.send(JSON.stringify({ success: true, message: 'O usuário foi deletado com sucesso.' }));
+						EmpresaPerfil.destroy({
+							where: {perfilId: usuarioB.perfil.id }
+						}).then(() =>{
+							Usuario.destroy({
+								where: { id: id }
+							}).then(() => {							
+								res.send(JSON.stringify({ success: true, message: 'O usuário foi deletado com sucesso.' }));
+							});
 						});
 					});
 				});
@@ -150,6 +167,11 @@ function PermissaoObj(usuario, permissao) {
 function CategoriaObj(usuario, categoria) {
 	this.perfilId = usuario.perfil.id;
 	this.categoriaId = categoria.id;
+}
+
+function EmpresaPerfil(usuario, empresa){
+	this.perfilId = usuario.perfil.id;
+	this.empresaId = empresa.id;
 }
 
 function validaUsuario(usuario) {

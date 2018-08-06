@@ -108,6 +108,22 @@ app.controller('CadastroUsuarioCtrl', [
         }
     }
 
+    $scope.selecionaEmpresa = function(empresa){
+        if(empresa.selecionado == null || empresa.selecionado == false){
+            empresa.selecionado = true;
+            var empresaC = angular.copy(empresa);
+            $scope.usuario.perfil.empresas.push(empresaC);
+        }else{
+            empresa.selecionado = false;
+            var index = 0;
+            for(indexEmpresa in $scope.usuario.perfil.empresas){
+                if(empresa.id == $scope.usuario.perfil.permissoes[indexEmpresa].id)
+                    index = indexEmpresa;
+            }
+            $scope.usuario.perfil.empresas.splice(index,1);
+        }
+    }
+
     function retornoMensagem(retorno){
         if(retorno.success)
             $rootScope.alertaSucesso(retorno.message);
