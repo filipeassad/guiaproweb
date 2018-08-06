@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <title>Adm-Atendimento</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fa-icons/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/basico.css"></head>
+
+<body ng-app="GuiaApp" ng-controller="BuscaAtendimentoCtrl" style="height: 100%;">   
+
+    <div ng-include="'page/includes/nav-bar-adm.html'"></div>
+    <div ng-include="'page/includes/alerta.html'" class="snack-container-basico"></div>
+
+    <div class="container-fluid" style="height: 92.1%;">
+        <div class="row" style="height: 100%;">
+            <div class="col-sm-2 sem-padding" style="background:#292929; height: 100%;">
+                <div ng-include="'page/includes/side-bar-adm.html'" ></div>
+            </div>    
+            <div class="col-sm-10" style="height: 100%; overflow-y: scroll;"> 
+                <div class="panel panel-default" style="margin-top: 10px; padding: 10px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="jumbotron">
+                                <h3>Buscar Atendimento</h3>
+                                <hr>
+                                <div class="form">                    
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Descrição</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Sigla</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>                         
+                                    </div>
+                                    <button class="btn btn-laranja">Buscar</button>
+                                    <button class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</button>
+                                </div>                
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Listagem Atendimento</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered" style="margin: 10px 0px; min-height: 300px;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center;">ID</th>
+                                        <th style="width: 70%;">Descrição</th>
+                                        <th style="text-align: center;">Sigla</th>
+                                        <th style="text-align: center;">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="atendimentoAux in atendimentos">
+                                        <td style="text-align: center;">{{atendimentoAux.id}}</td>
+                                        <td>{{atendimentoAux.titulo}}</td>
+                                        <td style="text-align: center;">{{categoriaAux.descricao}}</td>                            
+                                        <td style="text-align: center;">
+                                            <span ng-click="excluir(categoriaAux)"><i class="fa fa-trash"></i></span>
+                                            <span style="margin-left: 5px;"><i class="fa fa-pencil-square-o"></i></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>   
+                </div>                                      
+            </div>
+        </div>    
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/ng-app.js"></script>
+    <script src="scripts/services/http-service.js"></script>
+    <script src="scripts/includes/ng-includes-ctrl.js"></script>
+    <script src="scripts/buscas/ng-busca-atendimento.js"></script>
+
+</body>
+</html>
+
+
+
+       

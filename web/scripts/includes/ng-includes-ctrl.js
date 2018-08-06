@@ -14,6 +14,7 @@ app.controller('SideBarCtrl', [
         $scope.itensMenu.push(new ItemMenu(5,'Situação','/busca-situacao','item-menu-nav','fa fa-handshake-o'));
         $scope.itensMenu.push(new ItemMenu(6,'Usuário','/busca-usuario','item-menu-nav','fa fa-user-o'));
         $scope.itensMenu.push(new ItemMenu(6,'Empresa','/busca-empresa','item-menu-nav','fa fa-building'));
+        $scope.itensMenu.push(new ItemMenu(7,'Atendimento','/busca-atendimento','item-menu-nav','fa fa-comments-o'));
 
         function ItemMenu(id, label, url, classe, icone){
             this.id = id;

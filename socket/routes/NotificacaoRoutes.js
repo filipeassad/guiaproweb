@@ -5,5 +5,5 @@ module.exports = function(app, socketIO) {
     var notificao = require('../controllers/NotificacaoController')(socketIO);
 
     app.route('/api/notificao-atendimento')
-        .post(autenticacao.validaTokenPagina, permissao.permissaoCliente, notificao.enviar_notificacao);
+        .post(autenticacao.validaTokenPagina, permissao.permissaoCliente, notificao.enviar_notificacao_atendimento);
 };

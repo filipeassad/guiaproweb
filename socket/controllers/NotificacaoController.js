@@ -1,5 +1,5 @@
 'use strict';
-exports.enviar_notificacao = (socketIO) => {   
+module.exports = (socketIO) => {   
 
     const db = require('../../configs/dbConfig.js');
     const Atendimento = db.atendimento;
