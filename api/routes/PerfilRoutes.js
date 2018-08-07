@@ -16,4 +16,7 @@ module.exports = function(app) {
 
      app.route('/api/perfil_logado')
         .get(autenticacao.validaToken, perfil.obter_perfil_pelo_usuario);
+    
+    app.route('/api/perfil_paginado')
+        .post(perfil.obter_perfil_paginado);
 };

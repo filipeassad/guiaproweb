@@ -30,7 +30,7 @@ exports.cadastrar_usuario = (req, res) => {
 							CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));
 						}).then(function (categorias) {
 							db.sequelize.Promise.map(usuarioB.perfil.empresas, (empresa) => {
-								EmpresaPerfil.create(new EmpresaPerfil(usuarioB, empresa));
+								EmpresaPerfil.create(new EmpresaPerfilObj(usuarioB, empresa));
 							}).then(() => {
 								res.send(JSON.stringify({ success: true, message: 'O usuário foi cadastrado com sucesso.' }));
 							});							
@@ -68,7 +68,7 @@ exports.atualizar_usuario = (req, res) => {
 										CategoriaPerfil.create(new CategoriaObj(usuarioB, categoria));
 									}).then(function (categorias) {
 										db.sequelize.Promise.map(usuarioB.perfil.empresas, (empresa) => {
-											EmpresaPerfil.create(new EmpresaPerfil(usuarioB, empresa));
+											EmpresaPerfil.create(new EmpresaPerfilObj(usuarioB, empresa));
 										}).then(() => {
 											res.send(JSON.stringify({ success: true, message: 'O usuário foi alterado com sucesso.' }));
 										});											
@@ -169,7 +169,7 @@ function CategoriaObj(usuario, categoria) {
 	this.categoriaId = categoria.id;
 }
 
-function EmpresaPerfil(usuario, empresa){
+function EmpresaPerfilObj(usuario, empresa){
 	this.perfilId = usuario.perfil.id;
 	this.empresaId = empresa.id;
 }

@@ -5,6 +5,8 @@ const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
 const TipoPerfil = db.tipoperfil;
 
+const Op = db.Sequelize.Op;
+
 exports.cadastrar_perfil = (req, res) => {
 	perfilB = req.body;
 
@@ -102,6 +104,57 @@ exports.obter_perfil_pelo_usuario = (req, res) =>{
                     { where: { usuarioId: req.decoded.id}}).then(perfil => {        
 		res.send(new PerfilEnviar(perfil[0]));
 	});
+}
+
+exports.obter_perfil_paginado = (req, res) =>{
+
+	var perfilObj = req.body;
+	var limit = 10;
+	var offset = 0;
+
+	if(perfilObj == null)
+		res.send(JSON.stringify({ success: true, message: 'O perfil foi deletado com sucesso.' }));		
+	else{
+		var condicao = montar_condicao(perfilObj);		
+
+		Perfil.findAndCountAll({ where: condicao }).then((data) => {
+			var page = req.body.pagina;     
+			var pages = Math.ceil(data.count / limit);
+			offset = limit * (page - 1);
+
+			Perfil.findAll({ include: [{ all: true, nested: true }]},
+				{ 	where: condicao,
+					limit: limit,
+					offset: offset }).then(perfil => {        
+					res.send(JSON.stringify({ perfils: perfil, paginas: pages, pagina: req.body.pagina }));	
+			});
+		});
+		
+	}	
+}
+
+function montar_condicao (perfil){
+
+	var condicao = {};
+	
+	if(perfil.nome != null && perfil.nome.trim() != ''){
+		condicao.nome = { [Op.like]: perfil.nome + '%' };
+	}
+
+	if(perfil.sobrenome != null && perfil.sobrenome.trim() != ''){
+		condicao.sobrenome = { [Op.like]: perfil.sobrenome + '%' };
+	}
+
+	if(perfil.cpf != null && perfil.cpf.trim() != ''){
+		condicao.cpf = { [Op.like]: perfil.cpf + '%' };
+	}
+
+	if(perfil.celular != null && perfil.celular.trim() != ''){
+		condicao.celular = { [Op.like]: perfil.celular + '%' };
+	}
+	
+	return condicao;
+
 }
 
 function PerfilObj(perfil) {
