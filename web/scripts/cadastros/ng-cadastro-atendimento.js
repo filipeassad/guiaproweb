@@ -104,6 +104,59 @@ app.controller('CadastroAtendimentoCtrl',[
         $('#buscaPerfil').modal('hide');
     }
 
+    $scope.selecionaCategoria = function(perfilcategoria){
+        limparCategoriasSelecionadas();
+        perfilcategoria.selecionado = true;
+        $scope.atendimento.categoria = perfilcategoria.categoria;
+    }
+
+    $scope.cadastrar = function(){       
+        httpService.posthttp(url, $scope.atendimento)
+            .then(function mySuccess(response) {                
+                if(response.data.success == true){
+                    $rootScope.alertaSucesso(response.data.message);
+                    limparTela();
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);
+        }, function myError(response) {
+            $rootScope.alertaErro("Problemas com o servidor.");
+        });
+    }
+
+    function limparTela(){
+
+        $scope.atendimento = {};
+        $scope.clienteSelecionado = "";
+        $scope.profissionalSelecionado = "";
+        $scope.perfilSelecionado = {};
+        $scope.perfilBusca = {};
+        $scope.resultadoBusca = {};
+        $scope.tipoperfil = 0;
+        $scope.tiposatendimento = [];
+        $scope.situacoes = [];
+
+        httpService.gethttp(url_tipo_atendimento, {})
+            .then(function mySuccess(response) { 
+                if(response.data != null)   
+                    $scope.tiposatendimento = response.data; 
+        });    
+
+        httpService.gethttp(url_situacao, {})
+            .then(function mySuccess(response) { 
+                if(response.data != null)   
+                    $scope.situacoes = response.data; 
+        }); 
+
+    }
+
+    function limparCategoriasSelecionadas(){
+        perfilCategorias =  $scope.atendimento.profissional.categorias;
+        for(i = 0; i < perfilCategorias.length; i++){
+            perfilCategorias[i].selecionado = false;
+        }
+    }
+
     function zerarSelecao(listaPerfis){
         for(i = 0; i < listaPerfis.length; i++){
             listaPerfis[i].estilo = "cursor: pointer;";

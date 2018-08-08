@@ -103,7 +103,7 @@
                                         </table>
                                     </div>                                                           
                                 </form>                    
-                                <button class="btn btn-success" style="margin-bottom: 50px;">Cadastrar</button>
+                                <button class="btn btn-success" style="margin-bottom: 50px;" ng-click="cadastrar()">Cadastrar</button>
                             </div>      
                         </div>
                     </div>    
@@ -166,9 +166,9 @@
                                             <img src="imagens/man-user.png" class="img-rounded" style="width: 50px; height: 50px; margin-top: 5px;">
                                         </div>
                                         <div class="col-sm-6">
-                                            <div><strong>{{perfil.nome}}</strong></div>
-                                            <div style="font-size: 10px;">{{perfil.cpf}}</div>
-                                            <div style="font-size: 10px;">{{perfil.celular}}</div>
+                                            <div><strong>{{perfil.nome + ' ' + perfil.sobrenome}}</strong></div>
+                                            <div style="font-size: 10px;">CPF: {{perfil.cpf}}</div>
+                                            <div style="font-size: 10px;">Celular: {{perfil.celular}}</div>
                                         </div>
                                     </div>
                                 </div>
