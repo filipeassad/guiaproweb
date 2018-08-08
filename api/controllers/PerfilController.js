@@ -109,11 +109,11 @@ exports.obter_perfil_pelo_usuario = (req, res) =>{
 exports.obter_perfil_paginado = (req, res) =>{
 
 	var perfilObj = req.body;
-	var limit = 10;
+	var limit = 5;
 	var offset = 0;
 
 	if(perfilObj == null)
-		res.send(JSON.stringify({ success: true, message: 'O perfil foi deletado com sucesso.' }));		
+		res.send(JSON.stringify({ success: false, message: 'Sem os parametros necessários.' }));		
 	else{
 		var condicao = montar_condicao(perfilObj);		
 
@@ -121,12 +121,12 @@ exports.obter_perfil_paginado = (req, res) =>{
 			var page = req.body.pagina;     
 			var pages = Math.ceil(data.count / limit);
 			offset = limit * (page - 1);
-
-			Perfil.findAll({ include: [{ all: true, nested: true }]},
-				{ 	where: condicao,
+			Perfil.findAll({ 
+                    include: [{ all: true, nested: true }],
+				 	where: condicao,
 					limit: limit,
 					offset: offset }).then(perfil => {        
-					res.send(JSON.stringify({ perfils: perfil, paginas: pages, pagina: req.body.pagina }));	
+					res.send(JSON.stringify({ success: true, perfils: perfil, paginas: pages, pagina: req.body.pagina }));	
 			});
 		});
 		
@@ -152,6 +152,10 @@ function montar_condicao (perfil){
 	if(perfil.celular != null && perfil.celular.trim() != ''){
 		condicao.celular = { [Op.like]: perfil.celular + '%' };
 	}
+
+    if(perfil.tipoperfil != null && perfil.tipoperfil != 0){
+        condicao.tipoperfilId = perfil.tipoperfil;
+    }
 	
 	return condicao;
 
