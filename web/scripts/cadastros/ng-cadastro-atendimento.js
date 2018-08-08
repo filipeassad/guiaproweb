@@ -20,12 +20,28 @@ app.controller('CadastroAtendimentoCtrl',[
     $scope.perfilBusca = {};
     $scope.resultadoBusca = {};
     $scope.tipoperfil = 0;
+    $scope.tiposatendimento = [];
+    $scope.situacoes = [];
 
     var url = "http://localhost:3000/api/atendimento";    
     var url_perfil_paginado = "http://localhost:3000/api/perfil_paginado";    
+    var url_tipo_atendimento = "http://localhost:3000/api/tipoatendimento";
+    var url_situacao = "http://localhost:3000/api/situacao";       
+    
+    httpService.gethttp(url_tipo_atendimento, {})
+        .then(function mySuccess(response) { 
+            if(response.data != null)   
+                $scope.tiposatendimento = response.data; 
+    });    
 
-    $scope.fecharBusca = function(){        
-        $('#buscaPerfil').modal('hide');
+    httpService.gethttp(url_situacao, {})
+        .then(function mySuccess(response) { 
+            if(response.data != null)   
+                $scope.situacoes = response.data; 
+    }); 
+
+    $scope.selecionarData = function(){
+        //$('#datetimepicker1').datetimepicker();
     }
 
     $scope.buscarPerfil = function(pagina){
@@ -81,6 +97,10 @@ app.controller('CadastroAtendimentoCtrl',[
             }
         }
 
+        $('#buscaPerfil').modal('hide');
+    }
+
+    $scope.fecharBusca = function(){        
         $('#buscaPerfil').modal('hide');
     }
 
