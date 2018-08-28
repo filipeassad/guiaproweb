@@ -100,8 +100,8 @@ exports.obter_perfil_por_id = (req, res) => {
 };
 
 exports.obter_perfil_pelo_usuario = (req, res) =>{
-    Perfil.findAll({ include: [{ all: true, nested: true }]},
-                    { where: { usuarioId: req.decoded.id}}).then(perfil => {        
+    Perfil.findAll({ where: { usuarioId: req.decoded.id},
+        include: [{ all: true, nested: true }]}).then(perfil => {  
 		res.send(new PerfilEnviar(perfil[0]));
 	});
 }
@@ -199,7 +199,9 @@ function CategoriaObj(perfil, categoria) {
 }
 
 function PerfilEnviar(perfil){
+    this.id = perfil.id;
     this.nome = perfil.nome;
+    this.sobrenome = perfil.sobrenome;
     this.nome_completo = perfil.nome + " " + perfil.sobrenome; 
     this.tipoperfil = perfil.tipoperfil;
     this.permissoesPerfil = perfil.permissoes;

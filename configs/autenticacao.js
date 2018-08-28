@@ -31,6 +31,10 @@ exports.login = (req, res) => {
       });
 };
 
+exports.sucessoLogin = (req, res) => {
+    res.json({ success: true, message: 'Token Válido.' });
+}
+
 exports.validaToken = function (req, res, next){
 
     var token = req.headers['x-access-token'];

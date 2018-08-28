@@ -13,4 +13,7 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.obter_categoria_por_id)
         .put(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.atualizar_categoria)
         .delete(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, categoria.deletar_categoria);
+
+    app.route('/api/mobile/categoria')
+        .get(autenticacao.validaToken, permissao.permissaoCliente, categoria.obter_todos_categorias);
 };
