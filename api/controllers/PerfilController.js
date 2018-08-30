@@ -4,6 +4,7 @@ const Endereco = db.endereco;
 const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
 const TipoPerfil = db.tipoperfil;
+const Categoria = db.categoria;
 
 const Op = db.Sequelize.Op;
 
@@ -103,6 +104,23 @@ exports.obter_perfil_pelo_usuario = (req, res) =>{
     Perfil.findAll({ where: { usuarioId: req.decoded.id},
         include: [{ all: true, nested: true }]}).then(perfil => {  
 		res.send(new PerfilEnviar(perfil[0]));
+	});
+}
+
+exports.obter_perfil_pela_categoria = (req, res) =>{
+    var categoriaId = req.params.categoriaId;
+    Perfil.findAll({
+            include: [
+                { all: true, nested: true},
+                { 
+                    model: CategoriaPerfil, 
+                    as:'categorias', 
+                    where: {categoriaId:categoriaId}, 
+                    include:[{model: Categoria, as: 'categoria'}]
+                }             
+            ]                       
+        }).then(perfils => {
+		res.send(perfils);
 	});
 }
 

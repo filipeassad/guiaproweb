@@ -14,9 +14,12 @@ module.exports = function(app) {
         .put(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, perfil.atualizar_perfil)
         .delete(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, perfil.deletar_perfil);
 
-     app.route('/api/perfil_logado')
+    app.route('/api/perfil_logado')
         .get(autenticacao.validaToken, perfil.obter_perfil_pelo_usuario);
-    
+
+    app.route('/api/perfil_categoria/:categoriaId')
+        .get(autenticacao.validaToken, permissao.permissaoCliente, perfil.obter_perfil_pela_categoria);
+            
     app.route('/api/perfil_paginado')
         .post(perfil.obter_perfil_paginado);
 };
