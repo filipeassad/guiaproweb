@@ -10,8 +10,21 @@ exports.cadastrar_atendimento = (req, res) => {
 		});
 	}else{
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
-	}
-	
+	}	
+};
+
+exports.cadastrar_atendimento_cliente = (req, res) => {
+	var atendimentoB = req.body;
+    atendimentoB.clienteId = req.decoded.id;
+    atendimentoB.data = new Date();
+
+	if(validaAtendimento(atendimentoB)){
+		Atendimento.create(new AtendimentoObj(atendimentoB)).then(atendimento => {		
+			res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.' }));
+		});
+	}else{
+		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
+	}	
 };
 
 exports.atualizar_atendimento = (req, res) => {

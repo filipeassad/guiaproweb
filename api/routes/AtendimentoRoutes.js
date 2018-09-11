@@ -12,4 +12,7 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.obter_atendimento_por_id)
         .put(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.atualizar_atendimento)
         .delete(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, atendimento.deletar_atendimento);
+
+    app.route('/api/atendimento_cliente')
+        .post(autenticacao.validaToken, permissao.permissaoCliente, atendimento.cadastrar_atendimento);
 };

@@ -4,6 +4,6 @@ module.exports = function(app, socketIO) {
     var permissao = require('../../configs/permissao.js');
     var notificao = require('../controllers/NotificacaoController')(socketIO);
 
-    app.route('/api/notificao-atendimento')
+    app.route('/api/notificao-atendimento/:atendimentoId')
         .post(autenticacao.validaTokenPagina, permissao.permissaoCliente, notificao.enviar_notificacao_atendimento);
 };
