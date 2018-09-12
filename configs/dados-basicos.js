@@ -6,12 +6,15 @@ const PermissaoPerfil = db.permissaoperfil;
 const TipoPerfil = db.tipoperfil;
 const Permissao = db.permissao;
 const Situacao = db.situacao;
+const TipoAtendimento = db.tipoatendimento;
 
 exports.gerarDados = function(){  
     cadastrarTiposPerfil().then(() => {
         cadastrarPermissoes().then(() => {
             cadastrarUsuarios().then(() => {
-                cadastrarSituacoes();
+                cadastrarSituacoes().then(() => {
+                    cadastrarTiposAtendimento();
+                });
             }); 
         });
     });
@@ -46,13 +49,21 @@ function cadastrarUsuarios(){
 }
 
 function cadastrarSituacoes(){
-    return cadastrarSitiacao(situacao_aguardando).then(() => {
-        cadastrarSitiacao(situacao_atendido).then(() => {
-            cadastrarSitiacao(situacao_fechado).then(() => {
-                cadastrarSitiacao(situacao_finalizado).then(() => {
-                    cadastrarSitiacao(situacao_nao_fechado);
+    return cadastrarSituacao(situacao_aguardando).then(() => {
+        cadastrarSituacao(situacao_atendido).then(() => {
+            cadastrarSituacao(situacao_fechado).then(() => {
+                cadastrarSituacao(situacao_finalizado).then(() => {
+                    cadastrarSituacao(situacao_nao_fechado);
                 });    
             });    
+        });    
+    });    
+}
+
+function cadastrarTiposAtendimento(){
+    return cadastrarTipoAtendimento(tipoatendimento_ligacao).then(() => {
+        cadastrarTipoAtendimento(tipoatendimento_whats).then(() => {
+            cadastrarTipoAtendimento(tipoatendimento_meligue);    
         });    
     });    
 }
@@ -72,8 +83,12 @@ function cadastrarUsuario(usuarioB){
     });
 }
 
-function cadastrarSitiacao(situacaoB){
+function cadastrarSituacao(situacaoB){
     return Situacao.create(new SituacaoObj(situacaoB));
+}
+
+function cadastrarTipoAtendimento(tipoAtendimentoB){
+    return TipoAtendimento.create(new TipoAtendimentoObj(tipoAtendimentoB));
 }
 
 function cadastrarTipoPerfil(tipoperfilB){
@@ -86,6 +101,10 @@ function cadastrarPermissao(permissaoB){
 
 function SituacaoObj(situacao){
     this.descricao = situacao.descricao;
+}
+
+function TipoAtendimentoObj(tipoatendimento){
+    this.descricao = tipoatendimento.descricao;
 }
 
 function UsuarioObj(usuario){
@@ -282,4 +301,14 @@ var situacao_finalizado = {
 };
 var situacao_nao_fechado = {
     descricao: "Trabalho Não Foi Fechado"
+};
+
+var tipoatendimento_ligacao = {
+    descricao: "Ligação"
+};
+var tipoatendimento_whats = {
+    descricao: "Whatsapp"
+};
+var tipoatendimento_meligue = {
+    descricao: "Me ligue"
 };
