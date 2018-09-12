@@ -2,7 +2,7 @@
   "name": "guiaproweb",
   "version": "1.0.0",
   "description": "Parte Web do projeto do guiapro",
-  "main": "server.js",
+  "main": "index.js",
   "": {
     "test": "echo \"Error: Não tem teste\" && exit 1"
   },
