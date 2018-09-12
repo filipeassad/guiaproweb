@@ -5,7 +5,6 @@ const Usuario = db.usuario;
 const Perfil = db.perfil;
 const Endereco = db.endereco;
 const PermissaoPerfil = db.permissaoperfil;
-const CategoriaPerfil = db.categoriaperfil;
 const TipoPerfil = db.tipoperfil;
 const Permissao = db.permissao;
 const Situacao = db.situacao;
