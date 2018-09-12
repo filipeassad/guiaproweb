@@ -11,7 +11,7 @@
     "Kosmo",
     "Serviço"
   ],
-  "author": "Filipe Assad Baraúna",
+  "author": "Filipe Assad",
   "devDependencies": {
     "nodemon": "^1.17.5"
   },
@@ -24,7 +24,8 @@
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.38.0",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "sqlite3": "^4.0.2"
   },
   "scripts": {
     "start": "node server.js",
