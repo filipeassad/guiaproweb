@@ -1,6 +1,7 @@
 const irongolem = require('./irongolem.js');
 const db = require('./dbConfig.js');
 var jwt = require('jsonwebtoken');
+var utilitarios = require('../web/scripts/utilitarios');
 const Usuario = db.usuario;
 
 exports.login = (req, res) => {
@@ -65,7 +66,7 @@ exports.validaTokenPagina = function(req, res, next){
     var token = "";
     var cookies = req.cookies;
     if(cookies == null || cookies.token == null){
-        return res.redirect('http://localhost:3000/erro-permissao');
+        return res.redirect(utilitarios + 'erro-permissao');
     }else        
         token = cookies.token;
 

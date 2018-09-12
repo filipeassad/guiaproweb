@@ -11,7 +11,7 @@ app.use(cookieParser());
 
 const db = require('./configs/dbConfig.js');
 var dados_basicos = require('./configs/dados-basicos.js');
-var deletar = false;
+var deletar = true;
 db.sequelize.sync({force: deletar}).then(() => {
   if(deletar)
     dados_basicos.gerarDados();
