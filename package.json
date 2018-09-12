@@ -2,7 +2,7 @@
   "name": "guiaproweb",
   "version": "1.0.0",
   "description": "Parte Web do projeto do guiapro",
-  "main": "index.js",
+  "main": "server.js",
   "": {
     "test": "echo \"Error: Não tem teste\" && exit 1"
   },
@@ -26,5 +26,12 @@
     "sequelize": "^4.38.0",
     "socket.io": "^2.1.1",
     "sqlite3": "^4.0.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines":{
+	"node": "4.7.0"
   }
 }
