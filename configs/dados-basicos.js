@@ -50,7 +50,7 @@ function cadastrarSituacoes(){
         cadastrarSitiacao(situacao_atendido).then(() => {
             cadastrarSitiacao(situacao_fechado).then(() => {
                 cadastrarSitiacao(situacao_finalizado).then(() => {
-                    cadastrarSitiacao(situacao_aguardando);
+                    cadastrarSitiacao(situacao_nao_fechado);
                 });    
             });    
         });    
