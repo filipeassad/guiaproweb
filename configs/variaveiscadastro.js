@@ -1,4 +1,4 @@
-exports.usuario_administrador = {
+var usuario_administrador = {
     email: "admin",
     senha: "12345",
     perfil: {
@@ -31,7 +31,7 @@ exports.usuario_administrador = {
     }
 };
 
-exports.usuario_desenvolvedor = {     
+var usuario_desenvolvedor = {     
     email: "dev-noob",
     senha: "12345",
     perfil: {
@@ -64,7 +64,7 @@ exports.usuario_desenvolvedor = {
     }
 };
 
-exports.usuario_moderador = {     
+var usuario_moderador = {     
     email: "moderador",
     senha: "12345",
     perfil: {
@@ -97,52 +97,69 @@ exports.usuario_moderador = {
     }
 };
 
-exports.tipoperfil_cliente = {
+var tipoperfil_cliente = {
     descricao:"Cliente",
     sigla: "C"
 };
-exports.tipoperfil_profissional = {
+var tipoperfil_profissional = {
     descricao:"Profissional",
     sigla: "P"
 };
-exports.tipoperfil_neutro = {
+var tipoperfil_neutro = {
     descricao:"Neutro",
     sigla: "N"
 };
 
-exports.permissao_administrador = {
+var permissao_administrador = {
     descricao:"Ação Administrador",
     sigla: "AA"
 };
-exports.permissao_desenvolvedor = {
+var permissao_desenvolvedor = {
     descricao:"Ação Desenvolvedor",
     sigla: "AD"
 };
-exports.permissao_moderador = {
+var permissao_moderador = {
     descricao:"Ação Moderador",
     sigla: "AM"
 };
-exports.permissao_profissional = {
+var permissao_profissional = {
     descricao:"Ação Profissional",
     sigla: "AP"
 };
-exports.permissao_cliente = {
+var permissao_cliente = {
     descricao: "Ação Cliente",
     sigla: "AC"
 };
 
-exports.situacao_aguardando = {
+var situacao_aguardando = {
     descricao: "Aguardando Atendimento"
 };
-exports.situacao_atendido = {
+var situacao_atendido = {
     descricao: "Atendido"
 };
-exports.situacao_fechado = {
+var situacao_fechado = {
     descricao: "Trabalho Fechado"
 };
-exports.situacao_finalizado = {
+var situacao_finalizado = {
     descricao: "Trabalho Finalizado"
 };
-exports.situacao_nao_fechado = {
+var situacao_nao_fechado = {
     descricao: "Trabalho Não Foi Fechado"
 };
+
+module.exports = usuario_administrador;
+module.exports = usuario_desenvolvedor;
+module.exports = usuario_moderador;
+module.exports = tipoperfil_cliente;
+module.exports = tipoperfil_profissional;
+module.exports = tipoperfil_neutro;
+module.exports = permissao_administrador;
+module.exports = permissao_desenvolvedor;
+module.exports = permissao_moderador;
+module.exports = permissao_profissional;
+module.exports = permissao_cliente;
+module.exports = situacao_aguardando;
+module.exports = situacao_atendido;
+module.exports = situacao_fechado;
+module.exports = situacao_finalizado;
+module.exports = situacao_nao_fechado;
