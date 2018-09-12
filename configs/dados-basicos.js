@@ -1,5 +1,4 @@
 const db = require('./dbConfig.js');
-const variaveisCadastro = require('./variaveiscadastro');
 const Usuario = db.usuario;
 const Perfil = db.perfil;
 const Endereco = db.endereco;
@@ -19,19 +18,19 @@ exports.gerarDados = function(){
 }
 
 function cadastrarTiposPerfil(){
-    return cadastrarTipoPerfil(variaveisCadastro.tipoperfil_cliente).then(() => {
-        cadastrarTipoPerfil(variaveisCadastro.tipoperfil_profissional).then(() => {
-            cadastrarTipoPerfil(variaveisCadastro.tipoperfil_neutro);
+    return cadastrarTipoPerfil(tipoperfil_cliente).then(() => {
+        cadastrarTipoPerfil(tipoperfil_profissional).then(() => {
+            cadastrarTipoPerfil(tipoperfil_neutro);
         });
     });
 }
 
 function cadastrarPermissoes(){
-    return cadastrarPermissao(variaveisCadastro.permissao_administrador).then(() =>{
-        cadastrarPermissao(variaveisCadastro.permissao_desenvolvedor).then(() =>{
-            cadastrarPermissao(variaveisCadastro.permissao_moderador).then(() =>{
-                cadastrarPermissao(variaveisCadastro.permissao_profissional).then(() =>{
-                    cadastrarPermissao(variaveisCadastro.permissao_cliente);                
+    return cadastrarPermissao(permissao_administrador).then(() =>{
+        cadastrarPermissao(permissao_desenvolvedor).then(() =>{
+            cadastrarPermissao(permissao_moderador).then(() =>{
+                cadastrarPermissao(permissao_profissional).then(() =>{
+                    cadastrarPermissao(permissao_cliente);                
                 });
             });
         });
@@ -39,19 +38,19 @@ function cadastrarPermissoes(){
 }
 
 function cadastrarUsuarios(){
-    return cadastrarUsuario(variaveisCadastro.usuario_administrador).then(() => {
-        cadastrarUsuario(variaveisCadastro.usuario_desenvolvedor).then(() => {
-            cadastrarUsuario(variaveisCadastro.usuario_moderador);
+    return cadastrarUsuario(usuario_administrador).then(() => {
+        cadastrarUsuario(usuario_desenvolvedor).then(() => {
+            cadastrarUsuario(usuario_moderador);
         });
     });
 }
 
 function cadastrarSituacoes(){
-    return cadastrarSitiacao(variaveisCadastro.situacao_aguardando).then(() => {
-        cadastrarSitiacao(variaveisCadastro.situacao_atendido).then(() => {
-            cadastrarSitiacao(variaveisCadastro.situacao_fechado).then(() => {
-                cadastrarSitiacao(variaveisCadastro.situacao_finalizado).then(() => {
-                    cadastrarSitiacao(variaveisCadastro.situacao_aguardando);
+    return cadastrarSitiacao(situacao_aguardando).then(() => {
+        cadastrarSitiacao(situacao_atendido).then(() => {
+            cadastrarSitiacao(situacao_fechado).then(() => {
+                cadastrarSitiacao(situacao_finalizado).then(() => {
+                    cadastrarSitiacao(situacao_aguardando);
                 });    
             });    
         });    
@@ -135,3 +134,152 @@ function PermissaoObj(permissao){
 	this.descricao = permissao.descricao;
 	this.sigla = permissao.sigla;
 }
+
+var usuario_administrador = {
+    email: "admin",
+    senha: "12345",
+    perfil: {
+        nome: "Administrador-Base",
+        sobrenome: "Adm",
+        datanascimento: null,
+        cpf: "00000000000",
+        sexo: "M",
+        celular: "00000000",
+        urlimg: null,
+        ativo: null,
+        tipoperfilId: 3,            
+        endereco: {
+            cep: "010101",
+            numero: "010101",
+            logradouro: "010101",
+            complemento: "010101",
+            bairro: "010101",
+            cidade: "010101",
+            uf: "010101",
+            pais: "010101",
+            latitude: "010101",
+            longitude: "010101"
+        },
+        permissoes: [
+            {
+                permissaoId: 1             
+            }
+        ]
+    }
+};
+
+var usuario_desenvolvedor = {     
+    email: "dev-noob",
+    senha: "12345",
+    perfil: {
+        nome: "Desenvolvedor",
+        sobrenome: "010101",
+        datanascimento: null,
+        cpf: "00000000000",
+        sexo: "M",
+        celular: "00000000",
+        urlimg: null,
+        ativo: null,
+        tipoperfilId: 3,            
+        endereco: {
+            cep: "010101",
+            numero: "010101",
+            logradouro: "010101",
+            complemento: "010101",
+            bairro: "010101",
+            cidade: "010101",
+            uf: "010101",
+            pais: "010101",
+            latitude: "010101",
+            longitude: "010101"
+        },
+        permissoes: [
+            {
+                permissaoId: 2             
+            }
+        ]
+    }
+};
+
+var usuario_moderador = {     
+    email: "moderador",
+    senha: "12345",
+    perfil: {
+        nome: "Moderador-Base",
+        sobrenome: "Mod",
+        datanascimento: null,
+        cpf: "00000000000",
+        sexo: "M",
+        celular: "00000000",
+        urlimg: null,
+        ativo: null,
+        tipoperfilId: 3,            
+        endereco: {
+            cep: "010101",
+            numero: "010101",
+            logradouro: "010101",
+            complemento: "010101",
+            bairro: "010101",
+            cidade: "010101",
+            uf: "010101",
+            pais: "010101",
+            latitude: "010101",
+            longitude: "010101"
+        },
+        permissoes: [
+            {
+                permissaoId: 3             
+            }
+        ]
+    }
+};
+
+var tipoperfil_cliente = {
+    descricao:"Cliente",
+    sigla: "C"
+};
+var tipoperfil_profissional = {
+    descricao:"Profissional",
+    sigla: "P"
+};
+var tipoperfil_neutro = {
+    descricao:"Neutro",
+    sigla: "N"
+};
+
+var permissao_administrador = {
+    descricao:"Ação Administrador",
+    sigla: "AA"
+};
+var permissao_desenvolvedor = {
+    descricao:"Ação Desenvolvedor",
+    sigla: "AD"
+};
+var permissao_moderador = {
+    descricao:"Ação Moderador",
+    sigla: "AM"
+};
+var permissao_profissional = {
+    descricao:"Ação Profissional",
+    sigla: "AP"
+};
+var permissao_cliente = {
+    descricao: "Ação Cliente",
+    sigla: "AC"
+};
+
+var situacao_aguardando = {
+    descricao: "Aguardando Atendimento"
+};
+var situacao_atendido = {
+    descricao: "Atendido"
+};
+var situacao_fechado = {
+    descricao: "Trabalho Fechado"
+};
+var situacao_finalizado = {
+    descricao: "Trabalho Finalizado"
+};
+var situacao_nao_fechado = {
+    descricao: "Trabalho Não Foi Fechado"
+};
