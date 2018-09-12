@@ -10,7 +10,7 @@ app.controller('CadastroSituacaoCtrl', [
     $scope.situacao = {};
     $scope.situacoes = [];    
     $scope.podeAlterar = false;
-    var url = "http://localhost:3000/api/situacao";    
+    var url = url_principal + "api/situacao";    
 
     $scope.cadastrar = function(){
        

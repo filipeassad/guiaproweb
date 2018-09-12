@@ -10,7 +10,7 @@ function($scope, httpService){
     });
 
     scope.cadastrar = function(){
-        window.location.href = "http://localhost:3000/cadastro-endereco";
+        window.location.href = url_principal + "cadastro-endereco";
     }
 
     $scope.excluir = function(endereco){

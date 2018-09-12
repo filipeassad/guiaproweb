@@ -7,14 +7,14 @@ app.controller('SideBarCtrl', [
 
         $scope.itensMenu = [];
 
-        $scope.itensMenu.push(new ItemMenu(1,'Tipo Perfil','/busca-tipoperfil','item-menu-nav','fa fa-address-card-o'));
-        $scope.itensMenu.push(new ItemMenu(2,'Permissão','/busca-permissao','item-menu-nav','fa fa-lock'));
-        $scope.itensMenu.push(new ItemMenu(3,'Categoria','/busca-categoria','item-menu-nav','fa fa-wrench'));
-        $scope.itensMenu.push(new ItemMenu(4,'Tipo Atendimento','/busca-tipoatendimento','item-menu-nav','fa fa-exchange'));
-        $scope.itensMenu.push(new ItemMenu(5,'Situação','/busca-situacao','item-menu-nav','fa fa-handshake-o'));
-        $scope.itensMenu.push(new ItemMenu(6,'Usuário','/busca-usuario','item-menu-nav','fa fa-user-o'));
-        $scope.itensMenu.push(new ItemMenu(6,'Empresa','/busca-empresa','item-menu-nav','fa fa-building'));
-        $scope.itensMenu.push(new ItemMenu(7,'Atendimento','/busca-atendimento','item-menu-nav','fa fa-comments-o'));
+        $scope.itensMenu.push(new ItemMenu(1,'Tipo Perfil','busca-tipoperfil','item-menu-nav','fa fa-address-card-o'));
+        $scope.itensMenu.push(new ItemMenu(2,'Permissão','busca-permissao','item-menu-nav','fa fa-lock'));
+        $scope.itensMenu.push(new ItemMenu(3,'Categoria','busca-categoria','item-menu-nav','fa fa-wrench'));
+        $scope.itensMenu.push(new ItemMenu(4,'Tipo Atendimento','busca-tipoatendimento','item-menu-nav','fa fa-exchange'));
+        $scope.itensMenu.push(new ItemMenu(5,'Situação','busca-situacao','item-menu-nav','fa fa-handshake-o'));
+        $scope.itensMenu.push(new ItemMenu(6,'Usuário','busca-usuario','item-menu-nav','fa fa-user-o'));
+        $scope.itensMenu.push(new ItemMenu(6,'Empresa','busca-empresa','item-menu-nav','fa fa-building'));
+        $scope.itensMenu.push(new ItemMenu(7,'Atendimento','busca-atendimento','item-menu-nav','fa fa-comments-o'));
 
         function ItemMenu(id, label, url, classe, icone){
             this.id = id;
@@ -25,7 +25,7 @@ app.controller('SideBarCtrl', [
         }
 
         $scope.redirecionar = function(item){
-            window.location.href = "http://localhost:3000" + item.url;
+            window.location.href = url_principal + item.url;
         } 
 
 }]);

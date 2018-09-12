@@ -10,7 +10,7 @@ app.controller('CadastroTipoAtendimentoCtrl',[
     $scope.tipoAtendimento = {};
     $scope.tiposAtendimento = [];    
     $scope.podeAlterar = false;
-    var url = "http://localhost:3000/api/tipoatendimento";    
+    var url = url_principal + "api/tipoatendimento";    
 
     $scope.cadastrar = function(){
        

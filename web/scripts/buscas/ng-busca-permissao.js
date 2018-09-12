@@ -3,7 +3,7 @@ app.controller('BuscaPermissaoCtrl', [
     'httpService', 
 function($scope, httpService){
 
-    var url = "http://localhost:3000/api/permissao";
+    var url = url_principal + "api/permissao";
 
     httpService.gethttp(url, {})
         .then(function mySuccess(response) { 
@@ -12,7 +12,7 @@ function($scope, httpService){
     });
 
     $scope.cadastrar = function(){
-        window.location.href = "http://localhost:3000/cadastro-permissao";
+        window.location.href = url_principal + "cadastro-permissao";
     }
 
     $scope.excluir = function(permissao){

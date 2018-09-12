@@ -10,7 +10,7 @@ app.controller('CadastroPermissaoCtrl', [
     $scope.permissao = {};
     $scope.permissoes = [];    
     $scope.podeAlterar = false;
-    var url = "http://localhost:3000/api/permissao";    
+    var url = url_principal + "api/permissao";    
 
     $scope.cadastrar = function(){
        

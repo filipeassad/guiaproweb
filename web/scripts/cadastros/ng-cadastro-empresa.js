@@ -6,7 +6,7 @@ app.controller('CadastroEmpresaCtrl', [
         $scope, 
         httpService,
         $rootScope){
-    var url = "http://localhost:3000/api/empresa";
+    var url = url_principal + "api/empresa";
     $scope.empresa = {};
 
     $scope.cadastrar = function(){

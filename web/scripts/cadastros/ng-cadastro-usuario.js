@@ -25,11 +25,11 @@ app.controller('CadastroUsuarioCtrl', [
     $scope.podeAlterar = false;
     $scope.mostrarCategorias = $scope.usuario.perfil.tipoperfil.descricao == "Profissional";  
 
-    var url = "http://localhost:3000/api/usuario";
-    var url_tiposperfil = "http://localhost:3000/api/tipoperfil";
-    var url_tiposcategoria = "http://localhost:3000/api/categoria";
-    var url_permissao = "http://localhost:3000/api/permissao";
-    var url_empresa = "http://localhost:3000/api/empresa";
+    var url = url_principal + "api/usuario";
+    var url_tiposperfil = url_principal + "api/tipoperfil";
+    var url_tiposcategoria = url_principal + "api/categoria";
+    var url_permissao = url_principal + "api/permissao";
+    var url_empresa = url_principal + "api/empresa";
 
     httpService.gethttp(url_tiposperfil, {})
         .then(function mySuccess(response) { 

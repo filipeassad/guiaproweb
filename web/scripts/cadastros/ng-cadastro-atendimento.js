@@ -23,10 +23,10 @@ app.controller('CadastroAtendimentoCtrl',[
     $scope.tiposatendimento = [];
     $scope.situacoes = [];
 
-    var url = "http://localhost:3000/api/atendimento";    
-    var url_perfil_paginado = "http://localhost:3000/api/perfil_paginado";    
-    var url_tipo_atendimento = "http://localhost:3000/api/tipoatendimento";
-    var url_situacao = "http://localhost:3000/api/situacao";       
+    var url = url_principal + "api/atendimento";    
+    var url_perfil_paginado = url_principal + "api/perfil_paginado";    
+    var url_tipo_atendimento = url_principal + "api/tipoatendimento";
+    var url_situacao = url_principal + "api/situacao";       
     
     httpService.gethttp(url_tipo_atendimento, {})
         .then(function mySuccess(response) { 

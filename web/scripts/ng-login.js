@@ -7,7 +7,7 @@ app.controller('LoginCtrl',[
         httpService, 
         $rootScope){
 
-        var url = "http://localhost:3000/api/login";
+        var url = url_principal + "api/login";
         $scope.usuario = {};
 
         $scope.logar = function(){
@@ -16,7 +16,7 @@ app.controller('LoginCtrl',[
             .then(function mySuccess(response) {                
                 if(response.data.success == true){
                     document.cookie = "token="+response.data.token; 
-                     window.location.href = "http://localhost:3000";    
+                     window.location.href = url_principal;    
                 }
                 else
                     alert("Usuário ou senha incorretos.");

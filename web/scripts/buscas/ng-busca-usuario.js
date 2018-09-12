@@ -5,7 +5,7 @@ app.controller('BuscaUsuarioCtrl', [
         $scope, 
         httpService){
 
-    var url = "http://localhost:3000/api/usuario";
+    var url = url_principal + "api/usuario";
 
     httpService.gethttp(url, {})
         .then(function mySuccess(response) { 
@@ -14,7 +14,7 @@ app.controller('BuscaUsuarioCtrl', [
     });
 
     $scope.cadastrar = function(){
-        window.location.href = "http://localhost:3000/cadastro-usuario";
+        window.location.href = url_principal + "cadastro-usuario";
     }
 
     $scope.excluir = function(usuario){

@@ -8,7 +8,7 @@ app.controller('BuscaEmpresaCtrl', [
         $rootScope){
 
 
-    var url = "http://localhost:3000/api/empresa";    
+    var url = url_principal + "api/empresa";    
 
     httpService.gethttp(url, {})
     .then(function mySuccess(response) { 
@@ -17,7 +17,7 @@ app.controller('BuscaEmpresaCtrl', [
     });
 
     $scope.cadastrar = function(){
-        window.location.href = "http://localhost:3000/cadastro-empresa";
+        window.location.href = url_principal + "cadastro-empresa";
     }
 
     $scope.excluir = function(empresa){

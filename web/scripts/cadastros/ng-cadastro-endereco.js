@@ -3,7 +3,7 @@ app.controller('CadastroEnderecoCtrl', function($window, $scope, httpService){
     $scope.endereco = {};
     $scope.enderecos = [];    
     $scope.podeAlterar = false;
-    var url = "http://localhost:3000/api/endereco";    
+    var url = url_principal + "api/endereco";    
 
     $scope.cadastrar = function(){
         $scope.endereco.urlimg = "";

@@ -10,7 +10,7 @@ function(
     $scope.tipoperfil = {};
     $scope.tiposperfil = [];    
     $scope.podeAlterar = false;
-    var url = "http://localhost:3000/api/tipoperfil";      
+    var url = url_principal + "api/tipoperfil";      
     
     $scope.cadastrar = function(){   
         httpService.posthttp(url, $scope.tipoperfil)

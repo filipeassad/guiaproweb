@@ -3,7 +3,7 @@ app.controller('BuscaTipoPerfilCtrl', [
     'httpService', 
 function($scope, httpService){
 
-    var url = "http://localhost:3000/api/tipoperfil";
+    var url = url_principal + "api/tipoperfil";
 
     httpService.gethttp(url, {})
         .then(function mySuccess(response) { 
@@ -12,7 +12,7 @@ function($scope, httpService){
     });
 
     $scope.cadastrar = function(){
-        window.location.href = "http://localhost:3000/cadastro-tipoperfil";
+        window.location.href = url_principal + "cadastro-tipoperfil";
     }
 
     $scope.excluir = function(tipoperfil){

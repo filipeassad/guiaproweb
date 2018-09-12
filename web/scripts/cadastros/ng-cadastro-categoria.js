@@ -10,7 +10,7 @@ app.controller('CadastroCategoriaCtrl',[
     $scope.categoria = {};
     $scope.categorias = [];    
     $scope.podeAlterar = false;
-    var url = "http://localhost:3000/api/categoria";    
+    var url = url_principal + "api/categoria";    
 
     $scope.cadastrar = function(){
         $scope.categoria.urlimg = "";

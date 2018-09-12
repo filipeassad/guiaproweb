@@ -5,7 +5,7 @@ app.controller('BuscaSituacaoCtrl', [
         $scope, 
         httpService){
 
-        var url = "http://localhost:3000/api/situacao";
+        var url = url_principal + "api/situacao";
 
         httpService.gethttp(url, {})
         .then(function mySuccess(response) { 
@@ -14,7 +14,7 @@ app.controller('BuscaSituacaoCtrl', [
         });
 
         $scope.cadastrar = function(){
-            window.location.href = "http://localhost:3000/cadastro-situacao";
+            window.location.href = url_principal + "cadastro-situacao";
         }
 
         $scope.excluir = function(situacao){

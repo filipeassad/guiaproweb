@@ -5,7 +5,7 @@ app.controller('IndexCtrl',[
         $scope, 
         httpService){
         
-        var url = "http://localhost:3000/api/perfil_logado";
+        var url = url_principal + "api/perfil_logado";
 
         $scope.perfilLogado = {};
 
@@ -18,16 +18,16 @@ app.controller('IndexCtrl',[
         });
 
         $scope.logar = function(){
-            window.location.href = "http://localhost:3000/login";
+            window.location.href = url_principal + "login";
         };
 
         $scope.sair = function(){
             document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            window.location.href = "http://localhost:3000/login";
+            window.location.href = url_principal + "login";
         };
 
         $scope.administrativo = function(){
-            window.location.href = "http://localhost:3000/cadastro-usuario";
+            window.location.href = url_principal + "cadastro-usuario";
         }
 
         $scope.usuarioEstaLogado = function(){

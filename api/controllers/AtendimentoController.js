@@ -15,6 +15,7 @@ exports.cadastrar_atendimento = (req, res) => {
 
 exports.cadastrar_atendimento_cliente = (req, res) => {
 	var atendimentoB = req.body;
+    
     atendimentoB.clienteId = req.decoded.id;
     atendimentoB.data = new Date();
 
