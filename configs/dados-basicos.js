@@ -62,10 +62,10 @@ function cadastrarSituacoes(){
 
 function cadastrarUsuario(usuarioB){
     return Usuario.create(new construtores.UsuarioObj(usuarioB)).then(function (usuario) {
-        Endereco.create(new construtores.EnderecoObj(usuarioB)).then(function (endereco) {
+        Endereco.create(new construtores.EnderecoObjByUsuario(usuarioB)).then(function (endereco) {
             usuarioB.id = usuario.id;
             usuarioB.perfil.endereco.id = endereco.id;
-            Perfil.create(new construtores.PerfilObj(usuarioB)).then(function (perfil) {
+            Perfil.create(new construtores.PerfilObjByUsuario(usuarioB)).then(function (perfil) {
                 usuarioB.perfil.id = perfil.id;
                 db.sequelize.Promise.map(usuarioB.perfil.permissoes, function (permissao) {
                     PermissaoPerfil.create(new construtores.PerfilPermissaoObj(usuarioB, permissao));
