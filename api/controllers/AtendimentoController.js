@@ -22,7 +22,7 @@ exports.cadastrar_atendimento_cliente = (req, res) => {
 
 	if(validaAtendimento(atendimentoB)){
 		Atendimento.create(new AtendimentoObj(atendimentoB)).then(atendimento => {		
-			res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.', idatendimento: atendimento.id }));
+			res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.' }));
 		});
 	}else{
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
