@@ -93,7 +93,7 @@ function validaAtendimento(atendimento){
 		return false;		
 	if(atendimento.descricao == null || atendimento.descricao.trim() == '')
 		return false;
-	if(atendimento.cliente == null && atendimento.cliente.id == null && atendimento.cliente.id == 0)
+	/*if(atendimento.cliente == null && atendimento.cliente.id == null && atendimento.cliente.id == 0)
 		return false;
 	if(atendimento.profissional == null && atendimento.profissional.id == null && atendimento.profissional.id == 0)
 		return false;
@@ -102,7 +102,7 @@ function validaAtendimento(atendimento){
 	if(atendimento.situacao == null && atendimento.situacao.id == null && atendimento.situacao.id == 0)
 		return false;
 	if(atendimento.categoria == null && atendimento.categoria.id == null && atendimento.categoria.id == 0)
-		return false;
+		return false;*/
 
 	return true;
 }
