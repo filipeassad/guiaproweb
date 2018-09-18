@@ -21,7 +21,7 @@ exports.cadastrar_atendimento_cliente = (req, res) => {
     atendimentoB.data = new Date();
 
 	if(validaAtendimento(atendimentoB)){
-		Atendimento.create(new AtendimentoObj(atendimentoB)).then(atendimento => {		
+		Atendimento.create(new AtendimentoClienteObj(atendimentoB)).then(atendimento => {		
 			res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.', idAtendimento: atendimento.id }));
 		});
 	}else{
@@ -81,6 +81,17 @@ function AtendimentoObj(atendimento){
 	this.tipoatendimentoId = atendimento.tipoatendimento.id;
 	this.situacaoId = atendimento.situacao.id;
 	this.categoriaId = atendimento.categoria.id;
+}
+
+function AtendimentoClienteObj(atendimento){
+	this.data = atendimento.data;
+	this.titulo = atendimento.titulo;
+	this.descricao = atendimento.descricao;
+	this.clienteId = atendimento.clienteId;
+	this.profissionalId = atendimento.profissionalId;
+	this.tipoatendimentoId = atendimento.tipoatendimentoId;
+	this.situacaoId = atendimento.situacaoId;
+	this.categoriaId = atendimento.categoriaId;
 }
 
 function validaAtendimento(atendimento){
