@@ -1,5 +1,6 @@
 const db = require('../../configs/dbConfig.js');
 const Atendimento = db.atendimento;
+const Perfil = db.perfil;
  
 exports.cadastrar_atendimento = (req, res) => {
 	var atendimentoB = req.body;
@@ -58,6 +59,15 @@ exports.obter_todos_atendimentos = (req, res) => {
  
 exports.obter_atendimento_por_id = (req, res) => {	
 	Atendimento.findById(req.params.atendimentoId, {include: [{all: true, nested: true}]}).then(atendimento => {
+		res.send(atendimento);
+	});
+};
+
+exports.obter_atendimentos_by_token = (req, res) => {	
+	Atendimento.findAll({ 
+        include: [{all: true, nested: true}],
+        where: { profissionalId: req.decoded.id }
+        }).then(atendimento => {
 		res.send(atendimento);
 	});
 };
