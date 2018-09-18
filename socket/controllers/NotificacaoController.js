@@ -48,7 +48,7 @@ module.exports = (socketIO) => {
     }
 
     function nomeNotificacao(atendimento){
-        return "guiapro-notificacao-" + atendimento.cliente.id;
+        return "guiapro-notificacao-" + atendimento.profissional.id;
     }
 
     return notificacao_module;
