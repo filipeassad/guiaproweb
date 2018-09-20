@@ -6,6 +6,7 @@ module.exports = (socketIO) => {
     var notificacao_module = {};
 
     notificacao_module.enviar_notificacao_atendimento = (req, res) => {
+        console.log('teste Filipe ' + req.params.atendimentoId);
         Atendimento.findById(req.params.atendimentoId, {include: [{all: true, nested: true}]}).then(atendimento => {
             if(atendimento.id != null){
                 socketIO.emit(nomeNotificacao(atendimento), new AtendimentoNotificacao(atendimento));
