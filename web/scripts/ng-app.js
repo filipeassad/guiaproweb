@@ -1,1 +1,1 @@
-var app = angular.module('GuiaApp', []);
+var app = angular.module('GuiaApp', ['ui.mask']);
