@@ -76,6 +76,48 @@ app.controller('CadastroUsuarioCtrl', [
         });
     }
 
+    function callbackBusca(retorno){
+        if(!("erro" in retorno)){
+            $scope.usuario.perfil.endereco.logradouro = retorno.logradouro;
+            $scope.usuario.perfil.endereco.bairro = retorno.bairro;
+            $scope.usuario.perfil.endereco.cidade = retorno.localidade;
+            $scope.usuario.perfil.endereco.uf = retorno.uf;
+        }else{
+            alert("Cep Não Encontrado!");
+        }
+       
+    }
+
+    $scope.buscarEndereco = function(){       
+
+        $scope.usuario.perfil.endereco.logradouro = "";
+        $scope.usuario.perfil.endereco.bairro = "";
+        $scope.usuario.perfil.endereco.cidade = ""; 
+        $scope.usuario.perfil.endereco.uf = "";
+        $scope.usuario.perfil.endereco.pais = "";
+        $scope.usuario.perfil.endereco.numero = "";
+
+        if($scope.usuario.perfil.endereco.cep != null){
+            var cep = $scope.usuario.perfil.endereco.cep.replace(/\D/g,'');
+            if(cep != ""){
+                 httpService.gethttp('https://viacep.com.br/ws/'+ cep + '/json/', {})
+                    .then(function mySuccess(response) { 
+                        console.log(response);
+                        if(response.data != null)   
+                            callbackBusca(response.data); 
+                }); 
+                /*var script = document.createElement('script');
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=callbackBusca';
+                document.body.appendChild(script);*/
+            }else{
+                alert("CEP Inválido!");
+            }
+        }else{
+            alert("Informe o CEP!");
+        }
+
+    }   
+
     $scope.selecionaCategoria = function(categoria){
         if(categoria.selecionado == null || categoria.selecionado == false){
             categoria.selecionado = true;

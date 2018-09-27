@@ -21,164 +21,192 @@
                 <div class="panel panel-default" style="margin-top: 10px; padding: 10px;">
                     <h1 style="text-align: center;">Cadastro de Usuário</h1>
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 style="text-align: left">Dados Login</h3>
-                                <hr>
-                                <form>
-                                    <div class="form-group col-md-6">
+                        <div class="row">                            
+                            <h3 style="text-align: left">Dados Login</h3>
+                            <hr>               
+                            <form>         
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>E-mail</label>
                                         <input type="text" class="form-control" ng-model="usuario.email">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                </div>
+                                <div class="row"> 
+                                    <div class="form-group col-sm-4">
                                         <label>Senha</label>
                                         <input type="password" class="form-control" ng-model="usuario.senha">
-                                    </div>                                         
-                                </form>
-                                <h3 style="text-align: left; margin-top: 50px;">Tipo Usuário</h3>
-                                <hr>
-                                <form> 
-                                    <div class="form-group">
+                                    </div> 
+                                </div>                                                    
+                            </form>  
+                            <h3 style="text-align: left; margin-top: 50px;">Tipo Usuário</h3>
+                            <hr>
+                            <form>
+                                <div class="row">
+                                    <div class="form-group col-sm-3">
                                         <label>Tipos</label>
                                         <select class="form-control" ng-model="usuario.perfil.tipoperfil" ng-options="tipoperfil.descricao for tipoperfil in tiposperfil ">
                                         </select>
-                                    </div>                                                           
-                                </form>   
-                                <h3 style="text-align: left; margin-top: 50px;">Perfil</h3>
-                                <hr>
-                                <form>
-                                    <div class="form-group">
+                                    </div> 
+                                </div>                                                                                         
+                            </form> 
+                            <h3 style="text-align: left; margin-top: 50px;">Perfil</h3>
+                            <hr>
+                            <form>         
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>Nome</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.nome">
                                     </div>
-                                    <div class="form-group">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>Sobrenome</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.sobrenome">
                                     </div>
-                                    <div class="form-group">
+                                </div>                       
+                                
+                                <div class="row">
+                                   <div class="form-group col-sm-2">
                                         <label>Sexo</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.sexo">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-2">
                                         <label>CPF</label>
-                                        <input type="text" class="form-control" ng-model="usuario.perfil.cpf" ui-mask="999.999.999-99" ng-pattern="/^[0-9]{1,7}[-\.\/]?+$/">
-                                    </div>        
-                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="usuario.perfil.cpf" ui-mask="999.999.999-99">
+                                    </div>   
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-2">
                                         <label>Celular</label>
-                                        <input type="text" class="form-control" ng-model="usuario.perfil.celular" ui-mask="(99) 99999-9999" ng-pattern="/^[0-9]{1,7}[-\.\/]?+$/">
-                                    </div>                                         
-                                </form>   
-                                <h3 style="text-align: left; margin-top: 50px;">Endereço</h3>
-                                <hr>
-                                <form>
-                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="usuario.perfil.celular" ui-mask="(99) 99999-9999">
+                                    </div>  
+                                </div>                               
+                            </form>   
+                            <h3 style="text-align: left; margin-top: 50px;">Endereço</h3>
+                            <hr>
+                            <form>
+                                <div class="row">
+                                    <div class="form-group col-sm-2">
                                         <label>Cep</label>
-                                        <input type="text" class="form-control" ng-model="usuario.perfil.endereco.cep" ui-mask="99.999-999" ng-pattern="/^[0-9]{1,7}[-\.\/]?+$/"> 
+                                        <input type="text" class="form-control" ng-model="usuario.perfil.endereco.cep" ui-mask="99.999-999"> 
                                     </div>
-                                    <div class="form-group">
-                                        <label>Número</label>
-                                        <input type="text" class="form-control" ng-model="usuario.perfil.endereco.numero">
+                                    <div class="form-group col-sm-2">                                        
+                                        <button class="btn btn-laranja" style="margin-top: 26px;" ng-click="buscarEndereco()">Busca endereço</button>
                                     </div>
-                                    <div class="form-group">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>Logradouro</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.logradouro">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-2">
+                                        <label>Número</label>
+                                        <input type="text" class="form-control" ng-model="usuario.perfil.endereco.numero">
+                                    </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>Complemento</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.complemento">
                                     </div> 
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-4">
                                         <label>Bairro</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.bairro">
                                     </div>
-                                    <div class="form-group">
+                                </div> 
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>Cidade</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.cidade">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-2">
                                         <label>Uf</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.uf">
                                     </div>
-                                    <div class="form-group">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>País</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.pais">
                                     </div>
-                                    <div class="form-group">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
                                         <label>Latitude</label>
                                         <input type="text" class="form-control"ng-model="usuario.perfil.endereco.latitude">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-4">
                                         <label>Longitude</label>
                                         <input type="text" class="form-control" ng-model="usuario.perfil.endereco.longitude">
                                     </div>
-                                </form>                                                
-                                <h3 style="text-align: left; margin-top: 50px;">Permissões</h3>
-                                <hr>
-                                <form> 
-                                    <div class="form-group">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;width: 5%;">Ações</th>
-                                                    <th style="width: 80%;">Descrição</th>
-                                                    <th style="text-align: center;">Sigla</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="permissaoAux in permissoes" ng-click="selecionaPermissao(permissaoAux)">
-                                                    <td style="text-align: center;"><input type="checkbox" disabled ng-model="permissaoAux.selecionado"></td>
-                                                    <td>{{permissaoAux.descricao}}</td>
-                                                    <td style="text-align: center;">{{permissaoAux.sigla}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>                                                           
-                                </form>   
-                                <h3 style="text-align: left; margin-top: 50px;" ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">Categorias</h3>
-                                <hr ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">
-                                <form ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'"> 
-                                    <div class="form-group">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;">Ações</th>
-                                                    <th style="width: 90%;">Descrição</th>                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="categoriaAux in categorias" ng-click="selecionaCategoria(categoriaAux)">
-                                                    <td style="text-align: center;"><input type="checkbox" disabled ng-model="categoriaAux.selecionado"></td>
-                                                    <td>{{categoriaAux.descricao}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>                                                           
-                                </form>
-                                <h3 style="text-align: left; margin-top: 50px;" ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">Empresas</h3>
-                                <hr ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">
-                                <form ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'"> 
-                                    <div class="form-group">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;">Ações</th>
-                                                    <th style="width: 70%;">Nome</th>
-                                                    <th style="text-align: center">CNPJ</th>                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="empresaAux in empresas" ng-click="selecionaEmpresa(empresaAux)">
-                                                    <td style="text-align: center;"><input type="checkbox" disabled ng-model="empresaAux.selecionado"></td>
-                                                    <td>{{empresaAux.nome}}</td>
-                                                    <td>{{empresaAux.cnpj}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>                                                           
-                                </form>
-                                <button class="btn btn-laranja" ng-if="!podeAlterar" ng-click="cadastrar()" style="margin-bottom: 50px;">Cadastrar</button>
-                                <button class="btn btn-laranja" ng-if="podeAlterar" ng-click="alterar()" style="margin-bottom: 50px;">Alterar</button>
-                            </div>      
+                                </div>                                
+                            </form>                                                
+                            <h3 style="text-align: left; margin-top: 50px;">Permissões</h3>
+                            <hr>
+                            <form> 
+                                <div class="form-group">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;width: 5%;">Ações</th>
+                                                <th style="width: 80%;">Descrição</th>
+                                                <th style="text-align: center;">Sigla</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="cursor: pointer;">
+                                            <tr ng-repeat="permissaoAux in permissoes" ng-click="selecionaPermissao(permissaoAux)">
+                                                <td style="text-align: center;"><input type="checkbox" style="cursor: pointer !important;" disabled ng-model="permissaoAux.selecionado"></td>
+                                                <td>{{permissaoAux.descricao}}</td>
+                                                <td style="text-align: center;">{{permissaoAux.sigla}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                                                           
+                            </form>   
+                            <h3 style="text-align: left; margin-top: 50px;" ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">Categorias</h3>
+                            <hr ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">
+                            <form ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'"> 
+                                <div class="form-group">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">Ações</th>
+                                                <th style="width: 90%;">Descrição</th>                                    
+                                            </tr>
+                                        </thead>
+                                        <tbody style="cursor: pointer;">
+                                            <tr ng-repeat="categoriaAux in categorias" ng-click="selecionaCategoria(categoriaAux)">
+                                                <td style="text-align: center;"><input type="checkbox" style="cursor: pointer !important;" disabled ng-model="categoriaAux.selecionado"></td>
+                                                <td>{{categoriaAux.descricao}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                                                           
+                            </form>
+                            <h3 style="text-align: left; margin-top: 50px;" ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">Empresas</h3>
+                            <hr ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'">
+                            <form ng-if="usuario.perfil.tipoperfil.descricao == 'Profissional'"> 
+                                <div class="form-group">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">Ações</th>
+                                                <th style="width: 70%;">Nome</th>
+                                                <th style="text-align: center">CNPJ</th>                                    
+                                            </tr>
+                                        </thead>
+                                        <tbody style="cursor: pointer;">
+                                            <tr ng-repeat="empresaAux in empresas" ng-click="selecionaEmpresa(empresaAux)">
+                                                <td style="text-align: center;"><input type="checkbox" style="cursor: pointer !important;" disabled ng-model="empresaAux.selecionado"></td>
+                                                <td>{{empresaAux.nome}}</td>
+                                                <td>{{empresaAux.cnpj}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                                                           
+                            </form>
+                            <button class="btn btn-laranja" ng-if="!podeAlterar" ng-click="cadastrar()" style="margin-bottom: 50px;">Cadastrar</button>
+                            <button class="btn btn-laranja" ng-if="podeAlterar" ng-click="alterar()" style="margin-bottom: 50px;">Alterar</button> 
                         </div>        
                     </div> 
                 </div>                                      
