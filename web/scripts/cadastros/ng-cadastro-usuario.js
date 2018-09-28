@@ -84,8 +84,7 @@ app.controller('CadastroUsuarioCtrl', [
             $scope.usuario.perfil.endereco.uf = retorno.uf;
         }else{
             alert("Cep Não Encontrado!");
-        }
-       
+        }       
     }
 
     $scope.buscarEndereco = function(){       
@@ -102,7 +101,6 @@ app.controller('CadastroUsuarioCtrl', [
             if(cep != ""){
                  httpService.gethttp('https://viacep.com.br/ws/'+ cep + '/json/', {})
                     .then(function mySuccess(response) { 
-                        console.log(response);
                         if(response.data != null)   
                             callbackBusca(response.data); 
                 }); 
@@ -115,7 +113,6 @@ app.controller('CadastroUsuarioCtrl', [
         }else{
             alert("Informe o CEP!");
         }
-
     }   
 
     $scope.selecionaCategoria = function(categoria){
