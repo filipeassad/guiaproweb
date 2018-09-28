@@ -20,6 +20,15 @@ db.sequelize.sync({force: deletar}).then(() => {
   console.log('Sincronizando o banco sem deletar as tableas já existentes.');
 });
 
+socketIO.on("disconnect", function() {
+    socket.socket.reconnect();
+});
+
+
+socketIO.on("connect", function() {
+    console.log("Cliente conectado socket.io");
+});
+
 /* DEPOIS COLOCAR TUDO ISSO EM UM ARQUIVO SÓ <3 */
 require('./api/routes/AtendimentoRoutes.js')(app);
 require('./api/routes/CategoriaRoutes.js')(app);
