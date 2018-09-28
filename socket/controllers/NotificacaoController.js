@@ -9,6 +9,7 @@ module.exports = (socketIO) => {
         console.log('teste Filipe ' + req.params.atendimentoId);
         Atendimento.findById(req.params.atendimentoId, {include: [{all: true, nested: true}]}).then(atendimento => {
             if(atendimento.id != null){
+                console.log("entrou aqui");
                 socketIO.emit(nomeNotificacao(atendimento), new AtendimentoNotificacao(atendimento));
                 res.send(JSON.stringify({ success: true, message: 'Notificação foi enviada com sucesso.' }));
             }else{

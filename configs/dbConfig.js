@@ -3,20 +3,22 @@ const env = require('./env.js');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(env.database, env.username, env.password, {
-  host: env.host,
-  dialect: env.dialect,
-  operatorsAliases: false, 
-  pool: {
-    max: env.max,
-    min: env.pool.min,
-    acquire: env.pool.acquire,
-    idle: env.pool.idle
-  }
+    host: env.host,
+    dialect: env.dialect,
+    operatorsAliases: false, 
+    logging: false,
+    pool: {
+        max: env.max,
+        min: env.pool.min,
+        acquire: env.pool.acquire,
+        idle: env.pool.idle
+    }
 }); 
 
 /*const sequelize = new Sequelize(env.database, null, null, {
-  dialect: env.dialect,
-  storage: env.storage
+    dialect: env.dialect,
+    storage: env.storage,
+    logging: false
 });*/
 
 const db = {};
