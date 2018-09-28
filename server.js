@@ -4,7 +4,8 @@ var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 //var serverSocket = require('http').createServer(app);  
-var socketIO = require('socket.io')(app);
+var socketIO = require('socket.io');
+const io = socketIO(app);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -19,11 +20,11 @@ db.sequelize.sync({force: deletar}).then(() => {
     console.log('Sincronizando o banco sem deletar as tableas já existentes.');
 });
 
-socketIO.on("disconnect", function() {
+io.on("disconnect", function() {
     socket.socket.reconnect();
 });
 
-socketIO.on("connect", function() {
+io.on("connect", function() {
     console.log("Cliente conectado socket.io");
 });
 
@@ -40,7 +41,7 @@ require('./api/routes/TipoPerfilRoutes.js')(app);
 require('./api/routes/UsuarioRoutes.js')(app);
 require('./web/routes/PageRoutes.js')(app);
 require('./configs/autenticacaoRoutes.js')(app);
-require('./socket/routes/NotificacaoRoutes.js')(app, socketIO);
+require('./socket/routes/NotificacaoRoutes.js')(app, io);
 
 var server = app.listen(port, function(){
     var host = server.address().address;
