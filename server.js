@@ -3,11 +3,8 @@ var app = express();
 var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var serverSocket = require('http').createServer(app);  
-var socketIO = require('socket.io')(serverSocket, {
-        pingInterval: 2000,
-        pingTimeout: 30000
-    }).listen(4555);
+//var serverSocket = require('http').createServer(app);  
+var socketIO = require('socket.io')(express);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
