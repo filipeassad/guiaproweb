@@ -5,8 +5,9 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var serverSocket = require('http').createServer(app);  
 var socketIO = require('socket.io')(serverSocket, {
-    pingInterval: 2000,
-    pingTimeout: 30000,}).listen(4555);
+        pingInterval: 2000,
+        pingTimeout: 30000
+    }).listen(4555);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -14,16 +15,16 @@ app.use(cookieParser());
 const db = require('./configs/dbConfig.js');
 var dados_basicos = require('./configs/dados-basicos.js');
 var deletar = false;
+
 db.sequelize.sync({force: deletar}).then(() => {
-  if(deletar)
-    dados_basicos.gerarDados();
-  console.log('Sincronizando o banco sem deletar as tableas já existentes.');
+    if(deletar)
+        dados_basicos.gerarDados();
+    console.log('Sincronizando o banco sem deletar as tableas já existentes.');
 });
 
 socketIO.on("disconnect", function() {
     socket.socket.reconnect();
 });
-
 
 socketIO.on("connect", function() {
     console.log("Cliente conectado socket.io");
