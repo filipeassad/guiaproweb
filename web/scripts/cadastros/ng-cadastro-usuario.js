@@ -57,6 +57,7 @@ app.controller('CadastroUsuarioCtrl', [
     }); 
 
     $scope.cadastrar = function(){
+        console.log($scope.usuario);
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.usuario = {};
