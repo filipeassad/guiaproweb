@@ -7,7 +7,8 @@ app.directive('alertaCustom', function() {
                     '      </div>'+
                     '  </div> '
     };
-}).app.directive('dataPickerKosmo', function() {
+}),
+app.directive('dataPickerKosmo', function() {
     return {
         restrict: "A",
         require: "ngModel",
