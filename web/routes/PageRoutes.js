@@ -11,6 +11,7 @@ module.exports = function(app) {
     app.use('/css',express.static(path_web + '/css'));    
     app.use('/scripts',express.static(path_web + '/scripts'));
     app.use('/page',express.static(path_web + '/pages'));
+    app.use('/calendario',express.static(path_web + '/bower_components'));
 
     app.route('')
         .get(function(req, res){

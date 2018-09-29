@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Adm-Usuário</title> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="calendario/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="css/fa-icons/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/basico.css"></head>
 
@@ -64,7 +65,18 @@
                                         <input type="text" class="form-control" ng-model="usuario.perfil.sobrenome">
                                     </div>
                                 </div>                       
-                                
+                                <div class="row">
+                                    <div class='col-sm-6'>
+                                        <div class="form-group">
+                                            <div class='input-group date' id='datetimepicker1'>
+                                                <input type='text' class="form-control" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                    <div class="form-group col-sm-2">
                                         <label>Sexo</label>
@@ -217,6 +229,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="calendario/moment/min/moment.min.js"></script>
+    <script src="calendario/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script src="scripts/ng-mask.js"></script>
     <script src="scripts/ng-app.js"></script>
     <script src="scripts/utilitarios.js"></script>
