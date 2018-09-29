@@ -57,7 +57,6 @@ app.controller('CadastroUsuarioCtrl', [
     }); 
 
     $scope.cadastrar = function(){        
-        $('#datetimepicker1').val($scope.usuario.perfil.datanascimento);
         console.log($scope.usuario);
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
