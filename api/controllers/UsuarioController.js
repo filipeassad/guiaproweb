@@ -148,7 +148,7 @@ function EnderecoObj(usuario) {
 function PerfilObj(usuario) {
 	this.nome = usuario.perfil.nome;
 	this.sobrenome = usuario.perfil.sobrenome;
-	this.datanascimento = usuario.perfil.datanascimento;
+	this.datanascimento = new Date(usuario.perfil.datanascimento);
 	this.cpf = usuario.perfil.cpf;
 	this.sexo = usuario.perfil.sexo;
 	this.celular = usuario.perfil.celular;
