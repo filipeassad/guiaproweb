@@ -146,9 +146,12 @@ function EnderecoObj(usuario) {
 }
 
 function PerfilObj(usuario) {
+	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null'){
+		var [day, month, year] = usuario.perfil.datanascimento.split('/');
+		this.datanascimento = new Date(year, month - 1, day);
+	}
 	this.nome = usuario.perfil.nome;
-	this.sobrenome = usuario.perfil.sobrenome;
-	this.datanascimento = new Date(usuario.perfil.datanascimento);
+	this.sobrenome = usuario.perfil.sobrenome;	
 	this.cpf = usuario.perfil.cpf;
 	this.sexo = usuario.perfil.sexo;
 	this.celular = usuario.perfil.celular;
