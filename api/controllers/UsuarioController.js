@@ -146,6 +146,7 @@ function EnderecoObj(usuario) {
 }
 
 function PerfilObj(usuario) {
+	console.log(usuario.perfil.datanascimento);
 	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null'){
 		console.log(usuario.perfil.datanascimento);
 		var dataSeparada = usuario.perfil.datanascimento.split('/');
