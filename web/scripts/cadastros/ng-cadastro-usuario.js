@@ -18,6 +18,7 @@ app.controller('CadastroUsuarioCtrl', [
         }
     };
 
+    $scope.sexos = ['M','F'];
     $scope.categorias = [];
     $scope.permissoes = [];
     $scope.tiposperfil = [];
