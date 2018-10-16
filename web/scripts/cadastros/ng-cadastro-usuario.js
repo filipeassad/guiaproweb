@@ -18,6 +18,7 @@ app.controller('CadastroUsuarioCtrl', [
         }
     };
 
+    $scope.sexos = ['M','F'];
     $scope.categorias = [];
     $scope.permissoes = [];
     $scope.tiposperfil = [];
@@ -55,7 +56,8 @@ app.controller('CadastroUsuarioCtrl', [
                 $scope.empresas = response.data; 
     }); 
 
-    $scope.cadastrar = function(){
+    $scope.cadastrar = function(){        
+        console.log($scope.usuario);
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.usuario = {};

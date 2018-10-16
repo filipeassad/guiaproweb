@@ -3,7 +3,6 @@ var app = express();
 var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-//var serverSocket = require('http').createServer(app);  
 app.use(bodyParser.json());
 app.use(cookieParser());
 

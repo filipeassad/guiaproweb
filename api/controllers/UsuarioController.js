@@ -146,9 +146,14 @@ function EnderecoObj(usuario) {
 }
 
 function PerfilObj(usuario) {
+	console.log(usuario.perfil.datanascimento);
+	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null'){
+		console.log(usuario.perfil.datanascimento);
+		var dataSeparada = usuario.perfil.datanascimento.split('/');
+		this.datanascimento = new Date(dataSeparada[2], dataSeparada[1] - 1, dataSeparada[0]);
+	}
 	this.nome = usuario.perfil.nome;
-	this.sobrenome = usuario.perfil.sobrenome;
-	this.datanascimento = usuario.perfil.datanascimento;
+	this.sobrenome = usuario.perfil.sobrenome;	
 	this.cpf = usuario.perfil.cpf;
 	this.sexo = usuario.perfil.sexo;
 	this.celular = usuario.perfil.celular;
