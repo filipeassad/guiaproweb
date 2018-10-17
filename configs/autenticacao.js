@@ -38,6 +38,8 @@ exports.sucessoLogin = (req, res) => {
 
 exports.validaToken = function (req, res, next){
 
+    console.log('Passou');
+
     var token = req.headers['x-access-token'];
     
     if(token == null){
