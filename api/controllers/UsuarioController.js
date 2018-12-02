@@ -316,7 +316,9 @@ function dataPorString(dataString){
 	if(dataString.length != 10)
 		return null;
 	else{		
-		var dataSplit = dataString.split('/'); 
+		console.log(dataString);
+		console.log(typeof dataString);
+		var dataSplit = dataString.toString().split('/'); 
 		var dia = parseInt(dataSplit[0]);
 		var mes = parseInt(dataSplit[1]);
 		var ano = parseInt(dataSplit[2]);
