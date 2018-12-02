@@ -85,7 +85,9 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 					],
 					tipoperfil: {
 						id: 1
-					}
+					},
+					categorias: [], 
+					empresas: []
 				}
 			};
 
