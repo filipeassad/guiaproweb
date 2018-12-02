@@ -15,6 +15,6 @@ module.exports = function(app) {
         .delete(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, usuario.deletar_usuario); 
     
     app.route('/api/mobile/cadastrocliente')
-        post(usuario.cadastrar_usuario_cliente_mobile);
+        .post(usuario.cadastrar_usuario_cliente_mobile);
 
 };
