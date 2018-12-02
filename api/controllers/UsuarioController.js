@@ -53,13 +53,13 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 		if(usuarios.length > 0)
 			res.send(JSON.stringify({ success: false, message: 'O usuário já existente.' }));
 		else{
-
+			console.log(usuarioB.datanascimento);
 			var novo_usuario = {     
 				email: usuarioB.email,
 				senha: usuarioB.senha,
 				perfil: {
 					nome: usuarioB.nome,
-					sobrenome: usuarioB.sobrenome,
+					sobrenome: usuarioB.sobrenome,					
 					datanascimento: dataPorString(usuarioB.datanascimento),
 					cpf: usuarioB.cpf,
 					sexo: usuarioB.sexo,
