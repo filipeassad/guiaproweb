@@ -42,6 +42,81 @@ exports.cadastrar_usuario = (req, res) => {
 	}
 };
 
+exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
+	usuarioB = req.body;
+	res.setHeader('Content-Type', 'application/json');
+
+	Usuario.findAll({
+		include: [{ all: true, nested: true }],
+		where: {email: usuarioB.email}
+	}).then(usuarios => {		
+		if(usuarios.length > 0)
+			res.send(JSON.stringify({ success: false, message: 'O usuário já existente.' }));
+		else{
+
+			var novo_usuario = {     
+				email: usuarioB.email,
+				senha: usuarioB.senha,
+				perfil: {
+					nome: usuarioB.nome,
+					sobrenome: usuarioB.sobrenome,
+					datanascimento: dataPorString(usuarioB.datanascimento),
+					cpf: usuarioB.cpf,
+					sexo: usuarioB.sexo,
+					celular: usuarioB.celular,
+					urlimg: null,
+					ativo: null,
+					tipoperfilId: 1,            
+					endereco: {
+						cep: "",
+						numero: "",
+						logradouro: "",
+						complemento: "",
+						bairro: "",
+						cidade: "",
+						uf: "",
+						pais: "",
+						latitude: "",
+						longitude: ""
+					},
+					permissoes: [
+						{
+							permissaoId: 5             
+						}
+					]
+				}
+			};
+
+			Usuario.create(new UsuarioObj(novo_usuario)).then(function (usuario) {
+				Endereco.create(new EnderecoObj(novo_usuario)).then(function (endereco) {
+	
+					novo_usuario.id = usuario.id;
+					novo_usuario.perfil.endereco.id = endereco.id;
+	
+					Perfil.create(new PerfilObj(novo_usuario)).then(function (perfil) {
+	
+						novo_usuario.perfil.id = perfil.id;
+	
+						db.sequelize.Promise.map(novo_usuario.perfil.permissoes, function (permissao) {
+							PermissaoPerfil.create(new PermissaoObj(novo_usuario, permissao));
+						}).then(function (npermissoes) {
+							db.sequelize.Promise.map(novo_usuario.perfil.categorias, function (categoria) {
+								CategoriaPerfil.create(new CategoriaObj(novo_usuario, categoria));
+							}).then(function (categorias) {
+								db.sequelize.Promise.map(novo_usuario.perfil.empresas, (empresa) => {
+									EmpresaPerfil.create(new EmpresaPerfilObj(novo_usuario, empresa));
+								}).then(() => {
+									res.send(JSON.stringify({ success: true, message: 'O usuário foi cadastrado com sucesso.' }));
+								});							
+							});
+						});
+					});
+				});
+			});
+		}
+	});
+}
+
 exports.atualizar_usuario = (req, res) => {
 	usuarioB = req.body;
 	res.setHeader('Content-Type', 'application/json');
@@ -234,4 +309,21 @@ function validaUsuario(usuario) {
 	}
 
 	return true;
+}
+
+function dataPorString(dataString){
+
+	if(dataString.length != 10)
+		return null;
+	else{		
+		var dataSplit = data.split('/'); 
+		var dia = parseInt(dataSplit[0]);
+		var mes = parseInt(dataSplit[1]);
+		var ano = parseInt(dataSplit[2]);
+		
+		var dateCriado = new Date(ano, mes - 1, dia);
+		
+		return dateCriado;
+	}
+
 }
