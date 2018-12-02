@@ -82,7 +82,10 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 						{
 							permissaoId: 5             
 						}
-					]
+					],
+					tipoperfil: {
+						id: 1
+					}
 				}
 			};
 
