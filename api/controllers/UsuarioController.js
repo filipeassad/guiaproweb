@@ -53,14 +53,13 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 		if(usuarios.length > 0)
 			res.send(JSON.stringify({ success: false, message: 'O usuário já existente.' }));
 		else{
-			console.log(usuarioB.datanascimento);
 			var novo_usuario = {     
 				email: usuarioB.email,
 				senha: usuarioB.senha,
 				perfil: {
 					nome: usuarioB.nome,
 					sobrenome: usuarioB.sobrenome,					
-					datanascimento: dataPorString(usuarioB.datanascimento.toString()),
+					datanascimento: usuarioB.datanascimento,
 					cpf: usuarioB.cpf,
 					sexo: usuarioB.sexo,
 					celular: usuarioB.celular,
@@ -220,13 +219,9 @@ function EnderecoObj(usuario) {
 	this.longitude = usuario.perfil.endereco.longitude;
 }
 
-function PerfilObj(usuario) {
-	console.log(usuario.perfil.datanascimento);
-	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null'){
-		console.log(usuario.perfil.datanascimento);
-		var dataSeparada = usuario.perfil.datanascimento.split('/');
-		this.datanascimento = new Date(dataSeparada[2], dataSeparada[1] - 1, dataSeparada[0]);
-	}
+function PerfilObj(usuario) {	
+	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null')
+		this.datanascimento = dataPorString(usuario.perfil.datanascimento);	
 	this.nome = usuario.perfil.nome;
 	this.sobrenome = usuario.perfil.sobrenome;	
 	this.cpf = usuario.perfil.cpf;
@@ -316,9 +311,7 @@ function dataPorString(dataString){
 	if(dataString.length != 10)
 		return null;
 	else{		
-		console.log(dataString);
-		console.log(typeof dataString);
-		var dataSplit = dataString.toString().split('/'); 
+		var dataSplit = dataString.split('/'); 
 		var dia = parseInt(dataSplit[0]);
 		var mes = parseInt(dataSplit[1]);
 		var ano = parseInt(dataSplit[2]);
