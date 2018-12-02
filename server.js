@@ -52,7 +52,3 @@ require('./api/routes/UsuarioRoutes.js')(app);
 require('./web/routes/PageRoutes.js')(app);
 require('./configs/autenticacaoRoutes.js')(app);
 require('./socket/routes/NotificacaoRoutes.js')(app, socketIO);
-
-
-
-
