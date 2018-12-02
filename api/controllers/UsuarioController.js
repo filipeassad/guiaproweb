@@ -60,7 +60,7 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 				perfil: {
 					nome: usuarioB.nome,
 					sobrenome: usuarioB.sobrenome,					
-					datanascimento: dataPorString(usuarioB.datanascimento),
+					datanascimento: dataPorString(usuarioB.datanascimento.toString()),
 					cpf: usuarioB.cpf,
 					sexo: usuarioB.sexo,
 					celular: usuarioB.celular,
