@@ -220,6 +220,7 @@ function EnderecoObj(usuario) {
 }
 
 function PerfilObj(usuario) {	
+	console.log(usuario);
 	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null')
 		this.datanascimento = dataPorString(usuario.perfil.datanascimento);	
 	this.nome = usuario.perfil.nome;
