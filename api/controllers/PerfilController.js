@@ -72,7 +72,7 @@ exports.atualizar_perfil_mobile_cliente = (req, res) =>{
 	if (validarPerfilCliente(perfilB) == false) {
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
 	} else {		
-		Perfil.update(new PerfilObj(perfilB), { where: { id: perfilId } }).then(function (perfil) {				
+		Perfil.update(new PerfilObjMobile(perfilB), { where: { id: perfilId } }).then(function (perfil) {				
 			res.send(JSON.stringify({ success: true, message: 'O perfil foi alterado com sucesso.' }));							
 		});
 	}
@@ -191,6 +191,20 @@ function montar_condicao (perfil){
 	
 	return condicao;
 
+}
+
+function PerfilObjMobile(perfil) {
+	this.nome = perfil.nome;
+	this.sobrenome = perfil.sobrenome;
+	this.datanascimento = perfil.datanascimento;
+	this.cpf = perfil.cpf;
+	this.sexo = perfil.sexo;
+	this.celular = perfil.celular;
+	this.urlimg = perfil.urlimg;
+	this.ativo = perfil.ativo;
+	this.usuarioId = perfil.usuarioId;
+	this.tipoperfilId = perfil.tipoperfilId;
+	this.enderecoId = perfil.enderecoId;
 }
 
 function PerfilObj(perfil) {
