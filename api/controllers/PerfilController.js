@@ -226,6 +226,9 @@ function PerfilEnviar(perfil){
 	this.cpf = perfil.cpf;
 	this.sexo = perfil.sexo;
 	this.celular = perfil.celular;
+	this.endereco = perfil.endereco;
+	this.categorias = perfil.categorias;
+	this.datanascimento = perfil.datanascimento;
 }
 
 function validaPerfil(perfil) {
@@ -236,8 +239,8 @@ function validaPerfil(perfil) {
 		return false;
 	if (perfil.sobrenome == null || perfil.sobrenome.trim() == '')
 		return false;
-	if(perfil.datanascimento == null || perfil.datanascimento.trim() == '')
-		return false;
+	/*if(perfil.datanascimento == null || perfil.datanascimento.trim() == '')
+		return false;*/
 	if (perfil.cpf == null || perfil.cpf.trim() == '')
 		return false;
 	if (perfil.sexo == null || perfil.sexo.trim() == '')
