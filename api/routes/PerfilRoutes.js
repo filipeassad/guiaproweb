@@ -22,4 +22,7 @@ module.exports = function(app) {
             
     app.route('/api/perfil_paginado')
         .post(perfil.obter_perfil_paginado);
+    
+    app.route('/api/mobile/alterarcliente')
+        .post(autenticacao.validaToken, permissao.permissaoCliente, perfil.atualizar_perfil_mobile_cliente);
 };

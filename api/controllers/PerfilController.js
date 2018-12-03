@@ -65,6 +65,20 @@ exports.atualizar_perfil = (req, res) => {
 	}	
 };
 
+exports.atualizar_perfil_mobile_cliente = (req, res) =>{
+	var perfilB = req.body;
+	const perfilId = perfilB.id;
+
+	if (validarPerfilCliente(perfilB) == false) {
+		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
+	} else {		
+		Perfil.update(new PerfilObj(perfilB), { where: { id: perfilId } }).then(function (perfil) {				
+			res.send(JSON.stringify({ success: true, message: 'O perfil foi alterado com sucesso.' }));							
+		});
+	}
+
+};
+
 exports.deletar_perfil = (req, res) => {
 	const perfilId = req.params.perfilId;
 	Perfil.findById(perfilId, { include: [{ all: true, nested: true }] }).then(perfil => {
@@ -229,6 +243,23 @@ function PerfilEnviar(perfil){
 	this.endereco = perfil.endereco;
 	this.categorias = perfil.categorias;
 	this.datanascimento = perfil.datanascimento;
+}
+
+function validarPerfilCliente(perfil){
+	if (perfil == null)
+		return false;
+	if (perfil.nome == null || perfil.nome.trim() == '')
+		return false;
+	if (perfil.sobrenome == null || perfil.sobrenome.trim() == '')
+		return false;
+	/*if(perfil.datanascimento == null || perfil.datanascimento.trim() == '')
+		return false;*/
+	if (perfil.cpf == null || perfil.cpf.trim() == '')
+		return false;
+	if (perfil.sexo == null || perfil.sexo.trim() == '')
+		return false;
+	if (perfil.celular == null || perfil.celular.trim() == '')
+		return false;
 }
 
 function validaPerfil(perfil) {
