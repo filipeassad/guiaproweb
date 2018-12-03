@@ -202,7 +202,7 @@ function PerfilObj(perfil) {
 	this.celular = perfil.celular;
 	this.urlimg = perfil.urlimg;
 	this.ativo = perfil.ativo;
-	this.usuarioId = id;
+	this.usuarioId = perfil.usuarioId;
 	this.tipoperfilId = perfil.tipoperfil.id;
 	this.enderecoId = perfil.endereco.id;
 }
