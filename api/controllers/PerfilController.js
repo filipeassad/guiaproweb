@@ -196,7 +196,8 @@ function montar_condicao (perfil){
 function PerfilObjMobile(perfil) {
 	this.nome = perfil.nome;
 	this.sobrenome = perfil.sobrenome;
-	this.datanascimento = perfil.datanascimento;
+	if(perfil.datanascimento != null && perfil.datanascimento != '' && perfil.datanascimento != 'null')
+		this.datanascimento = dataPorString(perfil.datanascimento);	
 	this.cpf = perfil.cpf;
 	this.sexo = perfil.sexo;
 	this.celular = perfil.celular;
@@ -324,4 +325,19 @@ function validaPerfil(perfil) {
 	}
 
 	return true;
+}
+
+function dataPorString(dataString){
+	if(dataString.length != 10)
+		return null;
+	else{		
+		var dataSplit = dataString.split('/'); 
+		var dia = parseInt(dataSplit[0]);
+		var mes = parseInt(dataSplit[1]);
+		var ano = parseInt(dataSplit[2]);
+		
+		var dateCriado = new Date(ano, mes - 1, dia);
+		
+		return dateCriado;
+	}
 }
