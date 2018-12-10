@@ -18,4 +18,7 @@ module.exports = function(app) {
 
     app.route('/api/atendimento_profissional')
         .get(autenticacao.validaToken, permissao.permissaoProfissional, atendimento.obter_atendimentos_by_token);
+
+    app.route('/api/mobile/atendimento_cliente/:clienteId')
+        .get(autenticacao.validaToken, permissao.permissaoCliente, atendimento.obter_atendimento_pelo_cliente);
 };
