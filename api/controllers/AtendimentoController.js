@@ -19,7 +19,7 @@ exports.cadastrar_atendimento_cliente = (req, res) => {
     
     atendimentoB.clienteId = req.decoded.id;
     atendimentoB.data = new Date();
-
+	console.log(atendimentoB);
 	if(validaAtendimento(atendimentoB)){
 		Atendimento.create(new AtendimentoClienteObj(atendimentoB)).then(atendimento => {		
 			res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.', idAtendimento: atendimento.id }));
@@ -56,6 +56,15 @@ exports.obter_todos_atendimentos = (req, res) => {
 	  res.send(atendimentos);
 	});
 };
+
+exports.obter_atendimento_pelo_cliente = (req, res) =>{
+    var clienteId = req.params.categoriaId;
+    Atendimento.findAll({
+               
+        }).then(atendimentos => {
+		res.send(atendimentos);
+	});
+}
  
 exports.obter_atendimento_por_id = (req, res) => {	
 	Atendimento.findById(req.params.atendimentoId, {include: [{all: true, nested: true}]}).then(atendimento => {
