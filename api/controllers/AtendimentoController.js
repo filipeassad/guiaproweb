@@ -56,6 +56,7 @@ exports.obter_todos_atendimentos = (req, res) => {
 
 exports.obter_atendimento_pelo_cliente = (req, res) =>{	
     Atendimento.findAll({
+			include: [{all: true, nested: true}],
 			where: { clienteId: req.params.clienteId },
 			order: [ ['data', 'DESC'] ]
         }).then(atendimentos => {
