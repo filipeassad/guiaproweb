@@ -62,7 +62,17 @@ exports.obter_atendimento_pelo_cliente = (req, res) =>{
         }).then(atendimentos => {
 		res.send(atendimentos);
 	});
-}
+};
+
+exports.obter_atendimento_pelo_profissional = (req, res) =>{	
+    Atendimento.findAll({
+			include: [{all: true, nested: true}],
+			where: { profissionalId: req.params.profissionalId },
+			order: [ ['data', 'DESC'] ]
+        }).then(atendimentos => {
+		res.send(atendimentos);
+	});
+};
  
 exports.obter_atendimento_por_id = (req, res) => {	
 	Atendimento.findById(req.params.atendimentoId, {include: [{all: true, nested: true}]}).then(atendimento => {
