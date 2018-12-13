@@ -129,10 +129,11 @@ exports.obter_perfil_pela_categoria = (req, res) =>{
                 { 
                     model: CategoriaPerfil, 
                     as:'categorias', 
-                    where: {categoriaId:categoriaId}, 
+					where: {
+						categoriaId:categoriaId,
+						ativo: 'true'}, 
                     include:[{model: Categoria, as: 'categoria'}]
-				},
-				{where: {ativo: 'true'}}             
+				}
             ]                       
         }).then(perfils => {
 		res.send(perfils);
