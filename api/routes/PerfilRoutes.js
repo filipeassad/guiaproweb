@@ -25,4 +25,7 @@ module.exports = function(app) {
     
     app.route('/api/mobile/alterarcliente')
         .post(autenticacao.validaToken, permissao.permissaoCliente, perfil.atualizar_perfil_mobile_cliente);
+
+    app.route('/api/mobile/alterarprofissional')
+        .post(autenticacao.validaToken, permissao.permissaoProfissional, perfil.atualizar_perfil_mobile_cliente);
 };
