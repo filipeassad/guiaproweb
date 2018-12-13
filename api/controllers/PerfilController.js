@@ -259,6 +259,7 @@ function PerfilEnviar(perfil){
 	this.endereco = perfil.endereco;
 	this.categorias = perfil.categorias;
 	this.datanascimento = perfil.datanascimento;
+	this.ativo = perfil.ativo;
 }
 
 function validarPerfilCliente(perfil){
