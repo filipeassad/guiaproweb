@@ -129,9 +129,7 @@ exports.obter_perfil_pela_categoria = (req, res) =>{
                 { 
                     model: CategoriaPerfil, 
                     as:'categorias', 
-					where: {
-						categoriaId:categoriaId,
-						ativo: 'true'}, 
+					where: {categoriaId:categoriaId}, 
                     include:[{model: Categoria, as: 'categoria'}]
 				}
             ]                       
