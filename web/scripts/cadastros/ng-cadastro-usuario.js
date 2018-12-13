@@ -14,7 +14,8 @@ app.controller('CadastroUsuarioCtrl', [
             },
             categorias: [], 
             permissoes: [],
-            empresas: []
+            empresas: [],
+            ativo: "true"
         }
     };
 

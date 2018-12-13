@@ -7,13 +7,16 @@ const TipoPerfil = db.tipoperfil;
 const Permissao = db.permissao;
 const Situacao = db.situacao;
 const TipoAtendimento = db.tipoatendimento;
+const Categoria = db.categoria;
 
 exports.gerarDados = function(){  
     cadastrarTiposPerfil().then(() => {
         cadastrarPermissoes().then(() => {
             cadastrarUsuarios().then(() => {
                 cadastrarSituacoes().then(() => {
-                    cadastrarTiposAtendimento();
+                    cadastrarTiposAtendimento().then(() => {
+                        cadastrarCategorias();
+                    });
                 });
             }); 
         });
@@ -24,6 +27,54 @@ function cadastrarTiposPerfil(){
     return cadastrarTipoPerfil(tipoperfil_cliente).then(() => {
         cadastrarTipoPerfil(tipoperfil_profissional).then(() => {
             cadastrarTipoPerfil(tipoperfil_neutro);
+        });
+    });
+}
+
+function cadastrarCategorias(){
+    return cadastrarCategoria(new CategoriaObj("Encanador","EN","")).then(() =>{
+        cadastrarCategoria(new CategoriaObj("Marceneiro","MA","")).then(() =>{
+            cadastrarCategoria(new CategoriaObj("Pedreiro","PE","")).then(() =>{
+                cadastrarCategoria(new CategoriaObj("Pintor","PI","")).then(() =>{
+                    cadastrarCategoria(new CategoriaObj("Eletricista","EL","")).then(() =>{
+                        cadastrarCategoria(new CategoriaObj("Calhas","CA","")).then(() =>{
+                            cadastrarCategoria(new CategoriaObj("Construtores","CO","")).then(() =>{
+                                cadastrarCategoria(new CategoriaObj("Acabamento","AC","")).then(() =>{
+                                    cadastrarCategoria(new CategoriaObj("Serralheiros","SE","")).then(() =>{
+                                        cadastrarCategoria(new CategoriaObj("Munk","MU","")).then(() =>{
+                                            cadastrarCategoria(new CategoriaObj("Jardineiros","JA","")).then(() =>{
+                                                cadastrarCategoria(new CategoriaObj("Gesseiros","GE","")).then(() =>{
+                                                    cadastrarCategoria(new CategoriaObj("Decoradores","DE","")).then(() =>{
+                                                        cadastrarCategoria(new CategoriaObj("Carpinteiro","CA","")).then(() =>{
+                                                            cadastrarCategoria(new CategoriaObj("Banheiros","BA","")).then(() =>{
+                                                                cadastrarCategoria(new CategoriaObj("Limpeza","LI","")).then(() =>{
+                                                                    cadastrarCategoria(new CategoriaObj("Engenheiros","EN","")).then(() =>{
+                                                                        cadastrarCategoria(new CategoriaObj("Reparos Gerais","RG","")).then(() =>{
+                                                                            cadastrarCategoria(new CategoriaObj("Banheiras","BA","")).then(() =>{
+                                                                                cadastrarCategoria(new CategoriaObj("Vidraceiros","VI","")).then(() =>{
+                                                                                    cadastrarCategoria(new CategoriaObj("Piscina","PI","")).then(() =>{
+                                                                                        cadastrarCategoria(new CategoriaObj("Arquitetos","AR","")).then(() =>{
+                                                                                            cadastrarCategoria(new CategoriaObj("Papel de Parede","PP",""));
+                                                                                        });
+                                                                                    });
+                                                                                });
+                                                                            });
+                                                                        });
+                                                                    });
+                                                                });
+                                                            });
+                                                        });
+                                                    });
+                                                }); 
+                                            });
+                                        });
+                                    }); 
+                                });
+                            });
+                        });
+                    });
+                });
+            });
         });
     });
 }
@@ -99,6 +150,16 @@ function cadastrarPermissao(permissaoB){
     return Permissao.create(new PermissaoObj(permissaoB));
 }
 
+function cadastrarCategoria(categoriaB){
+    return Categoria.create(categoriaB);
+}
+
+function CategoriaObj(descricao, sigla, urlimg){
+    this.descricao = descricao;
+    this.sigla = sigla;
+    this.urlimg = urlimg;
+}
+
 function SituacaoObj(situacao){
     this.descricao = situacao.descricao;
 }
@@ -154,6 +215,8 @@ function PermissaoObj(permissao){
 	this.sigla = permissao.sigla;
 }
 
+
+
 var usuario_administrador = {
     email: "admin",
     senha: "12345",
@@ -165,7 +228,7 @@ var usuario_administrador = {
         sexo: "M",
         celular: "00000000",
         urlimg: null,
-        ativo: null,
+        ativo: "true",
         tipoperfilId: 3,            
         endereco: {
             cep: "010101",
@@ -198,7 +261,7 @@ var usuario_desenvolvedor = {
         sexo: "M",
         celular: "00000000",
         urlimg: null,
-        ativo: null,
+        ativo: "true",
         tipoperfilId: 3,            
         endereco: {
             cep: "010101",
@@ -231,7 +294,7 @@ var usuario_moderador = {
         sexo: "M",
         celular: "00000000",
         urlimg: null,
-        ativo: null,
+        ativo: "true",
         tipoperfilId: 3,            
         endereco: {
             cep: "010101",
