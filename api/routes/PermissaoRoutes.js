@@ -6,7 +6,7 @@ module.exports = function(app) {
     var permissaov = require('../../configs/permissao.js');
 
     app.route('/api/permissao')
-        .get(autenticacao.validaTokenPagina, permissaov.permissaoDesenvolvedor, permissao.obter_todos_permissaos)
+        .get(autenticacao.validaTokenPagina, permissaov.permissaoAdministrador, permissao.obter_todos_permissaos)
         .post(autenticacao.validaTokenPagina, permissaov.permissaoDesenvolvedor, permissao.cadastrar_permissao);
 
     app.route('/api/permissao/:permissaoId')

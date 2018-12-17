@@ -6,7 +6,7 @@ module.exports = function(app) {
     var permissao = require('../../configs/permissao.js');
 
     app.route('/api/tipoperfil')
-        .get(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, tipoperfil.obter_todos_tipoperfils)
+        .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, tipoperfil.obter_todos_tipoperfils)
         .post(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, tipoperfil.cadastrar_tipoperfil);
 
     app.route('/api/tipoperfil/:tipoperfilId')
