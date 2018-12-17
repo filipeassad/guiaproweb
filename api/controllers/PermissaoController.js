@@ -1,5 +1,6 @@
 const db = require('../../configs/dbConfig.js');
 const Permissao = db.permissao;
+const Usuario = db.usuario;
  
 exports.cadastrar_permissao = (req, res) => {
 	var permissaoB = req.body;
@@ -32,9 +33,7 @@ exports.deletar_permissao = (req, res) => {
 
 exports.obter_todos_permissaos = (req, res) => {
 	var usuarioId = req.decoded.id;
-	console.log(req.decoded.id);
 	Usuario.findById(usuarioId, { include: [{ all: true, nested: true }] }).then(usuario => {
-		console.log(usuario);
 		var cond = montarCondicao(usuario.perfil.permissoes[0].id);
 		Permissao.findAll({
 			include: [{all: true, nested: true}],
