@@ -10,7 +10,7 @@ module.exports = function(app) {
         .post(autenticacao.validaTokenPagina, permissaov.permissaoDesenvolvedor, permissao.cadastrar_permissao);
 
     app.route('/api/permissao/:permissaoId')
-        .get(autenticacao.validaTokenPagina, permissaov.permissaoDesenvolvedor, permissao.obter_permissao_por_id)
+        .get(autenticacao.validaTokenPagina, permissaov.permissaoAdministrador, permissao.obter_permissao_por_id)
         .put(autenticacao.validaTokenPagina, permissaov.permissaoDesenvolvedor, permissao.atualizar_permissao)
         .delete(autenticacao.validaTokenPagina, permissaov.permissaoDesenvolvedor, permissao.deletar_permissao);
 };
