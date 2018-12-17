@@ -252,7 +252,7 @@ var usuario_administrador = {
 
 var usuario_desenvolvedor = {     
     email: "dev-noob",
-    senha: "12345",
+    senha: "kosmodev.2018",
     perfil: {
         nome: "Desenvolvedor",
         sobrenome: "010101",

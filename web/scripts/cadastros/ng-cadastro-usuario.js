@@ -47,7 +47,7 @@ app.controller('CadastroUsuarioCtrl', [
 
     httpService.gethttp(url_permissao, {})
         .then(function mySuccess(response) { 
-            if(response.data != null)   
+            if(response.data != null)
                 $scope.permissoes = response.data; 
     });  
     
@@ -58,7 +58,7 @@ app.controller('CadastroUsuarioCtrl', [
     }); 
 
     $scope.cadastrar = function(){        
-        console.log($scope.usuario);
+        //console.log($scope.usuario);
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.usuario = {};

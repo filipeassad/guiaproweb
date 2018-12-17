@@ -70,10 +70,7 @@
                                         <div class="form-group">
                                             <label>Data Nascimento</label>
                                             <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" ng-model="usuario.perfil.datanascimento" readonly data-picker-kosmo/>
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
+                                                <input type='text' class="form-control" ng-model="usuario.perfil.datanascimento" ui-mask="99/99/9999"/>
                                             </div>
                                         </div>                                        
                                     </div>

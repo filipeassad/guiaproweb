@@ -31,8 +31,16 @@ exports.deletar_permissao = (req, res) => {
 };
 
 exports.obter_todos_permissaos = (req, res) => {
-	Permissao.findAll({include: [{all: true, nested: true}]}).then(permissaos => {
-	  res.send(permissaos);
+	var usuarioId = req.decoded.id;
+
+	Usuario.findById(usuarioId, { include: [{ all: true, nested: true }] }).then(usuario => {
+		var cond = montarCondicao(usuario.perfil.permissoes[0].id);
+		Permissao.findAll({
+			include: [{all: true, nested: true}],
+			where: cond,
+		}).then(permissaos => {
+			res.send(permissaos);
+		});
 	});
 };
  
@@ -56,4 +64,19 @@ function validaPermissao(permissao){
 		return false;
 
 	return true;
+}
+
+function montarCondicao(permissao){
+	condicao = {};
+	if(permissao == 1){
+		condicao.id = { [Op.or]: [4, 5] };
+	}else if(permissao == 2){
+		condicao.id = { [Op.or]: [1, 2, 3, 4, 5] }
+	}else if(permissao == 3){
+		condicao.id = { [Op.or]: [3] }
+	}else if(permissao == 4){
+		condicao.id = { [Op.or]: [4] }
+	}else if(permissao == 5){
+		condicao.id = { [Op.or]: [5] }
+	}
 }
