@@ -1,7 +1,8 @@
 const db = require('../../configs/dbConfig.js');
 const Permissao = db.permissao;
 const Usuario = db.usuario;
- 
+const Op = db.Sequelize.Op;
+
 exports.cadastrar_permissao = (req, res) => {
 	var permissaoB = req.body;
 	if(validaPermissao(permissaoB) == false){
