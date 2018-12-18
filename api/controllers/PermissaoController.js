@@ -80,4 +80,5 @@ function montarCondicao(permissao){
 	}else if(permissao == 5){
 		condicao.id = { [Op.or]: [5] }
 	}
+	return condicao;
 }
