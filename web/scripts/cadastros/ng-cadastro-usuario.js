@@ -5,27 +5,7 @@ app.controller('CadastroUsuarioCtrl', [
     function(
         $scope, 
         httpService,
-        $rootScope){
-
-    $scope.usuario = {
-        perfil:{
-            tipoperfil: {
-                descricao: ""
-            },
-            categorias: [], 
-            permissoes: [],
-            empresas: [],
-            ativo: "true"
-        }
-    };
-
-    $scope.sexos = ['M','F'];
-    $scope.categorias = [];
-    $scope.permissoes = [];
-    $scope.tiposperfil = [];
-    $scope.empresas = [];  
-    $scope.podeAlterar = false;
-    $scope.mostrarCategorias = $scope.usuario.perfil.tipoperfil.descricao == "Profissional";  
+        $rootScope){   
 
     var url = url_principal + "api/usuario";
     var url_tiposperfil = url_principal + "api/tipoperfil";
@@ -33,29 +13,54 @@ app.controller('CadastroUsuarioCtrl', [
     var url_permissao = url_principal + "api/permissao";
     var url_empresa = url_principal + "api/empresa";
 
-    httpService.gethttp(url_tiposperfil, {})
-        .then(function mySuccess(response) { 
-            if(response.data != null)   
-                $scope.tiposperfil = response.data; 
-    });
+    limparDados();
 
-    httpService.gethttp(url_tiposcategoria, {})
-        .then(function mySuccess(response) { 
-            if(response.data != null)   
-                $scope.categorias = response.data; 
-    });
+    function limparDados(){
 
-    httpService.gethttp(url_permissao, {})
-        .then(function mySuccess(response) { 
-            if(response.data != null)
-                $scope.permissoes = response.data; 
-    });  
+        $scope.usuario = {
+            perfil:{
+                tipoperfil: {
+                    descricao: ""
+                },
+                categorias: [], 
+                permissoes: [],
+                empresas: [],
+                ativo: "true"
+            }
+        };
     
-    httpService.gethttp(url_empresa, {})
-        .then(function mySuccess(response) { 
-            if(response.data != null)   
-                $scope.empresas = response.data; 
-    }); 
+        $scope.sexos = ['M','F'];
+        $scope.categorias = [];
+        $scope.permissoes = [];
+        $scope.tiposperfil = [];
+        $scope.empresas = [];  
+        $scope.podeAlterar = false;
+        $scope.mostrarCategorias = $scope.usuario.perfil.tipoperfil.descricao == "Profissional";  
+
+        httpService.gethttp(url_tiposperfil, {})
+            .then(function mySuccess(response) { 
+                if(response.data != null)   
+                    $scope.tiposperfil = response.data; 
+        });
+
+        httpService.gethttp(url_tiposcategoria, {})
+            .then(function mySuccess(response) { 
+                if(response.data != null)   
+                    $scope.categorias = response.data; 
+        });
+
+        httpService.gethttp(url_permissao, {})
+            .then(function mySuccess(response) { 
+                if(response.data != null)
+                    $scope.permissoes = response.data; 
+        });  
+        
+        httpService.gethttp(url_empresa, {})
+            .then(function mySuccess(response) { 
+                if(response.data != null)   
+                    $scope.empresas = response.data; 
+        }); 
+    }    
 
     $scope.cadastrar = function(){        
         //console.log($scope.usuario);
@@ -167,9 +172,10 @@ app.controller('CadastroUsuarioCtrl', [
     }
 
     function retornoMensagem(retorno){
-        if(retorno.success)
+        if(retorno.success){
             $rootScope.alertaSucesso(retorno.message);
-        else
+            limparDados();
+        }else
             $rootScope.alertaErro(retorno.message);
     }
 

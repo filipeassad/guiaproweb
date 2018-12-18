@@ -13,7 +13,7 @@ exports.permissaoDesenvolvedor = (req, res, next) => {
             req.usuario = usuario;
             next();
         }else
-            return res.redirect('http://localhost:3000/erro-permissao');
+            return res.redirect('https://guiaproweb.herokuapp.com/erro-permissao');
 	}); 
 };
 
@@ -30,7 +30,7 @@ exports.permissaoAdministrador = (req, res, next) => {
             req.usuario = usuario;
             next();
         }else
-            return res.redirect('http://localhost:3000/erro-permissao');
+            return res.redirect('https://guiaproweb.herokuapp.com/erro-permissao');
 	}); 
 };
 
@@ -48,7 +48,7 @@ exports.permissaoModerador = (req, res, next) => {
             req.usuario = usuario;
             next();
         }else
-            return res.redirect('http://localhost:3000/erro-permissao');
+            return res.redirect('https://guiaproweb.herokuapp.com/erro-permissao');
 	}); 
 };
 
@@ -67,7 +67,7 @@ exports.permissaoProfissional = (req, res, next) => {
             req.usuario = usuario;
             next();
         }else
-            return res.redirect('http://localhost:3000/erro-permissao');
+            return res.redirect('https://guiaproweb.herokuapp.com/erro-permissao');
 	}); 
 };
 
@@ -86,6 +86,6 @@ exports.permissaoCliente = (req, res, next) => {
             req.usuario = usuario;
             next();
         }else
-            return res.redirect('http://localhost:3000/erro-permissao');
+            return res.redirect('https://guiaproweb.herokuapp.com/erro-permissao');
 	}); 
 };
