@@ -5,7 +5,6 @@ const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
 const TipoPerfil = db.tipoperfil;
 const Categoria = db.categoria;
-
 const Op = db.Sequelize.Op;
 
 exports.cadastrar_perfil = (req, res) => {
@@ -201,6 +200,7 @@ function PerfilObjMobile(perfil) {
 	this.cpf = perfil.cpf;
 	this.sexo = perfil.sexo;
 	this.celular = perfil.celular;
+	this.celularwhats = perfil.celularwhats;
 	this.urlimg = perfil.urlimg;
 	this.ativo = perfil.ativo;
 	this.usuarioId = perfil.usuarioId;
@@ -215,6 +215,7 @@ function PerfilObj(perfil) {
 	this.cpf = perfil.cpf;
 	this.sexo = perfil.sexo;
 	this.celular = perfil.celular;
+	this.celularwhats = perfil.celularwhats;
 	this.urlimg = perfil.urlimg;
 	this.ativo = perfil.ativo;
 	this.usuarioId = perfil.usuarioId;
@@ -255,6 +256,7 @@ function PerfilEnviar(perfil){
 	this.cpf = perfil.cpf;
 	this.sexo = perfil.sexo;
 	this.celular = perfil.celular;
+	this.celularwhats = perfil.celularwhats;
 	this.endereco = perfil.endereco;
 	this.categorias = perfil.categorias;
 	this.datanascimento = perfil.datanascimento;

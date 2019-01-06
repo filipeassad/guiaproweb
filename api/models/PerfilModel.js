@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
                 cpf: Sequelize.STRING,
                 sexo: Sequelize.STRING,
                 celular: Sequelize.STRING,
+                celularwhats: Sequelize.STRING,
                 urlimg: Sequelize.STRING,
                 ativo: Sequelize.STRING	 
         

@@ -232,7 +232,8 @@ function PerfilObj(usuario) {
 	this.sobrenome = usuario.perfil.sobrenome;	
 	this.cpf = usuario.perfil.cpf;
 	this.sexo = usuario.perfil.sexo;
-	this.celular = usuario.perfil.celular;
+	this.celular = usuario.perfil.celular;	
+	this.celularwhats = usuario.perfil.celularwhats;
 	this.urlimg = usuario.perfil.urlimg;
 	this.ativo = usuario.perfil.ativo;
 	this.usuarioId = usuario.id;
