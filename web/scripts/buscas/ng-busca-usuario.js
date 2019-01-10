@@ -17,7 +17,7 @@ app.controller('BuscaUsuarioCtrl', [
                 $scope.usuarios = response.data; 
     });*/
 
-    $scope.buscarPerfil = function(pagina){
+    $scope.buscarUsuario = function(pagina){
         var condicoes = {};
         condicoes.pagina = pagina;
 
@@ -37,7 +37,7 @@ app.controller('BuscaUsuarioCtrl', [
         });    
     }
 
-    $scope.buscarPerfil(1);
+    $scope.buscarUsuario(1);
 
     $scope.cadastrar = function(){
         window.location.href = url_principal + "cadastro-usuario";
@@ -55,5 +55,5 @@ app.controller('BuscaUsuarioCtrl', [
             alert("Erro do servidor."); 
         });
     }
-    
+
 }]);
