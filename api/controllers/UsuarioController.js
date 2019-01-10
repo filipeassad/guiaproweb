@@ -212,7 +212,7 @@ exports.obtter_usuario_paginado = (req, res) => {
 	var limit = 15;
 	var offset = 0;
 
-	if(perfilObj == null)
+	if(usuarioObj == null)
 		res.send(JSON.stringify({ success: false, message: 'Sem os parametros necessários.' }));		
 	else{
 		var condicao = montar_condicao(usuarioObj);		
@@ -228,8 +228,7 @@ exports.obtter_usuario_paginado = (req, res) => {
 					offset: offset }).then(usuario => {        
 					res.send(JSON.stringify({ success: true, usuarios: usuario, paginas: pages, pagina: req.body.pagina }));	
 			});
-		});
-		
+		});		
 	}
 }
 
