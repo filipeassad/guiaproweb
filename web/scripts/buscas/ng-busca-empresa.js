@@ -8,13 +8,40 @@ app.controller('BuscaEmpresaCtrl', [
         $rootScope){
 
 
-    var url = url_principal + "api/empresa";    
+    var url = url_principal + "api/empresa";  
+    var url_empresa_paginado = url_principal + "api/empresa_paginado";    
+    $scope.empresaBusca = {};
+    $scope.resultadoBusca = {};
 
-    httpService.gethttp(url, {})
+    /*httpService.gethttp(url, {})
     .then(function mySuccess(response) { 
         if(response.data != null)   
             $scope.empresas = response.data; 
-    });
+    });*/
+
+    $scope.buscarEmpresa = function(pagina){
+        var condicoes = {};
+        condicoes.pagina = pagina;
+
+        if($scope.empresaBusca.nome != null &&  $scope.empresaBusca.nome.trim() != '')
+            condicoes.nome = angular.copy( $scope.empresaBusca.nome);
+        if($scope.empresaBusca.cnpj != null &&  $scope.empresaBusca.cnpj.trim() != '')
+            condicoes.cnpj = angular.copy( $scope.empresaBusca.cnpj);
+
+        httpService.posthttp(url_empresa_paginado, condicoes)
+            .then(function mySuccess(response) {                
+                if(response.data.success == true){
+                    $scope.resultadoBusca = response.data; 
+                    $scope.empresas = $scope.resultadoBusca.empresas;
+                }
+                else
+                    $rootScope.alertaAtencao(response.data.message);
+        }, function myError(response) {
+            $rootScope.alertaErro("Problemas com o servidor.");
+        });    
+    }
+
+    $scope.buscarEmpresa(1);
 
     $scope.cadastrar = function(){
         window.location.href = url_principal + "cadastro-empresa";

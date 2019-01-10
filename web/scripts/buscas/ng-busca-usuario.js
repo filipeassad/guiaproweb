@@ -9,7 +9,6 @@ app.controller('BuscaUsuarioCtrl', [
 
     var url = url_principal + "api/usuario";
     var url_usuario_paginado = url_principal + "api/usuario_paginado";
-    var condicoes = {};
     $scope.usuarioBusca = {};
     $scope.resultadoBusca = {};
 

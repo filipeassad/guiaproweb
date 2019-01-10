@@ -13,4 +13,7 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, empresa.obter_empresa_por_id)
         .put(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, empresa.atualizar_empresa)
         .delete(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, empresa.deletar_empresa);
+
+    app.route('/api/empresa_paginado')
+        .post(autenticacao.validaTokenPagina, permissao.permissaoAdministrador,empresa.obter_empresa_paginado);
 };

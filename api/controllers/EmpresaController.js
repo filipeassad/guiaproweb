@@ -62,6 +62,45 @@ exports.obter_empresa_por_id = (req, res) => {
 	})
 };
 
+exports.obter_empresa_paginado = (req, res) => {
+	var empresaObj = req.body;
+	var limit = 15;
+	var offset = 0;
+
+	if(empresaObj == null)
+		res.send(JSON.stringify({ success: false, message: 'Sem os parametros necessários.' }));		
+	else{
+		var condicao = montar_condicao(empresaObj);		
+
+		Empresa.findAndCountAll({ where: condicao }).then((data) => {
+			var page = empresaObj.pagina;     
+			var pages = Math.ceil(data.count / limit);
+			offset = limit * (page - 1);
+			Empresa.findAll({ 
+                    include: [{ all: true, nested: true }],
+				 	where: condicao,
+					limit: limit,
+					offset: offset }).then(empresa => {        
+					res.send(JSON.stringify({ success: true, empresas: empresa, paginas: pages, pagina: req.body.pagina }));	
+			});
+		});		
+	}
+}
+
+function montar_condicao (empresa){
+	var condicao = {};
+	
+	if(empresa.nome != null && empresa.nome.trim() != ''){
+		condicao.nome = { [Op.like]: empresa.nome + '%' };
+	}
+
+	if(empresa.cnpj != null && empresa.cnpj.trim() != ''){
+		condicao.cnpj = { [Op.like]: empresa.cnpj + '%' };
+	}
+	
+	return condicao;
+}
+
 function EmpresaObj(empresa){
 	this.nome = empresa.nome;
 	this.cnpj = empresa.cnpj;	

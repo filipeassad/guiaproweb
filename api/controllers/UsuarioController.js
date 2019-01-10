@@ -207,7 +207,7 @@ exports.obter_usuario_por_id = (req, res) => {
 	});
 };
 
-exports.obtter_usuario_paginado = (req, res) => {
+exports.obter_usuario_paginado = (req, res) => {
 	var usuarioObj = req.body;
 	var limit = 15;
 	var offset = 0;
@@ -241,8 +241,6 @@ function montar_condicao (usuario){
 	
 	return condicao;
 }
-
-
 
 function UsuarioObj(usuario) {
 	this.email = usuario.email;
