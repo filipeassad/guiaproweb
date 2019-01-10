@@ -31,7 +31,6 @@ app.controller('BuscaUsuarioCtrl', [
                 if(response.data.success == true){
                     $scope.resultadoBusca = response.data; 
                     $scope.usuarios = $scope.resultadoBusca.usuarios;
-                    console.log($scope.resultadoBusca);
                 }
                 else
                     $rootScope.alertaAtencao(response.data.message);
