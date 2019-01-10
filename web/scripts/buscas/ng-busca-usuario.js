@@ -1,9 +1,11 @@
 app.controller('BuscaUsuarioCtrl', [
     '$scope',
     'httpService', 
+    '$rootScope',
     function(
         $scope, 
-        httpService){
+        httpService,
+        $rootScope){
 
     var url = url_principal + "api/usuario";
     var url_usuario_paginado = url_principal + "api/usuario_paginado";
