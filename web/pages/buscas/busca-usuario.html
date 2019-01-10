@@ -17,68 +17,67 @@
             <div class="col-sm-2 sem-padding" style="background:#292929; height: 100%;">
                 <div ng-include="'page/includes/side-bar-adm.html'" ></div>
             </div>    
-            <div class="col-sm-10" style="height: 100%; overflow-y: scroll;"> 
-                <div class="panel panel-default" style="margin-top: 10px; padding: 10px;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="jumbotron">
+            <div class="col-sm-10" style="height: 100%; overflow-y: scroll;">                 
+                <div class="row">
+                    <div class="col-md-12">   
+                        <div class="row">
+                            <div class="col-sm-3">      
                                 <h3>Buscar Usuário</h3>
-                                <hr>
-                                <div class="form">                    
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label>Descrição</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label>Sigla</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>                         
-                                    </div>
-                                    <button class="btn btn-laranja">Buscar</button>
-                                    <button class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</button>
-                                </div>                
+                            </div>
+                        </div>               
+                        <hr>    
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label>E-mail</label>
+                                <input type="text" class="form-control input-sm" ng-model="usuarioBusca.email">
                             </div>
                         </div>
+                        <button class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</button>                        
+                        <button class="btn btn-laranja">Buscar</button>                         
                     </div>
-                    <h3>Listagem Usuário</h3>
-                    <hr>                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align: center;">ID</th>
-                                        <th>Nome</th>
-                                        <th>E-mail</th>
-                                        <th style="text-align: center;">Tipo Perfil</th>
-                                        <th style="width: 40%;">Endereço</th>
-                                        <th style="text-align: center;">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="usuarioAux in usuarios">
-                                        <td style="text-align: center;">{{usuarioAux.id}}</td>
-                                        <td>{{usuarioAux.perfil.nome + ' ' + usuarioAux.perfil.sobrenome}}</td>
-                                        <td style="text-align: center;">{{usuarioAux.email}}</td>
-                                        <td style="text-align: center;">{{usuarioAux.perfil.tipoperfil.descricao}}</td> 
-                                        <td style="text-align: center;">{{usuarioAux.perfil.endereco.logradouro + ' - ' + usuarioAux.perfil.endereco.numero + ' ' + usuarioAux.perfil.endereco.bairro + ' ' + usuarioAux.perfil.endereco.cidade + '-' + usuarioAux.perfil.endereco.uf}}</td>                             
-                                        <td style="text-align: center;">
-                                            <span ng-click="excluir(permissaoAux)"><i class="fa fa-wrench"></i></span>
-                                            <span ng-click="excluir(permissaoAux)"><i class="fa fa-lock"></i></span>
-                                            <span ng-click="excluir(permissaoAux)"><i class="fa fa-trash"></i></span>
-                                            <span ng-click="paraAlterar(permissaoAux)"style="margin-left: 5px;"><i class="fa fa-pencil-square-o"></i></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                </div>
+                <h3>Listagem Usuário</h3>
+                <hr>                    
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">ID</th>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th style="text-align: center;">Tipo Perfil</th>
+                                    <th style="width: 40%;">Endereço</th>
+                                    <th style="text-align: center;">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="usuarioAux in usuarios">
+                                    <td style="text-align: center;">{{usuarioAux.id}}</td>
+                                    <td>{{usuarioAux.perfil.nome + ' ' + usuarioAux.perfil.sobrenome}}</td>
+                                    <td style="text-align: center;">{{usuarioAux.email}}</td>
+                                    <td style="text-align: center;">{{usuarioAux.perfil.tipoperfil.descricao}}</td> 
+                                    <td style="text-align: center;">{{usuarioAux.perfil.endereco.logradouro + ' - ' + usuarioAux.perfil.endereco.numero + ' ' + usuarioAux.perfil.endereco.bairro + ' ' + usuarioAux.perfil.endereco.cidade + '-' + usuarioAux.perfil.endereco.uf}}</td>                             
+                                    <td style="text-align: center;">
+                                        <span ng-click="excluir(permissaoAux)"><i class="fa fa-wrench"></i></span>
+                                        <span ng-click="excluir(permissaoAux)"><i class="fa fa-lock"></i></span>
+                                        <span ng-click="excluir(permissaoAux)"><i class="fa fa-trash"></i></span>
+                                        <span ng-click="paraAlterar(permissaoAux)"style="margin-left: 5px;"><i class="fa fa-pencil-square-o"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>                  
+                <div class="row" ng-if="resultadoBusca.paginas > 1">
+                    <div class="col-sm-12">
+                        <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default"  ng-disabled="resultadoBusca.pagina == 1" ng-click="buscarPerfil(resultadoBusca.pagina - 1)"><i class="fa fa-chevron-left"></i></button>
+                            <button type="button" class="btn btn-default">{{resultadoBusca.pagina}}</button>
+                            <button type="button" class="btn btn-default" ng-disabled="resultadoBusca.pagina >= resultadoBusca.paginas" ng-click="buscarPerfil(resultadoBusca.pagina + 1)"><i class="fa fa-chevron-right"></i></button>
                         </div>
                     </div>
-                </div>                                      
+                </div>
             </div>
         </div>    
     </div>

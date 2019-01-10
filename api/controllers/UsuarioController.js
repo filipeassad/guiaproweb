@@ -5,6 +5,7 @@ const Endereco = db.endereco;
 const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
 const EmpresaPerfil = db.empresaperfil;
+const Op = db.Sequelize.Op;
 
 exports.cadastrar_usuario = (req, res) => {
 	usuarioB = req.body;
@@ -205,6 +206,44 @@ exports.obter_usuario_por_id = (req, res) => {
 		res.send(usuario);
 	});
 };
+
+exports.obtter_usuario_paginado = (req, res) => {
+	var usuarioObj = req.body;
+	var limit = 15;
+	var offset = 0;
+
+	if(perfilObj == null)
+		res.send(JSON.stringify({ success: false, message: 'Sem os parametros necessários.' }));		
+	else{
+		var condicao = montar_condicao(usuarioObj);		
+
+		Usuario.findAndCountAll({ where: condicao }).then((data) => {
+			var page = usuarioObj.pagina;     
+			var pages = Math.ceil(data.count / limit);
+			offset = limit * (page - 1);
+			Usuario.findAll({ 
+                    include: [{ all: true, nested: true }],
+				 	where: condicao,
+					limit: limit,
+					offset: offset }).then(usuario => {        
+					res.send(JSON.stringify({ success: true, usuarios: usuario, paginas: pages, pagina: req.body.pagina }));	
+			});
+		});
+		
+	}
+}
+
+function montar_condicao (usuario){
+	var condicao = {};
+	
+	if(usuario.email != null && usuario.email.trim() != ''){
+		condicao.email = { [Op.like]: usuario.email + '%' };
+	}
+	
+	return condicao;
+}
+
+
 
 function UsuarioObj(usuario) {
 	this.email = usuario.email;

@@ -13,6 +13,9 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, usuario.obter_usuario_por_id)
         .put(autenticacao.validaTokenPagina, permissao.permissaoAdministrador, usuario.atualizar_usuario)
         .delete(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, usuario.deletar_usuario); 
+
+    app.route('/api/usuario_paginado')
+        .post(autenticacao.validaTokenPagina, permissao.permissaoAdministrador,usuario.obtter_usuario_paginado);
     
     app.route('/api/mobile/cadastrocliente')
         .post(usuario.cadastrar_usuario_cliente_mobile);
