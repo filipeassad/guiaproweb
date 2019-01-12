@@ -1,4 +1,4 @@
-<div class="container-fluid" style="height: 50px;">
+<div class="container-fluid" style="height: 50px;" ng-controller="AdministrativoCtrl">
     <div class="row row-centro"style="height: 100%;">
         <div class="col-sm-4" style="text-align: left;">
             <img src="imagens/iconeguia-grande.png" alt="" style="width: 40px; height: 40px; margin-left: 10px;" >
@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-4">
             <ul class="nav navbar-nav navbar-right">
-                <li style="margin-right: 10px; color: white; cursor: pointer;">Pagina Inicial</li>
-                <li style="margin-right: 10px; color: white; cursor: pointer;">Sair</li>
+                <li style="margin-right: 10px; color: white; cursor: pointer;" ng-click="paginaInicial()">Pagina Inicial</li>
+                <li style="margin-right: 10px; color: white; cursor: pointer;" ng-click="sair()">Sair</li>
             </ul>            
         </div>
     </div>            
