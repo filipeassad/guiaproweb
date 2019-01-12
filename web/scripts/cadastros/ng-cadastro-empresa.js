@@ -11,7 +11,7 @@ app.controller('CadastroEmpresaCtrl', [
     $scope.titulotela = "Cadastro de Empresa";
     $scope.empresa = {};
 
-    $scope.empresa.id = id;
+    $scope.empresa.id = "{{ id }}";
 
     console.log($scope.empresa.id);
 
