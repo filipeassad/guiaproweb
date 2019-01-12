@@ -7,7 +7,11 @@ app.controller('CadastroEmpresaCtrl', [
         httpService,
         $rootScope){
     var url = url_principal + "api/empresa";
+
+    $scope.titulotela = "Cadastro de Empresa";
     $scope.empresa = {};
+
+    $scope.empresa.id = id;
 
     $scope.cadastrar = function(){
         httpService.posthttp(url, $scope.empresa)
