@@ -48,7 +48,10 @@ app.controller('BuscaEmpresaCtrl', [
     }
 
     $scope.editar = function(empresa){
-        httpService.gethttp(url_principal + "alterar-empresa/" + empresa.id);
+        httpService.gethttp(url_principal + "alterar-empresa/" + empresa.id)
+        .then(function mySuccess(response) { 
+            console.log(response);
+        });
     }
 
     $scope.excluir = function(empresa){
