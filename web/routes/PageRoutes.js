@@ -13,6 +13,10 @@ module.exports = function(app) {
     app.use('/page',express.static(path_web + '/pages'));
     app.use('/calendario',express.static(path_web + '/bower_components'));
 
+    app.engine('html', require('ejs').renderFile);
+    app.set('view engine', 'html');
+
+
     app.route('')
         .get(function(req, res){
             res.sendFile(path_web + '/pages/index.html');
@@ -82,8 +86,7 @@ module.exports = function(app) {
             res.sendFile(path_web + '/pages/cadastros/cadastro-empresa.html');  
         });
     app.route('/alterar-empresa/:empresaId')
-        .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
-            console.log('ID EMpresa', req.params.empresaId);
+        .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){            
             res.render(path_web + '/pages/cadastros/cadastro-empresa.html', {id: req.params.empresaId});  
         });
     app.route('/busca-atendimento')
