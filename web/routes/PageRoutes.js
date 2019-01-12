@@ -12,8 +12,6 @@ module.exports = function(app) {
     app.use('/scripts',express.static(path_web + '/scripts'));
     app.use('/page',express.static(path_web + '/pages'));
     app.use('/calendario',express.static(path_web + '/bower_components'));
-    app.engine('html', require('ejs').renderFile);
-    app.set('view engine', 'html');
     
     app.route('')
         .get(function(req, res){
@@ -85,7 +83,7 @@ module.exports = function(app) {
         });
     app.route('/alterar-empresa/:empresaId')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){            
-            res.render(path_web + '/pages/cadastros/cadastro-empresa.html', {id: req.params.empresaId});  
+            res.sendFile(path_web + '/pages/cadastros/cadastro-empresa.html');  
         });
     app.route('/busca-atendimento')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
