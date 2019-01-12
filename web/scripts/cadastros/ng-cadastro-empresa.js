@@ -13,6 +13,8 @@ app.controller('CadastroEmpresaCtrl', [
 
     $scope.empresa.id = id;
 
+    console.log($scope.empresa.id);
+
     $scope.cadastrar = function(){
         httpService.posthttp(url, $scope.empresa)
             .then(function mySuccess(response) {               
