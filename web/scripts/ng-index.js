@@ -27,7 +27,7 @@ app.controller('IndexCtrl',[
         };
 
         $scope.administrativo = function(){
-            window.location.href = url_principal + "cadastro-usuario";
+            window.location.href = url_principal + "busca-usuario";
         }
 
         $scope.usuarioEstaLogado = function(){
