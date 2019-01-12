@@ -26,7 +26,7 @@
     "sequelize": "^4.38.0",
     "socket.io": "2.1.1",
     "sqlite3": "^4.0.2",
-    "ejs": "^1.0.0",
+    "ejs": "^1.0.0"
   },
   "scripts": {
     "start": "node server.js",
