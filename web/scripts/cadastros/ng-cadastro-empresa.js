@@ -11,9 +11,11 @@ app.controller('CadastroEmpresaCtrl', [
     $scope.titulotela = "Cadastro de Empresa";
     $scope.empresa = {};
 
-    var url = document.URL;
+    var id = document.URL.split("https://guiapro.herokuapp.com/alterar-empresa/").pop();
 
-    $scope.empresa.id = url.split("https://guiapro.herokuapp.com/alterar-empresa/").pop();
+    if(Number.isInteger(id)){
+        $scope.empresa.id = id;
+    }   
 
     console.log($scope.empresa.id);
 
