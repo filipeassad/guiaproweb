@@ -9,7 +9,12 @@
     <link rel="stylesheet" type="text/css" href="https://guiapro.herokuapp.com/css/dashboard.css">
 </head>
 
-<body ng-app="GuiaApp" ng-controller="CadastroEmpresaCtrl">   
+<body ng-app="GuiaApp" ng-controller="CadastroEmpresaCtrl"> 
+
+    <script>
+        var id_empresa = "{{ id }}";
+        console.log(id_empresa);
+    </script>
 
     <nav class="navbar navbar-inverse navbar-fixed-top" style="background: #DA482B;" ng-include="'https://guiapro.herokuapp.com/page/includes/nav-bar-adm.html'"></nav>
     <div ng-include="'https://guiapro.herokuapp.com/page/includes/alerta.html'" class="snack-container-basico"></div>
