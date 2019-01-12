@@ -7,72 +7,68 @@
     <link rel="stylesheet" href="css/fa-icons/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/basico.css"></head>
 
-<body ng-app="GuiaApp" ng-controller="CadastroEnderecoCtrl" style="height: 100%;">   
+<body ng-app="GuiaApp" ng-controller="CadastroEnderecoCtrl">   
 
-    <div ng-include="'page/includes/nav-bar-adm.html'"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background: #DA482B;" ng-include="'page/includes/nav-bar-adm.html'"></nav>
     <div ng-include="'page/includes/alerta.html'" class="snack-container-basico"></div>
 
-    <div class="container-fluid" style="height: 92.1%;">
-        <div class="row" style="height: 100%;">
-            <div class="col-sm-2 sem-padding" style="background:#292929; height: 100%;">
-                <div ng-include="'page/includes/side-bar-adm.html'" ></div>
-            </div>    
-            <div class="col-sm-10" style="height: 100%; overflow-y: scroll;"> 
-                <div class="panel panel-default" style="margin-top: 10px; padding: 10px;">
-                    <h1 style="text-align: center;">Cadastro de Endereço</h1>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 style="text-align: left">Dados do Endereço</h3>
-                                <hr>
-                                <form>
-                                    <div class="form-group">
-                                        <label>Cep</label>
-                                        <input type="text" class="form-control" ng-model="endereco.cep"> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Número</label>
-                                        <input type="text" class="form-control" ng-model="endereco.numero">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Logradouro</label>
-                                        <input type="text" class="form-control" ng-model="endereco.logradouro">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Complemento</label>
-                                        <input type="text" class="form-control" ng-model="endereco.complemento">
-                                    </div> 
-                                    <div class="form-group">
-                                        <label>Bairro</label>
-                                        <input type="text" class="form-control" ng-model="endereco.bairro">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Cidade</label>
-                                        <input type="text" class="form-control" ng-model="endereco.cidade">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Uf</label>
-                                        <input type="text" class="form-control" ng-model="endereco.uf">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>País</label>
-                                        <input type="text" class="form-control" ng-model="endereco.pais">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Latitude</label>
-                                        <input type="text" class="form-control"ng-model="endereco.latitude">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Longitude</label>
-                                        <input type="text" class="form-control" ng-model="endereco.longitude">
-                                    </div>
-                                </form>                        
-                                <button class="btn btn-laranja" ng-if="!podeAlterar" ng-click="cadastrar()">Cadastrar</button>
-                                <button class="btn btn-laranja" ng-if="podeAlterar" ng-click="alterar()">Alterar</button>
-                            </div>      
-                        </div>        
-                    </div>  
-                </div>                                      
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 sidebar" style="background:#292929;" ng-include="'page/includes/side-bar-adm.html'"></div>   
+            <div class="col-sm-10 col-sm-offset-2 main">                 
+                <h1 style="text-align: center;">Cadastro de Endereço</h1>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 style="text-align: left">Dados do Endereço</h3>
+                            <hr>
+                            <form>
+                                <div class="form-group">
+                                    <label>Cep</label>
+                                    <input type="text" class="form-control" ng-model="endereco.cep"> 
+                                </div>
+                                <div class="form-group">
+                                    <label>Número</label>
+                                    <input type="text" class="form-control" ng-model="endereco.numero">
+                                </div>
+                                <div class="form-group">
+                                    <label>Logradouro</label>
+                                    <input type="text" class="form-control" ng-model="endereco.logradouro">
+                                </div>
+                                <div class="form-group">
+                                    <label>Complemento</label>
+                                    <input type="text" class="form-control" ng-model="endereco.complemento">
+                                </div> 
+                                <div class="form-group">
+                                    <label>Bairro</label>
+                                    <input type="text" class="form-control" ng-model="endereco.bairro">
+                                </div>
+                                <div class="form-group">
+                                    <label>Cidade</label>
+                                    <input type="text" class="form-control" ng-model="endereco.cidade">
+                                </div>
+                                <div class="form-group">
+                                    <label>Uf</label>
+                                    <input type="text" class="form-control" ng-model="endereco.uf">
+                                </div>
+                                <div class="form-group">
+                                    <label>País</label>
+                                    <input type="text" class="form-control" ng-model="endereco.pais">
+                                </div>
+                                <div class="form-group">
+                                    <label>Latitude</label>
+                                    <input type="text" class="form-control"ng-model="endereco.latitude">
+                                </div>
+                                <div class="form-group">
+                                    <label>Longitude</label>
+                                    <input type="text" class="form-control" ng-model="endereco.longitude">
+                                </div>
+                            </form>                        
+                            <button class="btn btn-laranja" ng-if="!podeAlterar" ng-click="cadastrar()">Cadastrar</button>
+                            <button class="btn btn-laranja" ng-if="podeAlterar" ng-click="alterar()">Alterar</button>
+                        </div>      
+                    </div>        
+                </div>                                                        
             </div>
         </div>    
     </div>
