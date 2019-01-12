@@ -7,105 +7,103 @@
     <link rel="stylesheet" href="css/fa-icons/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/basico.css"></head>
 
-<body ng-app="GuiaApp" ng-controller="CadastroAtendimentoCtrl">   
+<body ng-app="GuiaApp" ng-controller="CadastroAtendimentoCtrl" class="height-cem">   
 
     <div ng-include="'page/includes/nav-bar-adm.html'"></div>
     <div ng-include="'page/includes/alerta.html'" class="snack-container-basico"></div>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2 sidebar" style="background:#292929;" ng-include="'page/includes/side-bar-adm.html'"></div>              
-            <div class="col-sm-10 main"> 
-                <div class="panel panel-default" style="margin-top: 10px; padding: 10px;">
-                    <h1 style="text-align: center;">Cadastro de Atendimento</h1>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 style="text-align: left">Dados do Atendimento</h3>
-                                <hr>
-                                <form>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label>Titulo</label>
-                                            <input type="text" class="form-control" ng-model="atendimento.titulo">
-                                        </div>
-                                        <div class="form-group col-sm-3">
-                                            <label>Data</label>
-                                            <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" />
-                                                <span class="input-group-addon" ng-click="selecionarData()">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <label>Descrição</label>
-                                            <input type="text" class="form-control" ng-model="atendimento.descricao">
-                                        </div> 
-                                    </div>      
 
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label>Tipo Atendimento</label>
-                                            <select class="form-control" ng-model="atendimento.tipoatendimento" ng-options="tipoatendimento.descricao for tipoatendimento in tiposatendimento "></select>
-                                        </div>   
-                                        <div class="form-group col-sm-6">
-                                            <label>Situação</label>
-                                            <select class="form-control" ng-model="atendimento.situacao" ng-options="situacao.descricao for situacao in situacoes "></select>
-                                        </div>  
+    <div class="container-fluid height-cem">
+        <div class="row height-cem">
+            <div class="col-sm-2 sidebar height-cem" style="background:#292929;" ng-include="'page/includes/side-bar-adm.html'"></div>              
+            <div class="col-sm-10 main">                
+                <h1 style="text-align: center;">Cadastro de Atendimento</h1>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 style="text-align: left">Dados do Atendimento</h3>
+                            <hr>
+                            <form>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Titulo</label>
+                                        <input type="text" class="form-control" ng-model="atendimento.titulo">
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label>Cliente</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Selecione um Cliente" ng-model="clienteSelecionado" disabled>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-info" data-toggle="modal" data-target="#buscaPerfil" ng-click="limparDadosBusca(_TIPO_PERFIL_CLIENTE)" type="button">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </div>   
-                                        <div class="form-group col-sm-6">
-                                            <label>Profissional</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Selecione um Profissional" ng-model="profissionalSelecionado" disabled>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-info" type="button" data-toggle="modal" ng-click="limparDadosBusca(_TIPO_PERFIL_PROFISSIONAL)" data-target="#buscaPerfil">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </div>    
-                                    </div>                                           
-                                </form>    
-                                <h3 style="text-align: left; margin-top: 50px;" ng-if="atendimento.profissional.categorias.length > 0 ">Categorias do Profissional</h3>
-                                <hr ng-if="atendimento.profissional.categorias.length > 0 ">
-                                <form ng-if="atendimento.profissional.categorias.length > 0 "> 
-                                    <div class="form-group">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;">Ações</th>
-                                                    <th style="width: 90%;">Descrição</th>                                  
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="categoriaperfil in atendimento.profissional.categorias" style="cursor: pointer;" ng-click="selecionaCategoria(categoriaperfil)">
-                                                    <td style="text-align: center;"><input type="checkbox" disabled style="cursor: pointer;" ng-model="categoriaperfil.selecionado"></td>
-                                                    <td style="width: 90%;">{{categoriaperfil.categoria.descricao}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>                                                           
-                                </form>                    
-                                <button class="btn btn-success" style="margin-bottom: 50px;" ng-click="cadastrar()">Cadastrar</button>
-                            </div>      
-                        </div>
-                    </div>    
-                </div>                                      
+                                    <div class="form-group col-sm-3">
+                                        <label>Data</label>
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' class="form-control" />
+                                            <span class="input-group-addon" ng-click="selecionarData()">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label>Descrição</label>
+                                        <input type="text" class="form-control" ng-model="atendimento.descricao">
+                                    </div> 
+                                </div>      
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Tipo Atendimento</label>
+                                        <select class="form-control" ng-model="atendimento.tipoatendimento" ng-options="tipoatendimento.descricao for tipoatendimento in tiposatendimento "></select>
+                                    </div>   
+                                    <div class="form-group col-sm-6">
+                                        <label>Situação</label>
+                                        <select class="form-control" ng-model="atendimento.situacao" ng-options="situacao.descricao for situacao in situacoes "></select>
+                                    </div>  
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Cliente</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Selecione um Cliente" ng-model="clienteSelecionado" disabled>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-info" data-toggle="modal" data-target="#buscaPerfil" ng-click="limparDadosBusca(_TIPO_PERFIL_CLIENTE)" type="button">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>   
+                                    <div class="form-group col-sm-6">
+                                        <label>Profissional</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Selecione um Profissional" ng-model="profissionalSelecionado" disabled>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-info" type="button" data-toggle="modal" ng-click="limparDadosBusca(_TIPO_PERFIL_PROFISSIONAL)" data-target="#buscaPerfil">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>    
+                                </div>                                           
+                            </form>    
+                            <h3 style="text-align: left; margin-top: 50px;" ng-if="atendimento.profissional.categorias.length > 0 ">Categorias do Profissional</h3>
+                            <hr ng-if="atendimento.profissional.categorias.length > 0 ">
+                            <form ng-if="atendimento.profissional.categorias.length > 0 "> 
+                                <div class="form-group">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">Ações</th>
+                                                <th style="width: 90%;">Descrição</th>                                  
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="categoriaperfil in atendimento.profissional.categorias" style="cursor: pointer;" ng-click="selecionaCategoria(categoriaperfil)">
+                                                <td style="text-align: center;"><input type="checkbox" disabled style="cursor: pointer;" ng-model="categoriaperfil.selecionado"></td>
+                                                <td style="width: 90%;">{{categoriaperfil.categoria.descricao}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                                                           
+                            </form>                    
+                            <button class="btn btn-success" style="margin-bottom: 50px;" ng-click="cadastrar()">Cadastrar</button>
+                        </div>      
+                    </div>
+                </div>                               
             </div>
         </div>    
     </div>
