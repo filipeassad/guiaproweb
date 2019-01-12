@@ -84,7 +84,7 @@ module.exports = function(app) {
     app.route('/alterar-empresa/:empresaId')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
             console.log('ID EMpresa', req.params.empresaId);
-            res.render(path_web + '/pages/cadastros/cadastro-empresa.html', req.params.empresaId);  
+            res.render(path_web + '/pages/cadastros/cadastro-empresa.html', {id: req.params.empresaId});  
         });
     app.route('/busca-atendimento')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
