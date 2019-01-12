@@ -14,6 +14,7 @@ module.exports = function(app) {
     app.use('/calendario',express.static(path_web + '/bower_components'));
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
+    app.use('/bower_components', express.static(__dirname + '/bower_components'));
     
     app.route('')
         .get(function(req, res){
