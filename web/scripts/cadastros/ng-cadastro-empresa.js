@@ -13,7 +13,7 @@ app.controller('CadastroEmpresaCtrl', [
 
     var url = document.URL;
 
-    $scope.empresa.id = url;
+    $scope.empresa.id = url.split("https://guiapro.herokuapp.com/alterar-empresa/").pop();
 
     console.log($scope.empresa.id);
 
