@@ -12,11 +12,9 @@ module.exports = function(app) {
     app.use('/scripts',express.static(path_web + '/scripts'));
     app.use('/page',express.static(path_web + '/pages'));
     app.use('/calendario',express.static(path_web + '/bower_components'));
-
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
-
-
+    
     app.route('')
         .get(function(req, res){
             res.sendFile(path_web + '/pages/index.html');
