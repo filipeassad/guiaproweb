@@ -81,9 +81,13 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
             res.sendFile(path_web + '/pages/cadastros/cadastro-empresa.html');  
         });
+    app.route('/alterar-empresa')
+        .post(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
+            res.render(path_web + '/pages/cadastros/cadastro-empresa.html');  
+        });
     app.route('/busca-atendimento')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
-            res.sendFile(path_web + '/pages/buscas/busca-atendimento.html');  
+            res.sendFile(path_web + '/pages/cadastros/cadastro-empresa.html', req.body.id);  
         });
     app.route('/cadastro-atendimento')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){

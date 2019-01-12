@@ -47,6 +47,10 @@ app.controller('BuscaEmpresaCtrl', [
         window.location.href = url_principal + "cadastro-empresa";
     }
 
+    $scope.editar = function(empresa){
+        httpService.posthttp(url_principal + "/alterar-empresa", empresa.id);
+    }
+
     $scope.excluir = function(empresa){
         httpService.deletehttp(url + "/" + empresa.id)
         .then(function mySuccess(response) {                
@@ -58,7 +62,6 @@ app.controller('BuscaEmpresaCtrl', [
         }, function myError(response) {
             alert("Erro do servidor."); 
         });
-    }
-    
+    }    
 
 }]);
