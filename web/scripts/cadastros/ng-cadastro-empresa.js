@@ -39,7 +39,7 @@ app.controller('CadastroEmpresaCtrl', [
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.empresa.id, $scope.empresa)
             .then(function mySuccess(response) { 
-                $scope.empresa = {};                
+                //$scope.empresa = {};                
                 retornoMensagem(response.data);
         }, function myError(response) {
             $rootScope.alertaErro("Problemas com o servidor.");

@@ -45,6 +45,10 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
             res.sendFile(path_web + '/pages/buscas/busca-categoria.html');  
         });
+    app.route('/alterar-categoria/:categoriaId')
+        .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
+            res.sendFile(path_web + '/pages/cadastros/cadastro-categoria.html');  
+        });
     app.route('/cadastro-permissao')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoDesenvolvedor, function(req, res){
             res.sendFile(path_web + '/pages/cadastros/cadastro-permissao.html');  

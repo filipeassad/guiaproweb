@@ -11,6 +11,21 @@ app.controller('CadastroCategoriaCtrl',[
     $scope.categorias = [];    
     $scope.podeAlterar = false;
     var url = url_principal + "api/categoria";    
+    $scope.titulo = "Cadastro de Categoria";
+
+    var id = document.URL.split("https://guiapro.herokuapp.com/alterar-categoria/").pop();
+
+    if(isNaN(id) == false){
+        $scope.podeAlterar = true;
+        $scope.titulo = "Alterar de Categoria";
+
+        httpService.gethttp(url, id)
+        .then(function mySuccess(response) { 
+            if(response.data != null)  {
+                $scope.categoria = response.data[0]; 
+            } 
+        });
+    }   
 
     $scope.cadastrar = function(){
         $scope.categoria.urlimg = "";
@@ -29,12 +44,9 @@ app.controller('CadastroCategoriaCtrl',[
 
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.categoria.id, $scope.categoria)
-            .then(function mySuccess(response) {
-                $scope.categoria = {};
-                if(response.data.success == true){
-                    $rootScope.alertaSucesso(response.data.message);
-                    $scope.categoria = {};
-                }
+            .then(function mySuccess(response) {               
+                if(response.data.success == true)
+                    $rootScope.alertaSucesso(response.data.message);                
                 else
                     $rootScope.alertaAtencao(response.data.message);
         }, function myError(response) {

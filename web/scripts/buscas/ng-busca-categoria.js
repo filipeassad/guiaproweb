@@ -15,6 +15,10 @@ function($scope, httpService){
         window.location.href = url_principal + "cadastro-categoria";
     }
 
+    $scope.alterar = function(categoria){
+        window.location.href = url_principal + "alterar-categoria/" + categoria.id; 
+    }
+
     $scope.excluir = function(categoria){
         httpService.deletehttp(url + "/" + categoria.id)
         .then(function mySuccess(response) {                
