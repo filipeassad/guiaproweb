@@ -10,11 +10,13 @@ app.controller('CadastroEmpresaCtrl', [
 
     $scope.titulotela = "Cadastro de Empresa";
     $scope.empresa = {};
+    $scope.podeAlterar = false;
 
     var id = document.URL.split("https://guiapro.herokuapp.com/alterar-empresa/").pop();
 
     if(isNaN(id) == false){
         //$scope.empresa.id = id;
+        $scope.podeAlterar = false;
         $scope.titulotela = "Alterar de Empresa";
 
         httpService.gethttp(url, id)
