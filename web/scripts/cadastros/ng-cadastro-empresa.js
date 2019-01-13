@@ -13,7 +13,7 @@ app.controller('CadastroEmpresaCtrl', [
 
     var id = document.URL.split("https://guiapro.herokuapp.com/alterar-empresa/").pop();
 
-    if(Number.isSafeInteger(id)){
+    if(isNaN(id) == false){
         $scope.empresa.id = id;
     }   
 
