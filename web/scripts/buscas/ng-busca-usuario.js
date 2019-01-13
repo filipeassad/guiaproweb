@@ -44,6 +44,10 @@ app.controller('BuscaUsuarioCtrl', [
         window.location.href = url_principal + "cadastro-usuario";
     }
 
+    $scope.alterar = function(usuario){
+        window.location.href = url_principal + "alterar-usuario/" + usuario.id;
+    }
+
     $scope.excluir = function(usuario){
         httpService.deletehttp(url + "/" + usuario.id)
         .then(function mySuccess(response) {                
