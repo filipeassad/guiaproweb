@@ -18,10 +18,10 @@ app.controller('CadastroEmpresaCtrl', [
         $scope.podeAlterar = true;
         $scope.titulotela = "Alterar de Empresa";
 
-        httpService.gethttp(url, id)
+        httpService.gethttp(url + "/" + id, {})
         .then(function mySuccess(response) { 
             if(response.data != null)  {
-                $scope.empresa = response.data[0]; 
+                $scope.empresa = response.data; 
             } 
         });
     }   

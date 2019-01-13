@@ -22,8 +22,7 @@ app.controller('CadastroCategoriaCtrl',[
         httpService.gethttp(url + "/" + id, {})
         .then(function mySuccess(response) { 
             if(response.data != null)  {
-                console.log(response.data);
-                $scope.categoria = response.data[0]; 
+                $scope.categoria = response.data; 
             } 
         });
     }   
