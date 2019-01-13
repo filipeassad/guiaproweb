@@ -29,6 +29,10 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
             res.sendFile(path_web + '/pages/buscas/busca-usuario.html');  
         });
+    app.route('/alterar-usuario/:usuarioId')
+        .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoAdministrador, function(req, res){
+            res.sendFile(path_web + '/pages/cadastros/cadastro-usuario.html');  
+        });
     app.route('/cadastro-tipoperfil')
         .get(autenticacao.validaTokenPagina, permissaoPagina.permissaoDesenvolvedor, function(req, res){
             res.sendFile(path_web + '/pages/cadastros/cadastro-tipoperfil.html');  

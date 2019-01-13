@@ -12,6 +12,10 @@ app.controller('CadastroUsuarioCtrl', [
     var url_tiposcategoria = url_principal + "api/categoria";
     var url_permissao = url_principal + "api/permissao";
     var url_empresa = url_principal + "api/empresa";
+    $scope.podeAlterar = false;
+    $scope.titulo = "Cadastrar de Usuário";
+
+    var id = document.URL.split("https://guiapro.herokuapp.com/alterar-usuario/").pop();     
 
     limparDados();
 
@@ -38,32 +42,41 @@ app.controller('CadastroUsuarioCtrl', [
         $scope.mostrarCategorias = $scope.usuario.perfil.tipoperfil.descricao == "Profissional";  
 
         httpService.gethttp(url_tiposperfil, {})
-            .then(function mySuccess(response) { 
-                if(response.data != null)   
-                    $scope.tiposperfil = response.data; 
-        });
+        .then(function mySuccess(response) { 
+            if(response.data != null)   
+                $scope.tiposperfil = response.data; 
 
-        httpService.gethttp(url_tiposcategoria, {})
+            httpService.gethttp(url_tiposcategoria, {})
             .then(function mySuccess(response) { 
                 if(response.data != null)   
                     $scope.categorias = response.data; 
-        });
 
-        httpService.gethttp(url_permissao, {})
-            .then(function mySuccess(response) { 
-                if(response.data != null)
-                    $scope.permissoes = response.data; 
-        });  
-        
-        httpService.gethttp(url_empresa, {})
-            .then(function mySuccess(response) { 
-                if(response.data != null)   
-                    $scope.empresas = response.data; 
-        }); 
+                httpService.gethttp(url_permissao, {})
+                .then(function mySuccess(response) { 
+                    if(response.data != null)
+                        $scope.permissoes = response.data; 
+
+                    httpService.gethttp(url_empresa, {})
+                    .then(function mySuccess(response) { 
+                        if(response.data != null)   
+                            $scope.empresas = response.data;
+                        
+                        if(isNaN(id) == false){
+                            $scope.podeAlterar = true;
+                            $scope.titulo = "Alterar de Usuário";
+                            httpService.gethttp(url + "/" + id, {})
+                            .then(function mySuccess(response) { 
+                                if(response.data != null)   
+                                    $scope.usuario = response.data;
+                            });                                    
+                        }                                 
+                    }); 
+                }); 
+            });
+        });        
     }    
 
-    $scope.cadastrar = function(){        
-        //console.log($scope.usuario);
+    $scope.cadastrar = function(){       
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.usuario = {};
