@@ -20,7 +20,7 @@ app.controller('CadastroEmpresaCtrl', [
         httpService.gethttp(url, id)
         .then(function mySuccess(response) { 
             if(response.data != null)  {
-                $scope.empresa = response.data; 
+                $scope.empresa = response.data[0]; 
                 console.log(response.data);
             } 
         });
