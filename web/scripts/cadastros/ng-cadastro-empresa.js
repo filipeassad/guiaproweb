@@ -19,8 +19,10 @@ app.controller('CadastroEmpresaCtrl', [
 
         httpService.gethttp(url, id)
         .then(function mySuccess(response) { 
-            if(response.data != null)   
+            if(response.data != null)  {
                 $scope.empresa = response.data; 
+                console.log(response.data);
+            } 
         });
     }   
 
