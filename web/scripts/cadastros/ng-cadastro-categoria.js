@@ -19,11 +19,11 @@ app.controller('CadastroCategoriaCtrl',[
         $scope.podeAlterar = true;
         $scope.titulo = "Alterar de Categoria";
 
-        httpService.gethttp(url, id)
+        httpService.gethttp(url + "/" + id, {})
         .then(function mySuccess(response) { 
             if(response.data != null)  {
-                $scope.categoria = response.data[0]; 
                 console.log(response.data);
+                $scope.categoria = response.data[0]; 
             } 
         });
     }   
