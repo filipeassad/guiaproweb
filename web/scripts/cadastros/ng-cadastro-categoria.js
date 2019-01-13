@@ -18,12 +18,12 @@ app.controller('CadastroCategoriaCtrl',[
     if(isNaN(id) == false){
         $scope.podeAlterar = true;
         $scope.titulo = "Alterar de Categoria";
-        console.log(id);
 
         httpService.gethttp(url, id)
         .then(function mySuccess(response) { 
             if(response.data != null)  {
                 $scope.categoria = response.data[0]; 
+                console.log(response.data);
             } 
         });
     }   
