@@ -15,15 +15,13 @@ app.controller('CadastroEmpresaCtrl', [
     var id = document.URL.split("https://guiapro.herokuapp.com/alterar-empresa/").pop();
 
     if(isNaN(id) == false){
-        //$scope.empresa.id = id;
-        $scope.podeAlterar = false;
+        $scope.podeAlterar = true;
         $scope.titulotela = "Alterar de Empresa";
 
         httpService.gethttp(url, id)
         .then(function mySuccess(response) { 
             if(response.data != null)  {
                 $scope.empresa = response.data[0]; 
-                console.log(response.data);
             } 
         });
     }   
@@ -40,8 +38,7 @@ app.controller('CadastroEmpresaCtrl', [
     
     $scope.alterar = function(){
         httpService.puthttp(url + "/" + $scope.empresa.id, $scope.empresa)
-            .then(function mySuccess(response) {               
-                $scope.podeAlterar = false;
+            .then(function mySuccess(response) { 
                 $scope.empresa = {};                
                 retornoMensagem(response.data);
         }, function myError(response) {
