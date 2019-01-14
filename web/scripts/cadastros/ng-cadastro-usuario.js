@@ -197,11 +197,15 @@ app.controller('CadastroUsuarioCtrl', [
 
     function formatarData(dataNasc){
         var dataStr = "";
-        console.log(dataNasc.getDay());
-        console.log(dataNasc.getMonth());
-        console.log(dataNasc.getFullYear());
-        dataStr = dataNasc.getDay() + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
-       
+        try {
+            dataNasc = new Date(dataNasc);
+            console.log(dataNasc.getDay());
+            console.log(dataNasc.getMonth());
+            console.log(dataNasc.getFullYear());
+            dataStr = dataNasc.getDay() + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
+        } catch (error) {
+            
+        }
         return dataStr;
     }
 
