@@ -194,12 +194,12 @@ app.controller('CadastroUsuarioCtrl', [
             $rootScope.alertaErro(retorno.message);
     }
 
-    function formatarData(data){
+    function formatarData(dataNasc){
 
         var dataStr = "";
 
         try {
-            dataStr = data.getDay() + "/" + pad((data.getMonth() + 1), 1) + "/" + data.getFullYear();
+            dataStr = dataNasc.getDay() + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
         } catch (error) {
             
         }
