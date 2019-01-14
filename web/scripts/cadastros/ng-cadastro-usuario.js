@@ -70,8 +70,10 @@ app.controller('CadastroUsuarioCtrl', [
                                 if(response.data != null) {  
                                     $scope.usuario = response.data;
                                     $scope.usuario.perfil.datanascimento = formatarData(response.data.perfil.datanascimento);
-                                    for(var i=0; i < $scope.usuario.perfil.permissoes.length; i++){
-                                        for(var j=0; j < $scope.permissoes.length; j++){
+                                    var i=0;
+                                    var j=0;
+                                    for(i=0; i < $scope.usuario.perfil.permissoes.length; i++){
+                                        for(j=0; j < $scope.permissoes.length; j++){
                                             if($scope.usuario.perfil.permissoes[i].id == $scope.permissoes[j].id){
                                                 console.log($scope.permissoes[j]);
                                                 $scope.permissoes[j].selecionado = true;
