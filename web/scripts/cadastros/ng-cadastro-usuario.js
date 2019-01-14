@@ -199,13 +199,12 @@ app.controller('CadastroUsuarioCtrl', [
         var dataStr = "";
         try {
             dataNasc = new Date(dataNasc);
-            console.log(dataNasc.getDay());
-            console.log(dataNasc.getMonth());
-            console.log(dataNasc.getFullYear());
             dataStr = dataNasc.getDay() + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
         } catch (error) {
             
         }
+        
+        console.log(dataStr);
         return dataStr;
     }
 
@@ -213,10 +212,8 @@ app.controller('CadastroUsuarioCtrl', [
         if(num < 10){
             var s = num+"";
             while (s.length < size) s = "0" + s;
-            console.log(s);
             return s;
         }else{
-            console.log(num);
             return num +"";
         }        
     }
