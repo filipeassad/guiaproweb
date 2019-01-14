@@ -9,6 +9,7 @@ const Op = db.Sequelize.Op;
 
 exports.cadastrar_usuario = (req, res) => {
 	usuarioB = req.body;
+	console.log(req.body);
 	res.setHeader('Content-Type', 'application/json');
 
 	if (validaUsuario(usuarioB) == false) {
@@ -21,7 +22,7 @@ exports.cadastrar_usuario = (req, res) => {
 				usuarioB.perfil.endereco.id = endereco.id;
 
 				Perfil.create(new PerfilObj(usuarioB)).then(function (perfil) {
-
+					console.log(perfil);
 					usuarioB.perfil.id = perfil.id;
 
 					db.sequelize.Promise.map(usuarioB.perfil.permissoes, function (permissao) {
