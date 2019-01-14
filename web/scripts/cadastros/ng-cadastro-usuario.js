@@ -68,7 +68,6 @@ app.controller('CadastroUsuarioCtrl', [
                             .then(function mySuccess(response) { 
                                 if(response.data != null) {  
                                     $scope.usuario = response.data;
-                                    console.log(response.data);
                                 }
                             });                                    
                         }                                 
@@ -78,7 +77,7 @@ app.controller('CadastroUsuarioCtrl', [
         });        
     }    
 
-    $scope.cadastrar = function(){       
+    $scope.cadastrar = function(){              
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.usuario = {};

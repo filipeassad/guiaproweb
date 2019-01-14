@@ -8,8 +8,7 @@ const EmpresaPerfil = db.empresaperfil;
 const Op = db.Sequelize.Op;
 
 exports.cadastrar_usuario = (req, res) => {
-	usuarioB = req.body;
-	console.log(req.body);
+	usuarioB = req.body;	
 	res.setHeader('Content-Type', 'application/json');
 
 	if (validaUsuario(usuarioB) == false) {
@@ -21,10 +20,8 @@ exports.cadastrar_usuario = (req, res) => {
 				usuarioB.id = usuario.id;
 				usuarioB.perfil.endereco.id = endereco.id;
 
-				Perfil.create(new PerfilObj(usuarioB)).then(function (perfil) {
-					console.log(perfil);
+				Perfil.create(new PerfilObj(usuarioB)).then(function (perfil) {					
 					usuarioB.perfil.id = perfil.id;
-
 					db.sequelize.Promise.map(usuarioB.perfil.permissoes, function (permissao) {
 						PermissaoPerfil.create(new PermissaoObj(usuarioB, permissao));
 					}).then(function (npermissoes) {
@@ -261,8 +258,7 @@ function EnderecoObj(usuario) {
 	this.longitude = usuario.perfil.endereco.longitude;
 }
 
-function PerfilObj(usuario) {	
-	console.log(usuario);
+function PerfilObj(usuario) {
 	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null')
 		this.datanascimento = dataPorString(usuario.perfil.datanascimento);	
 	this.nome = usuario.perfil.nome;
