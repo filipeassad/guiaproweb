@@ -211,8 +211,10 @@ app.controller('CadastroUsuarioCtrl', [
         if(num < 10){
             var s = num+"";
             while (s.length < size) s = "0" + s;
+            console.log(s);
             return s;
         }else{
+            console.log(num);
             return num +"";
         }        
     }
