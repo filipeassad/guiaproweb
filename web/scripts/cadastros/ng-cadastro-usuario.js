@@ -199,12 +199,22 @@ app.controller('CadastroUsuarioCtrl', [
         var dataStr = "";
 
         try {
-            dataStr = data.getDay() + "/" + (data.getMonth() + 1) + "/" + data.getYear();
+            dataStr = data.getDay() + "/" + pad((data.getMonth() + 1), 1) + "/" + data.getFullYear();
         } catch (error) {
             
         }
 
         return dataStr;
+    }
+
+    function pad(num, size) {
+        if(num < 10){
+            var s = num+"";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }else{
+            return num +"";
+        }        
     }
 
 }]);
