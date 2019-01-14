@@ -209,9 +209,11 @@ app.controller('CadastroUsuarioCtrl', [
     }
 
     function pad(num, size) {
-        if(parseInt(num) < 10){
+        if(num < 10){
             var s = num+"";
-            while (s.length < size) s = "0" + s;
+            for(var i = 0; i < size ; i++){
+                s = "0" + s;
+            }            
             return s;
         }else{
             return num +"";
