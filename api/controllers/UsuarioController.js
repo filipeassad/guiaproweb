@@ -348,7 +348,6 @@ function validaUsuario(usuario) {
 
 function dataPorString(dataString){
 
-	console.log(dataString);
 	if(dataString.length != 10)
 		return null;
 	else{		

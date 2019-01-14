@@ -68,6 +68,7 @@ app.controller('CadastroUsuarioCtrl', [
                             .then(function mySuccess(response) { 
                                 if(response.data != null) {  
                                     $scope.usuario = response.data;
+                                    $scope.usuario.perfil.datanascimento = formatarData(response.data.perfil.datanascimento);
                                 }
                             });                                    
                         }                                 
@@ -191,6 +192,19 @@ app.controller('CadastroUsuarioCtrl', [
             limparDados();
         }else
             $rootScope.alertaErro(retorno.message);
+    }
+
+    function formatarData(data){
+
+        var dataStr = "";
+
+        try {
+            dataStr = data.getDay() + "/" + (data.getMonth() + 1) + "/" + data.getYear();
+        } catch (error) {
+            
+        }
+
+        return dataStr;
     }
 
 }]);
