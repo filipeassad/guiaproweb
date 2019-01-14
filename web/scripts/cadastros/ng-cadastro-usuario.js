@@ -198,6 +198,7 @@ app.controller('CadastroUsuarioCtrl', [
         var dataStr = "";
         try {
             dataNasc = new Date(dataNasc);
+            console.log(dataNasc);
             dataStr = pad(dataNasc.getDate(), 1) + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
         } catch (error) {
             
