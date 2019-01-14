@@ -70,6 +70,13 @@ app.controller('CadastroUsuarioCtrl', [
                                 if(response.data != null) {  
                                     $scope.usuario = response.data;
                                     $scope.usuario.perfil.datanascimento = formatarData(response.data.perfil.datanascimento);
+                                    for(var i=0; i < $scope.usuario.perfil.permissoes.length; i++){
+                                        for(var j=0; j < $scope.permissoes.length; j++){
+                                            if($scope.usuario.perfil.permissoes[i].id == $scope.permissoes[j].id){
+                                                $scope.permissoes[j].selecionado = true;
+                                            }
+                                        }                                        
+                                    }
                                 }
                             });                                    
                         }                                 
