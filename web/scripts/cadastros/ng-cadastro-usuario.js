@@ -68,7 +68,6 @@ app.controller('CadastroUsuarioCtrl', [
                             .then(function mySuccess(response) { 
                                 if(response.data != null) {  
                                     $scope.usuario = response.data;
-                                    console.log(response.data.perfil.datanascimento);
                                     $scope.usuario.perfil.datanascimento = formatarData(response.data.perfil.datanascimento);
                                 }
                             });                                    
@@ -204,7 +203,7 @@ app.controller('CadastroUsuarioCtrl', [
             
         }
         
-        console.log(dataStr);
+        console.log(dataNasc.getDate());
         return dataStr;
     }
 
