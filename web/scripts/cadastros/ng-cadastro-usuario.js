@@ -199,7 +199,7 @@ app.controller('CadastroUsuarioCtrl', [
         var dataStr = "";
         try {
             dataNasc = new Date(dataNasc);
-            dataStr = dataNasc.getDay() + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
+            dataStr = pad((dataNasc.getDay() + 1), 1) + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
         } catch (error) {
             
         }
@@ -209,7 +209,7 @@ app.controller('CadastroUsuarioCtrl', [
     }
 
     function pad(num, size) {
-        if(num < 10){
+        if(parseInt(num) < 10){
             var s = num+"";
             while (s.length < size) s = "0" + s;
             return s;
