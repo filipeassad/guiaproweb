@@ -43,8 +43,7 @@
                             <div class="row">
                                 <div class="form-group col-sm-3">
                                     <label>Tipos</label>
-                                    <select class="form-control" ng-model="usuario.perfil.tipoperfil.id" ng-options="tipoperfil.descricao for tipoperfil in tiposperfil track by tipoperfil.id">
-                                    </select>
+                                    <select class="form-control" ng-model="usuario.perfil.tipoperfil.id" ng-options="tipoperfil.id as tipoperfil.descricao for tipoperfil in tiposperfil"></select>
                                 </div> 
                             </div>                                                                                         
                         </form> 
