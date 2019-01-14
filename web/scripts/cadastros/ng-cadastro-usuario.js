@@ -199,7 +199,7 @@ app.controller('CadastroUsuarioCtrl', [
         var dataStr = "";
         try {
             dataNasc = new Date(dataNasc);
-            dataStr = pad((dataNasc.getDay() + 1), 1) + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
+            dataStr = pad(dataNasc.getDay(), 1) + "/" + pad((dataNasc.getMonth() + 1), 1) + "/" + dataNasc.getFullYear();
         } catch (error) {
             
         }
