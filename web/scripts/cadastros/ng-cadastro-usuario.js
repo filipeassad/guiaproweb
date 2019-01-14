@@ -195,7 +195,7 @@ app.controller('CadastroUsuarioCtrl', [
     }
 
     function formatarData(dataNasc){
-
+        console.log(dataNasc);
         var dataStr = "";
 
         try {
