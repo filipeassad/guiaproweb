@@ -66,8 +66,10 @@ app.controller('CadastroUsuarioCtrl', [
                             $scope.titulo = "Alterar de Usuário";
                             httpService.gethttp(url + "/" + id, {})
                             .then(function mySuccess(response) { 
-                                if(response.data != null)   
+                                if(response.data != null) {  
                                     $scope.usuario = response.data;
+                                    console.log(response.data);
+                                }
                             });                                    
                         }                                 
                     }); 
