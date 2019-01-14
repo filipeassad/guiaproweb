@@ -24,6 +24,7 @@ app.controller('CadastroUsuarioCtrl', [
         $scope.usuario = {
             perfil:{
                 tipoperfil: {
+                    id: null,
                     descricao: ""
                 },
                 categorias: [], 
