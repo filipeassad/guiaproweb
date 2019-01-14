@@ -73,6 +73,7 @@ app.controller('CadastroUsuarioCtrl', [
                                     for(var i=0; i < $scope.usuario.perfil.permissoes.length; i++){
                                         for(var j=0; j < $scope.permissoes.length; j++){
                                             if($scope.usuario.perfil.permissoes[i].id == $scope.permissoes[j].id){
+                                                console.log($scope.permissoes[j]);
                                                 $scope.permissoes[j].selecionado = true;
                                             }
                                         }                                        
