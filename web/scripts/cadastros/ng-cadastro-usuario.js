@@ -72,6 +72,7 @@ app.controller('CadastroUsuarioCtrl', [
                                     $scope.usuario.perfil.datanascimento = formatarData(response.data.perfil.datanascimento);
                                     var i=0;
                                     var j=0;
+                                    console.log($scope.usuario.perfil.permissoes);
                                     for(i=0; i < $scope.usuario.perfil.permissoes.length; i++){
                                         for(j=0; j < $scope.permissoes.length; j++){
                                             console.log($scope.permissoes[j].id + " - " + $scope.usuario.perfil.permissoes[i].id);
