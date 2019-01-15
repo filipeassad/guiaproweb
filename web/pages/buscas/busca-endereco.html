@@ -36,8 +36,8 @@
                                     </div>
                                 </div>                         
                             </div>
-                            <button class="btn btn-laranja">Buscar</button>
-                            <button class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</button>
+                            <div class="btn btn-laranja">Buscar</div>
+                            <div class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</div>
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,10 @@
                                     <td>{{enderecoAux.pais}}</td> 
                                     <td>{{enderecoAux.latitude + " / " + enderecoAux.longitude}}</td>                           
                                     <td style="text-align: center;">
-                                        <span ng-click="excluir(enderecoAux)"><i class="fa fa-trash"></i></span>
-                                        <span ng-click="paraAlterar(enderecoAux)"style="margin-left: 5px;"><i class="fa fa-pencil-square-o"></i></span>
+                                        <div class="btn-group btn-group-xs" role="group">
+                                            <span class="btn btn-default" ng-click="excluir(enderecoAux)"><i class="fa fa-trash"></i></span>
+                                            <span class="btn btn-default" ng-click="paraAlterar(enderecoAux)"><i class="fa fa-pencil-square-o"></i></span>
+                                        </div>                                        
                                     </td>
                                 </tr>
                             </tbody>

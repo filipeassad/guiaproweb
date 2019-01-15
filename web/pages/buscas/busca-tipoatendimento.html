@@ -30,8 +30,8 @@
                                     </div>
                                 </div>                        
                             </div>
-                            <button class="btn btn-laranja">Buscar</button>
-                            <button class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</button>
+                            <div class="btn btn-laranja">Buscar</div>
+                            <div class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</div>
                         </div> 
                     </div>
                 </div>
@@ -52,8 +52,10 @@
                                     <td style="text-align: center;">{{tipoAtendimentoAux.id}}</td>
                                     <td>{{tipoAtendimentoAux.descricao}}</td>                          
                                     <td style="text-align: center;">
-                                        <span ng-click="excluir(tipoAtendimentoAux)"><i class="fa fa-trash"></i></span>
-                                        <span style="margin-left: 5px;"><i class="fa fa-pencil-square-o"></i></span>
+                                        <div class="btn-group btn-group-xs" role="group">
+                                            <span class="btn btn-default" ng-click="excluir(tipoAtendimentoAux)"><i class="fa fa-trash"></i></span>
+                                            <span class="btn btn-default"><i class="fa fa-pencil-square-o"></i></span>
+                                        </div>                                        
                                     </td>
                                 </tr>
                             </tbody>

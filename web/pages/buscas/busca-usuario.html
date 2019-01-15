@@ -31,8 +31,8 @@
                                 <input type="text" class="form-control input-sm" ng-model="usuarioBusca.email">
                             </div>
                         </div>
-                        <button class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</button>                        
-                        <button class="btn btn-laranja" ng-click="buscarUsuario(1)">Buscar</button>                         
+                        <div class="btn btn-laranja" ng-click="cadastrar()">Cadastrar</div>                        
+                        <div class="btn btn-laranja" ng-click="buscarUsuario(1)">Buscar</div>                         
                     </div>
                 </div>
                 <h3>Listagem Usuário</h3>
@@ -58,8 +58,10 @@
                                     <td style="text-align: center;">{{usuarioAux.perfil.tipoperfil.descricao}}</td> 
                                     <td style="text-align: center;">{{usuarioAux.perfil.endereco.logradouro + ' - ' + usuarioAux.perfil.endereco.numero + ' ' + usuarioAux.perfil.endereco.bairro + ' ' + usuarioAux.perfil.endereco.cidade + '-' + usuarioAux.perfil.endereco.uf}}</td>                             
                                     <td style="text-align: center;">
-                                        <span ng-click="excluir(usuarioAux)"><i class="fa fa-trash"></i></span>
-                                        <span ng-click="alterar(usuarioAux)"style="margin-left: 5px;"><i class="fa fa-pencil-square-o"></i></span>
+                                        <div class="btn-group btn-group-xs" role="group">
+                                            <span class="btn btn-default" ng-click="excluir(usuarioAux)"><i class="fa fa-trash"></i></span>
+                                            <span class="btn btn-default" ng-click="alterar(usuarioAux)"><i class="fa fa-pencil-square-o"></i></span>
+                                        </div>                                        
                                     </td>
                                 </tr>
                             </tbody>
