@@ -224,6 +224,7 @@ app.controller('CadastroUsuarioCtrl', [
     }
 
     function carregarPermissoesSelecionadas(){
+        var listaPermissao = [];
         var i=0;
         var j=0;
         for(i=0; i < $scope.usuario.perfil.permissoes.length; i++){
@@ -231,11 +232,14 @@ app.controller('CadastroUsuarioCtrl', [
                 if($scope.usuario.perfil.permissoes[i].permissao.id == $scope.permissoes[j].id){                                                
                     $scope.permissoes[j].selecionado = true;
                 }
-            }                                        
+            }   
+            listaPermissao.push(angular.copy($scope.usuario.perfil.permissoes[i]));                                     
         }
+        $scope.usuario.perfil.permissoes = angular.copy(listaPermissao);
     }
 
     function carregarCategoriasSelecionadas(){
+        var listaCategoria = [];
         var i=0;
         var j=0;
         for(i=0; i < $scope.usuario.perfil.categorias.length; i++){
@@ -243,11 +247,14 @@ app.controller('CadastroUsuarioCtrl', [
                 if($scope.usuario.perfil.categorias[i].permissao.id == $scope.categorias[j].id){                                                
                     $scope.categorias[j].selecionado = true;
                 }
-            }                                        
+            }   
+            listaCategoria.push(angular.copy($scope.usuario.perfil.categorias[i]));                                     
         }
+        $scope.usuario.perfil.categorias = angular.copy(listaCategoria);
     }
 
     function carregarEmpresasSelecionadas(){
+        var listaEmpresas = [];
         var i=0;
         var j=0;
         for(i=0; i < $scope.usuario.perfil.empresas.length; i++){
@@ -255,8 +262,10 @@ app.controller('CadastroUsuarioCtrl', [
                 if($scope.usuario.perfil.empresas[i].permissao.id == $scope.empresas[j].id){                                                
                     $scope.empresas[j].selecionado = true;
                 }
-            }                                        
+            } 
+            listaEmpresas.push(angular.copy($scope.usuario.perfil.empresas[i]));                                     
         }
+        $scope.usuario.perfil.empresas = angular.copy(listaEmpresas);
     }
 
 }]);
