@@ -70,15 +70,9 @@ app.controller('CadastroUsuarioCtrl', [
                                 if(response.data != null) {  
                                     $scope.usuario = response.data;
                                     $scope.usuario.perfil.datanascimento = formatarData(response.data.perfil.datanascimento);
-                                    var i=0;
-                                    var j=0;
-                                    for(i=0; i < $scope.usuario.perfil.permissoes.length; i++){
-                                        for(j=0; j < $scope.permissoes.length; j++){
-                                            if($scope.usuario.perfil.permissoes[i].permissao.id == $scope.permissoes[j].id){                                                
-                                                $scope.permissoes[j].selecionado = true;
-                                            }
-                                        }                                        
-                                    }
+                                    carregarPermissoesSelecionadas();
+                                    carregarCategoriasSelecionadas();
+                                    carregarEmpresasSelecionadas();
                                 }
                             });                                    
                         }                                 
@@ -88,7 +82,8 @@ app.controller('CadastroUsuarioCtrl', [
         });        
     }    
 
-    $scope.cadastrar = function(){              
+    $scope.cadastrar = function(){       
+        console.log($scope.usuario);       
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.usuario = {};
@@ -98,7 +93,8 @@ app.controller('CadastroUsuarioCtrl', [
         });
     }    
 
-    $scope.alterar = function(){
+    $scope.alterar = function(){ 
+        console.log($scope.usuario);    
         httpService.puthttp(url + "/" + $scope.usuario.id, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.podeAlterar = false;
@@ -225,6 +221,42 @@ app.controller('CadastroUsuarioCtrl', [
         }else{
             return num +"";
         }        
+    }
+
+    function carregarPermissoesSelecionadas(){
+        var i=0;
+        var j=0;
+        for(i=0; i < $scope.usuario.perfil.permissoes.length; i++){
+            for(j=0; j < $scope.permissoes.length; j++){
+                if($scope.usuario.perfil.permissoes[i].permissao.id == $scope.permissoes[j].id){                                                
+                    $scope.permissoes[j].selecionado = true;
+                }
+            }                                        
+        }
+    }
+
+    function carregarCategoriasSelecionadas(){
+        var i=0;
+        var j=0;
+        for(i=0; i < $scope.usuario.perfil.categorias.length; i++){
+            for(j=0; j < $scope.categorias.length; j++){
+                if($scope.usuario.perfil.categorias[i].permissao.id == $scope.categorias[j].id){                                                
+                    $scope.categorias[j].selecionado = true;
+                }
+            }                                        
+        }
+    }
+
+    function carregarEmpresasSelecionadas(){
+        var i=0;
+        var j=0;
+        for(i=0; i < $scope.usuario.perfil.empresas.length; i++){
+            for(j=0; j < $scope.empresas.length; j++){
+                if($scope.usuario.perfil.empresas[i].permissao.id == $scope.empresas[j].id){                                                
+                    $scope.empresas[j].selecionado = true;
+                }
+            }                                        
+        }
     }
 
 }]);
