@@ -233,7 +233,7 @@ app.controller('CadastroUsuarioCtrl', [
                     $scope.permissoes[j].selecionado = true;
                 }
             }   
-            listaPermissao.push(angular.copy($scope.usuario.perfil.permissoes[i]));                                     
+            listaPermissao.push(angular.copy($scope.usuario.perfil.permissoes[i].permissao));                                     
         }
         $scope.usuario.perfil.permissoes = angular.copy(listaPermissao);
     }
@@ -244,11 +244,11 @@ app.controller('CadastroUsuarioCtrl', [
         var j=0;
         for(i=0; i < $scope.usuario.perfil.categorias.length; i++){
             for(j=0; j < $scope.categorias.length; j++){
-                if($scope.usuario.perfil.categorias[i].permissao.id == $scope.categorias[j].id){                                                
+                if($scope.usuario.perfil.categorias[i].categoria.id == $scope.categorias[j].id){                                                
                     $scope.categorias[j].selecionado = true;
                 }
             }   
-            listaCategoria.push(angular.copy($scope.usuario.perfil.categorias[i]));                                     
+            listaCategoria.push(angular.copy($scope.usuario.perfil.categorias[i].categoria));                                     
         }
         $scope.usuario.perfil.categorias = angular.copy(listaCategoria);
     }
@@ -259,11 +259,11 @@ app.controller('CadastroUsuarioCtrl', [
         var j=0;
         for(i=0; i < $scope.usuario.perfil.empresas.length; i++){
             for(j=0; j < $scope.empresas.length; j++){
-                if($scope.usuario.perfil.empresas[i].permissao.id == $scope.empresas[j].id){                                                
+                if($scope.usuario.perfil.empresas[i].empresa.id == $scope.empresas[j].id){                                                
                     $scope.empresas[j].selecionado = true;
                 }
             } 
-            listaEmpresas.push(angular.copy($scope.usuario.perfil.empresas[i]));                                     
+            listaEmpresas.push(angular.copy($scope.usuario.perfil.empresas[i].empresa));                                     
         }
         $scope.usuario.perfil.empresas = angular.copy(listaEmpresas);
     }
