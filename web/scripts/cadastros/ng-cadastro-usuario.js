@@ -82,8 +82,7 @@ app.controller('CadastroUsuarioCtrl', [
         });        
     }    
 
-    $scope.cadastrar = function(){       
-        console.log($scope.usuario);       
+    $scope.cadastrar = function(){          
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.usuario = {};
@@ -93,8 +92,7 @@ app.controller('CadastroUsuarioCtrl', [
         });
     }    
 
-    $scope.alterar = function(){ 
-        console.log($scope.usuario);    
+    $scope.alterar = function(){   
         httpService.puthttp(url + "/" + $scope.usuario.id, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.podeAlterar = false;
