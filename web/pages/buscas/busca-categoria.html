@@ -60,8 +60,10 @@
                                     <td>{{categoriaAux.descricao}}</td>
                                     <td style="text-align: center;">{{categoriaAux.sigla}}</td>                            
                                     <td style="text-align: center;">
-                                        <span class="btn btn-default btn-sm" ng-click="excluir(categoriaAux)"><i class="fa fa-trash"></i></span>
-                                        <span class="btn btn-default btn-sm" style="margin-left: 5px;" ng-click="alterar(categoriaAux)"><i class="fa fa-pencil-square-o"></i></span>
+                                        <div class="btn-group btn-group-xs">
+                                            <span class="btn btn-default" ng-click="excluir(categoriaAux)"><i class="fa fa-trash"></i></span>
+                                            <span class="btn btn-default" style="margin-left: 5px;" ng-click="alterar(categoriaAux)"><i class="fa fa-pencil-square-o"></i></span>
+                                        </div>                                       
                                     </td>
                                 </tr>
                             </tbody>
