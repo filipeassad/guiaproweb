@@ -44,7 +44,7 @@ exports.cadastrar_usuario = (req, res) => {
 exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 	usuarioB = req.body;
 	res.setHeader('Content-Type', 'application/json');
-
+	console.log('Passou!');
 	Usuario.findAll({
 		include: [{ all: true, nested: true }],
 		where: {email: usuarioB.email}
@@ -96,7 +96,6 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 	
 					novo_usuario.id = usuario.id;
 					novo_usuario.perfil.endereco.id = endereco.id;
-					console.log(novo_usuario);
 	
 					Perfil.create(new PerfilObj(novo_usuario)).then(function (perfil) {
 	
@@ -261,7 +260,6 @@ function EnderecoObj(usuario) {
 }
 
 function PerfilObj(usuario) {
-	console.log(usuario);
 	if(usuario.perfil.datanascimento != null && usuario.perfil.datanascimento != '' && usuario.perfil.datanascimento != 'null')
 		this.datanascimento = dataPorString(usuario.perfil.datanascimento);	
 	this.nome = usuario.perfil.nome;
