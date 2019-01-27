@@ -62,6 +62,7 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 					cpf: usuarioB.cpf,
 					sexo: usuarioB.sexo,
 					celular: usuarioB.celular,
+					celularwhats: usuarioB.celularwhats,
 					urlimg: null,
 					ativo: "true",
 					tipoperfilId: 1,            
