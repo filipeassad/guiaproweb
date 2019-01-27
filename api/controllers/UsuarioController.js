@@ -96,6 +96,7 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 	
 					novo_usuario.id = usuario.id;
 					novo_usuario.perfil.endereco.id = endereco.id;
+					console.log(novo_usuario);
 	
 					Perfil.create(new PerfilObj(novo_usuario)).then(function (perfil) {
 	
