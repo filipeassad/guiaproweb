@@ -10,7 +10,7 @@ const Op = db.Sequelize.Op;
 exports.cadastrar_usuario = (req, res) => {
 	usuarioB = req.body;	
 	res.setHeader('Content-Type', 'application/json');
-
+	console.log('Passou!');
 	if (validaUsuario(usuarioB) == false) {
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
 	} else {
@@ -44,11 +44,6 @@ exports.cadastrar_usuario = (req, res) => {
 exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 	usuarioB = req.body;
 	res.setHeader('Content-Type', 'application/json');
-	console.log('Passou!');
-
-	console.log('Passa!');
-
-
 	Usuario.findAll({
 		include: [{ all: true, nested: true }],
 		where: {email: usuarioB.email}
