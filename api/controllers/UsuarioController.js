@@ -45,6 +45,10 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 	usuarioB = req.body;
 	res.setHeader('Content-Type', 'application/json');
 	console.log('Passou!');
+
+	console.log('Passa!');
+
+
 	Usuario.findAll({
 		include: [{ all: true, nested: true }],
 		where: {email: usuarioB.email}
