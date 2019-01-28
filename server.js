@@ -27,7 +27,7 @@ var deletar = false;
 db.sequelize.sync({force: deletar}).then(() => {
     if(deletar)
         dados_basicos.gerarDados();
-    console.log('GuiaPro ON.');
+    console.log('GuiaPro ON. Filipinho.');
 });
 
 socketIO.on("disconnect", function() {
