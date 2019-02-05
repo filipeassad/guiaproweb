@@ -64,6 +64,16 @@ exports.obter_historicoatendimento_pelo_cliente = (req, res) =>{
 	});
 };
 
+exports.obter_historicoatendimento_pelo_profissional = (req, res) =>{	
+    HistoricoAtendimento.findAll({
+			include: [{all: true, nested: true}],
+			where: { profissionalId: req.params.profissionalId },
+			order: [ ['data', 'DESC'] ]
+        }).then(atendimentos => {
+		res.send(atendimentos);
+	});
+};
+
 exports.obter_historicoatendimento_por_id = (req, res) => {	
 	HistoricoAtendimento.findById(req.params.historicoatendimentoId, {include: [{all: true, nested: true}]}).then(historicoatendimento => {
 		res.send(historicoatendimento);

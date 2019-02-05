@@ -70,6 +70,7 @@ db.atendimento.belongsTo(db.tipoatendimento, {as: 'tipoatendimento'});
 db.atendimento.belongsTo(db.situacao, {as: 'situacao'});
 db.atendimento.belongsTo(db.categoria, {as: 'categoria'});
 
+db.historicoatendimento.belongsTo(db.atendimento, {as: 'atendimento'});
 db.historicoatendimento.belongsTo(db.perfil, {as: 'cliente'});
 db.historicoatendimento.belongsTo(db.perfil, {as: 'profissional'});
 db.historicoatendimento.belongsTo(db.tipoatendimento, {as: 'tipoatendimento'});
