@@ -6,5 +6,5 @@ module.exports = (sequelize, Sequelize) => {
 		descricao: Sequelize.STRING
 
 	});
-	return Atendimento;
+	return HistoricoAtendimento;
 }
