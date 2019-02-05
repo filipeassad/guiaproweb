@@ -10,7 +10,6 @@ const Op = db.Sequelize.Op;
 exports.cadastrar_usuario = (req, res) => {
 	usuarioB = req.body;	
 	res.setHeader('Content-Type', 'application/json');
-	console.log('Passou!');
 	if (validaUsuario(usuarioB) == false) {
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
 	} else {

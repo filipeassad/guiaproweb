@@ -37,6 +37,7 @@ db.situacao = require('../api/models/SituacaoModel.js')(sequelize, Sequelize);
 db.tipoatendimento = require('../api/models/TipoAtendimentoModel.js')(sequelize, Sequelize);
 db.tipoperfil = require('../api/models/TipoPerfilModel.js')(sequelize, Sequelize); 
 db.usuario = require('../api/models/UsuarioModel.js')(sequelize, Sequelize); 
+db.historicoatendimento = require('../api/models/HistoricoAtendimentoModel.js')(sequelize, Sequelize); 
 
 db.permissaoperfil = db.sequelize.define('permissaoperfil',{});
 db.categoriaperfil = db.sequelize.define('categoriaperfil',{});
@@ -68,5 +69,11 @@ db.atendimento.belongsTo(db.perfil, {as: 'profissional'});
 db.atendimento.belongsTo(db.tipoatendimento, {as: 'tipoatendimento'});
 db.atendimento.belongsTo(db.situacao, {as: 'situacao'});
 db.atendimento.belongsTo(db.categoria, {as: 'categoria'});
+
+db.historicoatendimento.belongsTo(db.perfil, {as: 'cliente'});
+db.historicoatendimento.belongsTo(db.perfil, {as: 'profissional'});
+db.historicoatendimento.belongsTo(db.tipoatendimento, {as: 'tipoatendimento'});
+db.historicoatendimento.belongsTo(db.situacao, {as: 'situacao'});
+db.historicoatendimento.belongsTo(db.categoria, {as: 'categoria'});
  
 module.exports = db;
