@@ -22,7 +22,7 @@ exports.cadastrar_atendimento_cliente = (req, res) => {
     atendimentoB.data = new Date();
 	if(validaAtendimento(atendimentoB)){
 		Atendimento.create(new AtendimentoClienteObj(atendimentoB)).then(atendimento => {	
-			HistoricoAtendimento.create(new HistoricoAtendimentoObj(atendimento)).then(historicoatendimento => {		
+			HistoricoAtendimento.create(new HistoricoAtendimentoClienteObj(atendimentoB, atendimento.id)).then(historicoatendimento => {		
 				res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.', idAtendimento: atendimento.id }));
 			});						
 		});
@@ -126,6 +126,18 @@ function HistoricoAtendimentoObj(atendimento){
 	this.situacaoId = atendimento.situacao.id;
 	this.categoriaId = atendimento.categoria.id;
 	this.atendimentoId = atendimento.atendimento.id;
+}
+
+function HistoricoAtendimentoClienteObj(atendimento, idAtendimento){
+	this.data = atendimento.data;
+	this.titulo = atendimento.titulo;
+	this.descricao = atendimento.descricao;
+	this.clienteId = atendimento.clienteId;
+	this.profissionalId = atendimento.profissionalId;
+	this.tipoatendimentoId = atendimento.tipoatendimentoId;
+	this.situacaoId = atendimento.situacaoId;
+	this.categoriaId = atendimento.categoriaId;
+	this.atendimentoId = idAtendimento;
 }
 
 function validaAtendimento(atendimento){
