@@ -98,6 +98,7 @@ function HistoricoAtendimentoObj(historicoatendimento){
 	this.tipoatendimentoId = historicoatendimento.tipoatendimento.id;
 	this.situacaoId = historicoatendimento.situacao.id;
 	this.categoriaId = historicoatendimento.categoria.id;
+	this.atendimentoId = historicoatendimento.atendimento.id;
 }
 
 function HistoricoAtendimentoClienteObj(historicoatendimento){
@@ -108,29 +109,17 @@ function HistoricoAtendimentoClienteObj(historicoatendimento){
 	this.profissionalId = historicoatendimento.profissionalId;
 	this.tipoatendimentoId = historicoatendimento.tipoatendimentoId;
 	this.situacaoId = historicoatendimento.situacaoId;
-	this.categoriaId = historicoatendimento.categoriaId;
+	this.categoriaId = historicoatendimento.categoriaId;	
+	this.atendimentoId = historicoatendimento.atendimentoId;
 }
 
 function validaHistoricoAtendimento(historicoatendimento){
-
 	if(historicoatendimento == null)
 		return false;
-	/*if(atendimento.data == null || atendimento.data.trim() == '')
-		return false;*/
 	if(historicoatendimento.titulo == null || historicoatendimento.titulo.trim() == '')
 		return false;		
 	if(historicoatendimento.descricao == null || historicoatendimento.descricao.trim() == '')
 		return false;
-	/*if(atendimento.cliente == null && atendimento.cliente.id == null && atendimento.cliente.id == 0)
-		return false;
-	if(atendimento.profissional == null && atendimento.profissional.id == null && atendimento.profissional.id == 0)
-		return false;
-	if(atendimento.tipoatendimento == null && atendimento.tipoatendimento.id == null && atendimento.tipoatendimento.id == 0)
-		return false;
-	if(atendimento.situacao == null && atendimento.situacao.id == null && atendimento.situacao.id == 0)
-		return false;
-	if(atendimento.categoria == null && atendimento.categoria.id == null && atendimento.categoria.id == 0)
-		return false;*/
 
 	return true;
 }

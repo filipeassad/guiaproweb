@@ -22,7 +22,7 @@ var socketIO = require('socket.io')(server);
 
 const db = require('./configs/dbConfig.js');
 var dados_basicos = require('./configs/dados-basicos.js');
-var deletar = false;
+var deletar = true;
 
 db.sequelize.sync({force: deletar}).then(() => {
     if(deletar)
@@ -49,6 +49,7 @@ require('./api/routes/SituacaoRoutes.js')(app);
 require('./api/routes/TipoAtendimentoRoutes.js')(app);
 require('./api/routes/TipoPerfilRoutes.js')(app);
 require('./api/routes/UsuarioRoutes.js')(app);
+require('./api/routes/EspecialidadeRoutes.js')(app);
 require('./web/routes/PageRoutes.js')(app);
 require('./api/routes/HistoricoAtendimentoRoutes.js')(app);
 require('./configs/autenticacaoRoutes.js')(app);
