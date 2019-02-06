@@ -1,13 +1,16 @@
 const db = require('../../configs/dbConfig.js');
 const Atendimento = db.atendimento;
+const HistoricoAtendimento = db.historicoatendimento;
 const Perfil = db.perfil;
  
 exports.cadastrar_atendimento = (req, res) => {
 	var atendimentoB = req.body;
 
 	if(validaAtendimento(atendimentoB)){
-		Atendimento.create(new AtendimentoObj(atendimentoB)).then(atendimento => {		
-			res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.' }));
+		Atendimento.create(new AtendimentoObj(atendimentoB)).then(atendimento => {	
+			HistoricoAtendimento.create(new HistoricoAtendimentoObj(atendimento)).then(historicoatendimento => {		
+				res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.' }));
+			});				
 		});
 	}else{
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
@@ -18,8 +21,10 @@ exports.cadastrar_atendimento_cliente = (req, res) => {
 	var atendimentoB = req.body;    
     atendimentoB.data = new Date();
 	if(validaAtendimento(atendimentoB)){
-		Atendimento.create(new AtendimentoClienteObj(atendimentoB)).then(atendimento => {		
-			res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.', idAtendimento: atendimento.id }));
+		Atendimento.create(new AtendimentoClienteObj(atendimentoB)).then(atendimento => {	
+			HistoricoAtendimento.create(new HistoricoAtendimentoObj(atendimento)).then(historicoatendimento => {		
+				res.send(JSON.stringify({ success: true, message: 'O atendimento foi cadastrado com sucesso.', idAtendimento: atendimento.id }));
+			});						
 		});
 	}else{
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));
@@ -109,6 +114,18 @@ function AtendimentoClienteObj(atendimento){
 	this.tipoatendimentoId = atendimento.tipoatendimentoId;
 	this.situacaoId = atendimento.situacaoId;
 	this.categoriaId = atendimento.categoriaId;
+}
+
+function HistoricoAtendimentoObj(atendimento){
+	this.data = atendimento.data;
+	this.titulo = atendimento.titulo;
+	this.descricao = atendimento.descricao;
+	this.clienteId = atendimento.cliente.id;
+	this.profissionalId = atendimento.profissional.id;
+	this.tipoatendimentoId = atendimento.tipoatendimento.id;
+	this.situacaoId = atendimento.situacao.id;
+	this.categoriaId = atendimento.categoria.id;
+	this.atendimentoId = atendimento.atendimento.id;
 }
 
 function validaAtendimento(atendimento){

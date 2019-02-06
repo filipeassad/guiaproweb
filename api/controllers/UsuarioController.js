@@ -5,6 +5,7 @@ const Endereco = db.endereco;
 const PermissaoPerfil = db.permissaoperfil;
 const CategoriaPerfil = db.categoriaperfil;
 const EmpresaPerfil = db.empresaperfil;
+const Especialidade = db.especialidade;
 const Op = db.Sequelize.Op;
 
 exports.cadastrar_usuario = (req, res) => {
@@ -85,7 +86,8 @@ exports.cadastrar_usuario_cliente_mobile = (req, res) =>{
 						id: 1
 					},
 					categorias: [], 
-					empresas: []
+					empresas: [],
+					especialidades: []
 				}
 			};
 
@@ -286,6 +288,12 @@ function CategoriaObj(usuario, categoria) {
 function EmpresaPerfilObj(usuario, empresa){
 	this.perfilId = usuario.perfil.id;
 	this.empresaId = empresa.id;
+}
+
+function EspecialidadeObj(especialidade){
+	this.descricao = especialidade.descricao;
+	this.profissionalId = especialidade.profissionalId;
+	this.categoriaId = especialidade.categoriaId;
 }
 
 function validaUsuario(usuario) {
