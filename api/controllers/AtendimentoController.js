@@ -37,7 +37,9 @@ exports.atualizar_atendimento = (req, res) => {
 
 	if(validaAtendimento(atendimentoB)){
 		Atendimento.update(new AtendimentoObj(atendimentoB), { where:{ id: atendimentoId } }).then(atendimento => {		
-			res.send(JSON.stringify({ success: true, message: 'O atendimento foi alterado com sucesso.' }));
+			HistoricoAtendimento.create(new HistoricoAtendimentoClienteObj(atendimentoB, atendimento.id)).then(historicoatendimento => {		
+				res.send(JSON.stringify({ success: true, message: 'O atendimento foi alterado com sucesso.' }));
+			});			
 		});
 	}else{
 		res.send(JSON.stringify({ success: false, message: 'Dados obrigatórios não foram preenchidos!' }));

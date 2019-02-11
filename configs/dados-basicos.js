@@ -100,11 +100,35 @@ function cadastrarUsuarios(){
 }
 
 function cadastrarSituacoes(){
-    return cadastrarSituacao(situacao_aguardando).then(() => {
-        cadastrarSituacao(situacao_atendido).then(() => {
-            cadastrarSituacao(situacao_fechado).then(() => {
-                cadastrarSituacao(situacao_finalizado).then(() => {
-                    cadastrarSituacao(situacao_nao_fechado);
+    return cadastrarSituacao("Aguardando Ligação").then(() => {
+        cadastrarSituacao("Aguardando Atendimento").then(() => {
+            cadastrarSituacao("Atendimento Confirmado Pelo Cliente").then(() => {
+                cadastrarSituacao("Atendimento Não Confirmado Pelo Cliente").then(() => {
+                    cadastrarSituacao("Atendido").then(() => {
+                        cadastrarSituacao("Não Atendido").then(() => {
+                            cadastrarSituacao("Atendimento Com Respostas Divergentes").then(() => {
+                                cadastrarSituacao("Cliente Confirmou Fechamento De Trabalho").then(() => {
+                                    cadastrarSituacao("Cliente Não Confirmou Fechamento De Trabalho").then(() => {
+                                        cadastrarSituacao("Trabalho Fechado").then(() => {
+                                            cadastrarSituacao("Trabalho Não Fechado").then(() => {
+                                                cadastrarSituacao("Fechamento De Trabalho Com Respostas Divergentes").then(() => {
+                                                    cadastrarSituacao("Cliente Confirmou Finalização Do Trabalho").then(() => {
+                                                        cadastrarSituacao("Cliente Não Confirmou Finalização Do Trabalho").then(() => {
+                                                            cadastrarSituacao("Trabalho Finalizado").then(() => {
+                                                                cadastrarSituacao("Trabalho Não Finalizado").then(() => {
+                                                                    cadastrarSituacao("Finalização Do Trabalho Com Respostas Divergentes");
+                                                                });
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
                 });    
             });    
         });    
@@ -160,8 +184,8 @@ function CategoriaObj(descricao, sigla, urlimg){
     this.urlimg = urlimg;
 }
 
-function SituacaoObj(situacao){
-    this.descricao = situacao.descricao;
+function SituacaoObj(descricao){
+    this.descricao = descricao;
 }
 
 function TipoAtendimentoObj(tipoatendimento){
@@ -214,8 +238,6 @@ function PermissaoObj(permissao){
 	this.descricao = permissao.descricao;
 	this.sigla = permissao.sigla;
 }
-
-
 
 var usuario_administrador = {
     email: "admin",
@@ -348,22 +370,6 @@ var permissao_profissional = {
 var permissao_cliente = {
     descricao: "Ação Cliente",
     sigla: "AC"
-};
-
-var situacao_aguardando = {
-    descricao: "Aguardando Atendimento"
-};
-var situacao_atendido = {
-    descricao: "Atendido"
-};
-var situacao_fechado = {
-    descricao: "Trabalho Fechado"
-};
-var situacao_finalizado = {
-    descricao: "Trabalho Finalizado"
-};
-var situacao_nao_fechado = {
-    descricao: "Trabalho Não Foi Fechado"
 };
 
 var tipoatendimento_ligacao = {
