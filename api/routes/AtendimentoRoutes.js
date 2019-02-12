@@ -20,8 +20,10 @@ module.exports = function(app) {
         .get(autenticacao.validaToken, permissao.permissaoProfissional, atendimento.obter_atendimentos_by_token);
 
     app.route('/api/mobile/atendimento_cliente/:clienteId')
-        .get(autenticacao.validaToken, permissao.permissaoCliente, atendimento.obter_atendimento_pelo_cliente);
+        .get(autenticacao.validaToken, permissao.permissaoCliente, atendimento.obter_atendimento_pelo_cliente)
+        .put(autenticacao.validaToken, permissao.permissaoCliente, atendimento.atualizar_atendimento);
 
     app.route('/api/mobile/atendimento_profissional/:profissionalId')
-        .get(autenticacao.validaToken, permissao.permissaoProfissional, atendimento.obter_atendimento_pelo_profissional);
+        .get(autenticacao.validaToken, permissao.permissaoProfissional, atendimento.obter_atendimento_pelo_profissional)
+        .put(autenticacao.validaToken, permissao.permissaoProfissional, atendimento.atualizar_atendimento);
 };
