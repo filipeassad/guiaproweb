@@ -40,7 +40,7 @@ exports.atualizar_atendimento = (req, res) => {
 	if(validaAtendimento(atendimentoB)){
 		atendimentoB.data= new Date();
 		Atendimento.update(new AtendimentoClienteObj(atendimentoB), { where:{ id: atendimentoId } }).then(atendimento => {		
-			HistoricoAtendimento.create(new HistoricoAtendimentoClienteObj(atendimentoB, atendimento.id)).then(historicoatendimento => {		
+			HistoricoAtendimento.create(new HistoricoAtendimentoClienteObj(atendimentoB, atendimentoId)).then(historicoatendimento => {		
 				res.send(JSON.stringify({ success: true, message: 'O atendimento foi alterado com sucesso.' }));
 			});			
 		});
