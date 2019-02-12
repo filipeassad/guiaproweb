@@ -264,6 +264,7 @@ function PerfilEnviar(perfil){
 }
 
 function validarPerfilCliente(perfil){
+	console.log(perfil);
 	if (perfil == null)
 		return false;
 	if (perfil.nome == null || perfil.nome.trim() == '')
