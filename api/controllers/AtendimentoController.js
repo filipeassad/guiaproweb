@@ -32,7 +32,7 @@ exports.cadastrar_atendimento_cliente = (req, res) => {
 };
 
 exports.atualizar_atendimento = (req, res) => {
-	const atendimentoId = req.params.atendimentoId;
+	const atendimentoId = req.params.atendimentoId || req.params.clienteId || req.params.profissionalId;
 	var atendimentoB = req.body;
 
 	console.log(atendimentoB);
