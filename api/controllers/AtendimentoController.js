@@ -35,6 +35,8 @@ exports.atualizar_atendimento = (req, res) => {
 	const atendimentoId = req.params.atendimentoId;
 	var atendimentoB = req.body;
 
+	console.log(atendimentoB);
+
 	if(validaAtendimento(atendimentoB)){
 		atendimentoB.data= new Date();
 		Atendimento.update(new AtendimentoObj(atendimentoB), { where:{ id: atendimentoId } }).then(atendimento => {		
