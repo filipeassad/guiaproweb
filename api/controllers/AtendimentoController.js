@@ -63,7 +63,7 @@ exports.obter_todos_atendimentos = (req, res) => {
 
 exports.obter_atendimento_pelo_cliente = (req, res) =>{	
 
-	console.log(req.params.clienteId);
+	console.log("Entrou nessa bosta");
     Atendimento.findAll({
 			include: [{all: true, nested: true}],
 			where: { clienteId: req.params.clienteId },
