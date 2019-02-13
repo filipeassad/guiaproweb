@@ -19,7 +19,7 @@ exports.cadastrar_atendimento = (req, res) => {
 
 exports.cadastrar_atendimento_cliente = (req, res) => {
 	var atendimentoB = req.body;    
-    atendimentoB.data = new Date();
+	atendimentoB.data = new Date();
 	if(validaAtendimento(atendimentoB)){
 		Atendimento.create(new AtendimentoClienteObj(atendimentoB)).then(atendimento => {	
 			HistoricoAtendimento.create(new HistoricoAtendimentoClienteObj(atendimentoB, atendimento.id)).then(historicoatendimento => {		
@@ -34,9 +34,6 @@ exports.cadastrar_atendimento_cliente = (req, res) => {
 exports.atualizar_atendimento = (req, res) => {
 	const atendimentoId = req.params.atendimentoId || req.params.clienteId || req.params.profissionalId;
 	var atendimentoB = req.body;
-
-	console.log(atendimentoB);
-
 	if(validaAtendimento(atendimentoB)){
 		atendimentoB.data= new Date();
 		Atendimento.update(new AtendimentoClienteObj(atendimentoB), { where:{ id: atendimentoId } }).then(atendimento => {		
