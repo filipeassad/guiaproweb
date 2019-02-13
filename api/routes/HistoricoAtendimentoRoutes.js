@@ -24,5 +24,5 @@ module.exports = function(app) {
         .get(autenticacao.validaToken, permissao.permissaoCliente, historicoAtendimento.obter_historicoatendimento_pelo_cliente);
 
     app.route('/api/mobile/historico_atendimento_profissional/:profissionalId')
-        .get(autenticacao.validaToken, permissao.permissaoProfissional, historicoAtendimento.obter_historicoatendimento_pelo_cliente);
+        .get(autenticacao.validaToken, permissao.permissaoProfissional, historicoAtendimento.obter_historicoatendimento_pelo_profissional);
 };
