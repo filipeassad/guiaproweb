@@ -47,7 +47,6 @@ app.controller('CadastroUsuarioCtrl', [
             if(response.data != null)   
                 $scope.tiposperfil = response.data; 
 
-                console.log(response.data);
             httpService.gethttp(url_tiposcategoria, {})
             .then(function mySuccess(response) { 
                 if(response.data != null)   

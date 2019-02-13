@@ -38,8 +38,7 @@ exports.deletar_tipoperfil = (req, res) => {
 exports.obter_todos_tipoperfils = (req, res) => {
 	var usuarioId = req.decoded.id;
 	Usuario.findById(usuarioId, { include: [{ all: true, nested: true }] }).then(usuario => {
-		console.log(usuario.perfil.permissoes[0]);
-		var cond = montarCondicao(usuario.perfil.permissoes[0].id);
+		var cond = montarCondicao(usuario.perfil.permissoes[0].permissaoId);
 		TipoPerfil.findAll({
 			include: [{all: true, nested: true}],
 			where: cond,
