@@ -85,7 +85,7 @@ app.controller('CadastroUsuarioCtrl', [
     $scope.cadastrar = function(){          
         httpService.posthttp(url, $scope.usuario)
             .then(function mySuccess(response) {               
-                $scope.usuario = {};
+                //$scope.usuario = {};
                 retornoMensagem(response.data);
         }, function myError(response) {
             $rootScope.alertaErro("Problemas com o servidor.");
@@ -96,7 +96,7 @@ app.controller('CadastroUsuarioCtrl', [
         httpService.puthttp(url + "/" + $scope.usuario.id, $scope.usuario)
             .then(function mySuccess(response) {               
                 $scope.podeAlterar = false;
-                $scope.usuario = {};                
+                //$scope.usuario = {};                
                 retornoMensagem(response.data);
         }, function myError(response) {
             $rootScope.alertaErro("Problemas com o servidor.");
