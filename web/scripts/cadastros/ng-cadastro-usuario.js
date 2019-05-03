@@ -192,10 +192,13 @@ app.controller('CadastroUsuarioCtrl', [
 
     function retornoMensagem(retorno){
         if(retorno.success){
+            console.log('Entrou aqui');
             $rootScope.alertaSucesso(retorno.message);
             limparDados();
-        }else
+        }else{
+            console.log('Entrou aqui erro');
             $rootScope.alertaErro(retorno.message);
+        }        
     }
 
     function formatarData(dataNasc){
