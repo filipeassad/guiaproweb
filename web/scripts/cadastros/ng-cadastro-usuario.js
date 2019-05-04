@@ -102,8 +102,7 @@ app.controller('CadastroUsuarioCtrl', [
     $scope.alterar = function(){   
         httpService.puthttp(url + "/" + $scope.usuario.id, $scope.usuario)
         .then(function mySuccess(response) {   
-            $window.scrollTo(0, 0);            
-            $scope.podeAlterar = false;              
+            $window.scrollTo(0, 0);                 
             retornoMensagem(response.data);
         }, function myError(response) {
             $rootScope.alertaErro("Problemas com o servidor.");
@@ -200,7 +199,8 @@ app.controller('CadastroUsuarioCtrl', [
     function retornoMensagem(retorno){
         if(retorno.success){
             console.log('Entrou aqui');
-            $rootScope.alertaSucesso(retorno.message);
+            $rootScope.alertaSucesso(retorno.message);                     
+            $scope.podeAlterar = false;
             limparDados();
         }else{
             console.log('Entrou aqui erro');
