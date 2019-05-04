@@ -1,11 +1,13 @@
 app.controller('CadastroUsuarioCtrl', [
     '$scope',
     'httpService', 
-    '$rootScope',  
+    '$rootScope', 
+    '$window', 
     function(
         $scope, 
         httpService,
-        $rootScope){   
+        $rootScope,
+        $window){   
 
     var url = url_principal + "api/usuario";
     var url_tiposperfil = url_principal + "api/tipoperfil";
@@ -84,7 +86,8 @@ app.controller('CadastroUsuarioCtrl', [
 
     $scope.cadastrar = function(){          
         httpService.posthttp(url, $scope.usuario)
-            .then(function mySuccess(response) {           
+            .then(function mySuccess(response) {
+                $window.scrollTo(0, 0);           
                 retornoMensagem(response.data);
         }, function myError(response) {
             $rootScope.alertaErro("Problemas com o servidor.");
@@ -93,7 +96,8 @@ app.controller('CadastroUsuarioCtrl', [
 
     $scope.alterar = function(){   
         httpService.puthttp(url + "/" + $scope.usuario.id, $scope.usuario)
-            .then(function mySuccess(response) {               
+            .then(function mySuccess(response) {   
+                $window.scrollTo(0, 0);            
                 $scope.podeAlterar = false;              
                 retornoMensagem(response.data);
         }, function myError(response) {
