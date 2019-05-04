@@ -13,4 +13,7 @@ module.exports = function(app) {
         .get(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, endereco.obter_endereco_por_id)
         .put(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, endereco.atualizar_endereco)
         .delete(autenticacao.validaTokenPagina, permissao.permissaoDesenvolvedor, endereco.deletar_endereco);
+
+    app.route('/api/mobile/endereco/:enderecoId')
+        .put(autenticacao.validaTokenPagina, permissao.permissaoCliente, endereco.atualizar_endereco);
 };
