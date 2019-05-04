@@ -116,6 +116,7 @@ exports.obter_perfil_por_id = (req, res) => {
 exports.obter_perfil_pelo_usuario = (req, res) =>{
     Perfil.findAll({ where: { usuarioId: req.decoded.id},
         include: [{ all: true, nested: true }]}).then(perfil => {  
+			console.log(perfil);
 		res.send(new PerfilEnviar(perfil[0]));
 	});
 }
