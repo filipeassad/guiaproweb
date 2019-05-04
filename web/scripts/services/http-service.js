@@ -16,4 +16,8 @@ app.service('httpService', function($http) {
         return $http({ method: 'DELETE', url: url }); 
     };
 
+    this.posthttpArquivo = function(url, data){
+        return $http({ method: 'POST', url: url, data: data, headers: { 'Content-Type': undefined}, transformRequest: angular.identity});                
+    };
+
 });

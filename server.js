@@ -53,4 +53,5 @@ require('./api/routes/EspecialidadeRoutes.js')(app);
 require('./web/routes/PageRoutes.js')(app);
 require('./api/routes/HistoricoAtendimentoRoutes.js')(app);
 require('./configs/autenticacaoRoutes.js')(app);
+require('./aws/routeAWS.js')(app);
 require('./socket/routes/NotificacaoRoutes.js')(app, socketIO);

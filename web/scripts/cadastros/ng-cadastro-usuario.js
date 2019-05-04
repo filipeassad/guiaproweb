@@ -14,6 +14,7 @@ app.controller('CadastroUsuarioCtrl', [
     var url_tiposcategoria = url_principal + "api/categoria";
     var url_permissao = url_principal + "api/permissao";
     var url_empresa = url_principal + "api/empresa";
+    var arquivo = null;
     $scope.podeAlterar = false;
     $scope.titulo = "Cadastrar de Usuário";
 
@@ -84,27 +85,29 @@ app.controller('CadastroUsuarioCtrl', [
         });        
     }    
 
-    $scope.cadastrar = function(){          
+    $scope.cadastrar = function(){         
+
         httpService.posthttp(url, $scope.usuario)
-            .then(function mySuccess(response) {
-                $window.scrollTo(0, 0);           
-                retornoMensagem(response.data);
+        .then(function mySuccess(response) {
+            $window.scrollTo(0, 0);           
+            retornoMensagem(response.data);
         }, function myError(response) {
             $rootScope.alertaErro("Problemas com o servidor.");
         });
+        
     }    
 
     $scope.alterar = function(){   
         httpService.puthttp(url + "/" + $scope.usuario.id, $scope.usuario)
-            .then(function mySuccess(response) {   
-                $window.scrollTo(0, 0);            
-                $scope.podeAlterar = false;              
-                retornoMensagem(response.data);
+        .then(function mySuccess(response) {   
+            $window.scrollTo(0, 0);            
+            $scope.podeAlterar = false;              
+            retornoMensagem(response.data);
         }, function myError(response) {
             $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
-
+    
     function callbackBusca(retorno){
         if(!("erro" in retorno)){
             $scope.usuario.perfil.endereco.logradouro = retorno.logradouro;
@@ -270,5 +273,20 @@ app.controller('CadastroUsuarioCtrl', [
         }
         $scope.usuario.perfil.empresas = angular.copy(listaEmpresas);
     }
+
+    $scope.uploadFile = function(files) {
+        arquivo = files[0];  
+        if(arquivo != null){
+            var payload = new FormData();
+            payload.append('image', arquivo);
+    
+            httpService.posthttpArquivo(url_upload_arquivo, payload)
+            .then(function mySuccess(response) {  
+                $scope.usuario.perfil.urlimg = response.data.url;                    
+            }, function myError(response) {
+                console.log(response);  
+            });
+        }
+    }; 
 
 }]);

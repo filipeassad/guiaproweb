@@ -61,7 +61,13 @@
                                     <label>Sobrenome</label>
                                     <input type="text" class="form-control" ng-model="usuario.perfil.sobrenome">
                                 </div>
-                            </div>                       
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label>Foto:</label>                
+                                    <input type="file" class="form-control-file" id="foto" onchange="angular.element(this).scope().uploadFile(this.files)">
+                                </div>   
+                            </div>                     
                             <div class="row">
                                 <div class='col-sm-4'>
                                     <div class="form-group">
