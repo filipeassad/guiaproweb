@@ -14,6 +14,7 @@ app.controller('CadastroUsuarioCtrl', [
     var url_tiposcategoria = url_principal + "api/categoria";
     var url_permissao = url_principal + "api/permissao";
     var url_empresa = url_principal + "api/empresa";
+    var url_upload_arquivo = url_principal + " upload-arquivo/send-aws"; 
     var arquivo = null;
     $scope.podeAlterar = false;
     $scope.titulo = "Cadastrar de Usuário";
@@ -33,7 +34,8 @@ app.controller('CadastroUsuarioCtrl', [
                 categorias: [], 
                 permissoes: [],
                 empresas: [],
-                ativo: "true"
+                ativo: "true",
+                urlimg: null
             }
         };
     
@@ -107,7 +109,7 @@ app.controller('CadastroUsuarioCtrl', [
             $rootScope.alertaErro("Problemas com o servidor.");
         });
     }
-    
+
     function callbackBusca(retorno){
         if(!("erro" in retorno)){
             $scope.usuario.perfil.endereco.logradouro = retorno.logradouro;
