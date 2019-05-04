@@ -58,7 +58,7 @@ function EnderecoObj(endereco){
 	this.longitude = endereco.longitude;
 }
 
-function validaEmpresa(endereco){
+function validaEndereco(endereco){
 
 	if(endereco == null)
 		return false;
@@ -76,9 +76,9 @@ function validaEmpresa(endereco){
 		return false;
 	if(endereco.pais == null || endereco.pais.trim() == '')
 		return false;
-	if(endereco.latitude == null || endereco.latitude.trim() == '')
+	/*if(endereco.latitude == null || endereco.latitude.trim() == '')
 		return false;
 	if(endereco.longitude == null || endereco.longitude.trim() == '')
-		return false;
+		return false;*/
 
 }
