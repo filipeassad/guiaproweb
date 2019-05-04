@@ -13,7 +13,7 @@ app.controller('CadastroUsuarioCtrl', [
     var url_permissao = url_principal + "api/permissao";
     var url_empresa = url_principal + "api/empresa";
     $scope.podeAlterar = false;
-    $scope.titulo = "Cadastrar de Usuário ok";
+    $scope.titulo = "Cadastrar de Usuário";
 
     var id = document.URL.split("https://guiapro.herokuapp.com/alterar-usuario/").pop();     
 
