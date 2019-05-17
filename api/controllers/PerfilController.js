@@ -249,7 +249,8 @@ function CategoriaObj(perfil, categoria) {
 
 function PerfilEnviar(perfil){
     this.id = perfil.id;
-    this.nome = perfil.nome;
+	this.nome = perfil.nome;
+	this.urlimg = perfil.urlimg;
     this.sobrenome = perfil.sobrenome;
     this.nome_completo = perfil.nome + " " + perfil.sobrenome; 
     this.tipoperfil = perfil.tipoperfil;
