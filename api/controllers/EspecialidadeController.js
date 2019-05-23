@@ -45,6 +45,27 @@ exports.obter_especialidade_por_id = (req, res) => {
 	})
 };
 
+exports.obter_todos_especialidades_por_profissional = (req, res) => {
+    var profissionalID = req.params.profissionalId;
+	Especialidade.findAll({
+        where: { profissionalId: profissionalID},
+        include: [{all: true, nested: true}]
+        }).then(especialidades => {
+	  res.send(especialidades);
+	});
+};
+
+exports.obter_todos_especialidades_por_profissional_categoria = (req, res) => {
+    var profissionalID = req.params.profissionalId;
+    var categoriaID = req.params.categoriaId;
+	Especialidade.findAll({
+        where: { profissionalId: profissionalID, categoriaId: categoriaID},
+        include: [{all: true, nested: true}]
+        }).then(especialidades => {
+	  res.send(especialidades);
+	});
+};
+
 function EspecialidadeObj(especialidade){
 	this.descricao = especialidade.descricao;
 	this.profissionalId = especialidade.profissionalId;
