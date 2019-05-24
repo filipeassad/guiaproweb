@@ -78,9 +78,9 @@ function validaEspecialidade(especialidade){
 		return false;
 	if(especialidade.descricao == null || especialidade.descricao.trim() == '')
 		return false;
-	if(especialidade.profissionalId == null || especialidade.profissionalId.trim() == '')
+	if(especialidade.profissionalId == null)
 		return false;
-	if(especialidade.categoriaId == null || especialidade.categoriaId.trim() == '')
+	if(especialidade.categoriaId == null)
 		return false;
 
 }
