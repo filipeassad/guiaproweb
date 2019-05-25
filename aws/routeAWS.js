@@ -21,9 +21,35 @@ module.exports = function(app) {
         })
     });
 
+    function rawBody(req, res, next) {
+        var chunks = [];
+    
+        req.on('data', function(chunk) {
+            chunks.push(chunk);
+        });
+    
+        req.on('end', function() {
+            var buffer = Buffer.concat(chunks);
+    
+            req.bodyLength = buffer.length;
+            req.rawBody = buffer;
+            next();
+        });
+    
+        req.on('error', function (err) {
+            console.log(err);
+            res.status(500);
+        });
+    }
+
     router.post('/send-aws', upload.single('image'), (req, res, next) => {
         console.log(req.file);
         res.json({'url': req.file.location});
+    });
+    
+    router.post('/send-aws-mobile', rawBody, upload.single('rawBody'),function (req, res) {            
+        console.log(req.file);
+        res.json({'url': req.file.location});    
     });
 
     app.use('/upload-arquivo', router);
