@@ -25,14 +25,13 @@ module.exports = function(app) {
         var chunks = [];
     
         req.on('data', function(chunk) {
-            console.log(chunk);
             chunks.push(chunk);
         });
     
         req.on('end', function() {
             var buffer = Buffer.concat(chunks);
     
-            console.log(chunks);
+            console.log(typeof(buffer));
             req.bodyLength = buffer.length;
             req.rawBody = buffer;
             next();
